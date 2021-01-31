@@ -35,7 +35,6 @@
                                         <th>Numero de factura</th>
                                         <th>Cliente</th>
                                         <th>Correo</th>
-                                        <th>Aprobacion Garantia</th>
                                         <th>Estado</th>
                                         
                                     </tr>
@@ -79,7 +78,6 @@
                                                 <td><?php echo $garanty->Numero_Factura ?></td>
                                                 <td><?php echo $garanty->Nombre_Cliente ?></td>
                                                 <td style="font-size: 10px"><?php echo $garanty->Correo_Cliente ?></td>
-                                                <td><?php echo $garanty->Aprobacion_Garantia ?></td>
                                                 <td><?php echo $garanty->Estado ?></td>
                                             </tr>
                                    <?php } 

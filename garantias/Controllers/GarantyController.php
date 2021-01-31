@@ -221,7 +221,7 @@ class GarantyController
         ];
 
         $answerNewGaranty = $this->model->newGaranty($data);
-        $lastId = $this->model->getLastId();
+        $lastId = $this->model->getLastId(); 
 
         $Codigo_Producto = $_POST['Codigo_Producto'];
         $Descripcion_Producto = $_POST['Descripcion_Producto'];
@@ -232,7 +232,6 @@ class GarantyController
         $Referencia = $_POST['Referencia'];
         $Observacion_Cliente = ($_POST['Observacion_Cliente']);
         $Aprobacion_Garantia = ($_POST['Aprobacion_Garantia']);
-        $Estado = ($_POST['Estado']);
         $garantia = ($_POST['time']);
         $dateProvider = ($_POST['Fecha_Proveedor']);
 
@@ -246,7 +245,6 @@ class GarantyController
           $item7 = current($Referencia);
           $item8 = current($Observacion_Cliente);
           $item9 = current($Aprobacion_Garantia);
-          $item10 = current($Estado);
           $item11 = current($garantia);
           $item12 = current($dateProvider);
 
@@ -260,8 +258,6 @@ class GarantyController
           $op = (($item8 !== false) ? $item8 : '');
           
           $ag = (($item9 !== false) ? $item9 : '');
-          
-          $es = (($item10 !== false) ? $item10 : '');
           $g = (($item11 !== false) ? $item11 : '');
           $dP = (($item12 !== false) ? $item12 : '');
 
@@ -277,7 +273,6 @@ class GarantyController
             'Fecha_Proveedor' => $dP,
             'Id_Garantia' => $lastId[0]->id,
             'Observacion_Cliente' => $op,
-            'Estado' => $es,
             'Aprobacion_Garantia' => $ag
           ];
           
@@ -286,7 +281,7 @@ class GarantyController
           //echo '<hr>';
           //var_dump($detaills);
           //-----------LA CLAVE ESTA AQUI EN ESTA CONDICION-------------//
-          if ($ag == 'SI' || $ag == 'NO') {
+          if ($ag == 'SI') {
             echo "Garantia: ".$g.'<br>'.$dp;
             echo $ag." ag";
 
@@ -340,11 +335,8 @@ class GarantyController
           echo $date_before.'3<br>';
           if ($date_now >= $date_bill && $date_now <= $date_before) {
             if (isset($lastId[0]->id) && $answerNewGaranty == true) {
-              if ($ag == 'NO') {
-                $detaills['Estado'] = "Cerrado";
-                $this->model->saveDetail($detaills);
-              }
               if ($ag == 'SI') {
+                $detaills['Estado'] = "Tramite";
                 $detaills['Aprobacion_Garantia'] = $ag;
                 $this->model->saveDetail($detaills);
               }  
@@ -368,11 +360,10 @@ class GarantyController
           $item7 = next($Referencia);
           $item8 = next($Observacion_Cliente);
           $item9 = next($Aprobacion_Garantia);
-          $item10 = next($Estado);
           $item11 = next($garantia);
           $item12 = next($dateProvider);
           // Check terminator
-          if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false && $item8 === false && $item10 === false && $item9 === false && $item11 === false && $item12 === false) break;
+          if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false && $item8 === false &&  $item9 === false && $item11 === false && $item12 === false) break;
         }
 
         $dates = $this->model->getAlDetails($lastId[0]->id);
