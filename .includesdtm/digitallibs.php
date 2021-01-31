@@ -729,12 +729,12 @@ class digitalibs{
         }
     }
 
-    public function usuarios_sin_activar(){
-        $fecha = date('Y-m-d');
-        $nuevafecha = strtotime ( '-1 day' , strtotime ( $fecha ) ) ;
-        $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
-        $this->conexion->query("DELETE FROM dtm_user WHERE fecha<'$nuevafecha' AND activo='0'");
-    }
+    // public function usuarios_sin_activar(){
+    //     $fecha = date('Y-m-d');
+    //     $nuevafecha = strtotime ( '-1 day' , strtotime ( $fecha ) ) ;
+    //     $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+    //     $this->conexion->query("DELETE FROM dtm_user WHERE fecha<'$nuevafecha' AND activo='0'");
+    // }
     
     /*
      * Funcion que muestra todas las ventas realizadas por el usuario.

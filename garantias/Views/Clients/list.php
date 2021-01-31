@@ -17,7 +17,7 @@
                     </div>
                     <div class="header row">
                         <div class="alert alert-warning">
-                            <p>RECUERDA: debes cargar tu archivo de facturas una vez, si los datos no cargan, por favor avisar a soporte tecnologico. El archivo a cargar debe ser .csv</p>
+                            <p>RECUERDA: debes cargar tu archivo de clientes una vez, si los datos no cargan, por favor avisar a soporte tecnologico. El archivo a cargar debe ser .csv</p>
                         </div>
                         <div class="alert alert-danger">
                             <p>RECUERDA: Si tu archivo no es .csv, entonces este no se registrara en la base de datos </p>

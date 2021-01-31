@@ -7,8 +7,8 @@
   include ".includesdtm/digitallibs.php";
   include ".includesdtm/librerias.php";
   $librerias = new librerias;
-  $eee=new digitalibs();
-  $eee->usuarios_sin_activar();
+  // $eee=new digitalibs();
+  // $eee->usuarios_sin_activar();
 /* End composer */
 ?>
 <!DOCTYPE html>
