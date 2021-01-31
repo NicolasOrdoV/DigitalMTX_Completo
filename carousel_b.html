@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Carousel</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="img/icon.png">
+	<style>
+		body {
+			background: #0d47a1;
+			margin: 0;
+		}
+			.caja_banner {
+				height: 425px;
+				overflow: hidden;
+				width: 100%;
+			}
+				.item {
+					display: none;
+					height: 425px;
+					opacity: 0;
+					width: 100%;
+					transform: translateY(-426px);
+					transition: all 0.5s;
+				}
+					.item img {
+						height: auto;
+						width: 100%;
+					}
+					.item video {
+						height: 425px;
+						width: 100%;
+					}
+					.visible {
+						display: block;
+					}
+			.caja_sub_botones {
+				margin-top: 10px;
+				text-align: center;
+				width: 100%;
+			}
+				.sub_boton {
+					background: white;
+					border: 2px solid white;
+					border-radius: 50%;
+					box-shadow: 2px 2px 2px black;
+					display: inline-block;
+					height: 25px;
+					margin-left: 5px;
+					margin-right: 5px;
+					width: 25px;
+					transition: all 0.5s;
+				}
+					.sub_boton:hover {
+						background: rgba(255,255,255,0.5);
+						cursor: pointer;
+						transform: translateY(-5px);
+					}
+					.sub_boton:active {
+						background: rgba(255,255,255,0.5);
+					}
+				.sub_boton_active {
+					background: rgba(0,0,0,0);
+					box-shadow: 0px 0px 5px white;
+					transform: translateY(-5px);
+				}
+			.caja_botones {
+				transform: translateY(-213px);
+				width: 100%;
+			}
+				.caja_botones .caja_atras {
+					display: inline-block;
+					padding-left: 20px;
+					padding-right: 20px;
+					width: calc(50% - 40px);
+				}
+				.caja_botones .caja_pos {
+					float: right;
+					padding-left: 20px;
+					padding-right: 20px;
+					text-align: right;
+					width: calc(50% - 40px);
+				}
+					.caja_botones .caja_atras button, .caja_botones .caja_pos button {
+						background: white;
+						border: 0;
+						border-radius: 50%;
+						box-shadow: 2px 2px 2px black;
+						font-family: Tahoma, Geneva, sans-serif;
+						font-weight: bold;
+						text-align: center;
+						height: 30px;
+						width: 30px;
+						transition: all 0.5s;
+					}
+						.caja_botones .caja_atras button:hover, .caja_botones .caja_pos button:hover {
+							cursor: pointer;
+							transform: rotate(360deg);
+						}
+	</style>
+</head>
+<body>
+	<div class="caja_banner">
+		<div class="item visible" id="1" style="opacity: 1;transform: none;"><img src="img/1.png"></div>
+		<div class="item" id="2"><img src="img/2.png"></div>
+		<div class="item" id="3"><img src="img/3.png"></div>
+		<div class="item" id="4"><img src="img/4.png"></div>
+		<div class="item" id="5">
+			<video class="video" controls>
+				<source src="img/1.mp4" type="video/mp4">
+				Su navegador no admite la reproducción de este video.
+			</video>
+		</div>
+		<div class="item" id="6">
+			<video class="video" controls>
+				<source src="img/1.mp4" type="video/mp4">
+				Su navegador no admite la reproducción de este video.
+			</video>
+		</div>
+	</div>
+	<div class="caja_botones">
+		<div class="caja_atras">
+			<button class="button_pre">&#60;</button>
+		</div>
+		<div class="caja_pos">
+			<button class="button_pos">&#62;</button>
+		</div>
+	</div>
+	<div class="caja_sub_botones"></div>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script>
+
+		//Numero de slides en la galería
+		var numero_slides = $('.item');
+
+		//Colección de animaciones
+		var animaciones = [
+			'translateY(426px)',
+			'translateY(-426px)',
+			'translateX(426px)',
+			'translateX(-426px)',
+			'rotate(360deg)',
+			'rotate(-360deg)',
+			'scale(0)',
+			'scale(5)',
+			'scaleY(0)',
+			'scaleY(5)',
+			'scaleX(0)',
+			'scaleX(5)',
+		];
+
+		//Document Ready
+		$(document).ready(function() {
+			var sub_botones = "";
+
+
+			//Aplicar las animaciones en el cargue de la página
+			for (var i = 0; i < numero_slides.length; i++) {
+				if(i != 0) {
+					var animacion_elegida = Math.floor((Math.random() * animaciones.length) + 0);
+					$('.item:nth-child('+(i+1)+')').css('transform', animaciones[animacion_elegida]);
+				}
+				if(i == 0) {
+					sub_botones += '<div class="sub_boton sub_boton_active '+(i+1)+'"></div>';
+				} else {
+					sub_botones += '<div class="sub_boton '+(i+1)+'"></div>';
+				}
+			}
+
+			$('.caja_sub_botones').html(sub_botones);
+
+
+			//Click en alguno de los sub_botones
+			$('.sub_boton').click(function() {
+
+				//Reiniciar intervalo
+				clearInterval(auto);
+				inter();
+
+				//Pausar video
+					if($('.item.visible video').length != 0) {
+						$('.item.visible video').get(0).pause();
+					}
+
+				//Sub botón
+					$('.sub_boton').removeClass('sub_boton_active');
+					var id = $(this).attr("class");
+					id = id.split(" ");
+					id= id[1];
+					$(this).addClass("sub_boton_active");
+				//Slide
+					var animacion_elegida_sub = Math.floor((Math.random() * animaciones.length) + 0);
+					$('.item.visible').css('opacity', '0');
+					$('.item.visible').css('transform', animaciones[animacion_elegida_sub]);
+					$('.item.visible').removeClass('visible');
+					$('.item:nth-child('+id+')').addClass('visible');
+					setTimeout(function(){
+						$('.item:nth-child('+id+')').css('opacity', '1');
+						$('.item:nth-child('+id+')').css('transform', 'none');
+					}, 200);
+			});
+
+		});
+
+
+		//Video
+		var contador_video = 0;
+
+		$('video').click(function() {
+			if(contador_video == 0) {
+				contador_video = 1;
+				clearInterval(auto);
+			} else {
+				contador_video = 0;
+				inter();
+			}
+		});
+
+
+		//Automático
+		var auto;
+
+		function inter() {
+			clearInterval(auto);
+			auto = setInterval(function(){
+				$('.button_pos').click();
+			}, 5000);
+		}
+
+		inter();
+
+
+		//Click en el botón de "Siguiente"
+		$('.button_pos').click(function() {
+
+			//Reiniciar intervalo
+			clearInterval(auto);
+			inter();
+
+			//Pausar video
+				if($('.item.visible video').length != 0) {
+					$('.item.visible video').get(0).pause();
+				}
+
+			//Slide
+				var id = $('.visible').attr('id');
+				var animacion_elegida_pos = Math.floor((Math.random() * animaciones.length) + 0);
+				id++;
+				$('.item.visible').css('opacity', '0');
+				$('.item.visible').css('transform', animaciones[animacion_elegida_pos]);
+				$('.item.visible').removeClass('visible');
+				$('.item:nth-child('+id+')').addClass('visible');
+				if($('.item:nth-child('+id+')').html() == undefined) {
+					id = 1;
+					$('.item.visible').removeClass('visible');
+					$('.item:nth-child('+id+')').addClass('visible');
+				}
+				setTimeout(function() {
+					$('.item:nth-child('+id+')').css('opacity', '1');
+					$('.item:nth-child('+id+')').css('transform', 'none');
+				}, 200);
+			//Sub Botón
+				$('.sub_boton.sub_boton_active').removeClass('sub_boton_active');
+				$('.sub_boton.'+id).addClass('sub_boton_active');
+
+		});
+
+
+		//Click en el botón de "Atras"
+		$('.button_pre').click(function() {
+
+			//Reiniciar intervalo
+			clearInterval(auto);
+			inter();
+
+			//Pausar video
+				if($('.item.visible video').length != 0) {
+					$('.item.visible video').get(0).pause();
+				}
+
+			//Slide
+				var id = $('.visible').attr('id');
+				var animacion_elegida_pre = Math.floor((Math.random() * animaciones.length) + 0);
+				id--;
+				$('.item.visible').css('opacity', '0');
+				$('.item.visible').css('transform', animaciones[animacion_elegida_pre]);
+				$('.item.visible').removeClass('visible');
+				$('.item:nth-child('+id+')').addClass('visible');
+				if($('.item:nth-child('+id+')').html() == undefined) {
+					id = numero_slides.length;
+					$('.item.visible').removeClass('visible');
+					$('.item:nth-child('+id+')').addClass('visible');
+				}
+				setTimeout(function(){
+					$('.item:nth-child('+id+')').css('opacity', '1');
+					$('.item:nth-child('+id+')').css('transform', 'none');
+				}, 200);
+			//Sub botón
+				$('.sub_boton.sub_boton_active').removeClass('sub_boton_active');
+				$('.sub_boton.'+id).addClass('sub_boton_active');
+		});
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+.aviso-sin-confirmar {
+	background: #ff9800;
+	border-radius: 5px;
+	color: black;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.aviso-confirmado {
+	background: #4caf50;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.btn-registrarse {
+	background: #9e9e9e !important;
+	color: white !important;
+}
+	.btn-registrarse:hover {
+		animation-name: rebote;
+		animation-duration: 0.2s;
+		animation-iteration-count: 1;
+	}
+.estrella:hover {
+	cursor: pointer;
+	animation-name: rebote;
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+}

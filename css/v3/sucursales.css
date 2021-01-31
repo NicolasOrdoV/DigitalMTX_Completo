@@ -1,0 +1,19 @@
+.sucursales-wrapper {
+	padding-left: 90px !important;
+	padding-right: 90px !important;
+}
+	.item-sucursal {
+		padding-bottom: 5px !important;
+		padding-top: 5px !important;
+		word-break: break-all;
+	}
+@media (max-width: 600px) {
+	.destacados-titulo-wrapper {
+		padding-left: 45px !important;
+		padding-right: 45px !important;
+	}
+	.sucursales-wrapper {
+		padding-left: 45px !important;
+		padding-right: 45px !important;
+	}
+}

@@ -1,0 +1,44 @@
+.subtitulo {
+	background: #333;
+	border-radius: 0px 10px 10px 0px;
+	color: white;
+	font-size: 1.15rem;
+    line-height: 110%;
+    margin: .7666666667rem 0 .46rem 0;
+    padding: 7px;
+}
+.sign-up-form input:focus {
+    border-bottom: 1px solid #333 !important;
+    box-shadow: 0 1px 0 0 #333 !important;
+}
+.sign-up-form input:focus+label {
+	color: #333 !important;
+}
+i.prefix.active {
+	color: #333 !important;
+	animation-name: rebote;
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+}
+.asterisco {
+	color: red;
+	font-weight: bold;
+}
+.interrogacion {
+	background: #DE480D;
+	border-radius: 50%;
+	color: white;
+	font-weight: bold;
+	padding: 6px;
+	padding-bottom: 1px;
+	padding-top: 1px;
+}
+.btn-registrarse {
+	background: #DE480D !important;
+	color: white !important;
+}
+	.btn-registrarse:hover {
+		animation-name: rebote;
+		animation-duration: 0.2s;
+		animation-iteration-count: 1;
+	}

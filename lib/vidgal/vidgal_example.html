@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vidgal</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/vidgal.css">
+    <meta name="author" content="Diego Rodríguez Veloza(@rodvel2910)">
+	<meta name="author" content="Edwin Velasquez Jimenez">
+</head>
+<body>
+	<div class="titulo_lib">
+		<div>
+			Bienvenido a la librería <u><strong>Vidgal</strong></u>
+		</div>
+	</div>
+	<div class="caja_banner">
+		<div><img src="img/1.png"></div>
+		<div><img src="img/2.png"></div>
+		<div><img src="img/3.png"></div>
+		<div><img src="img/4.png"></div>
+		<div>
+			<video controls>
+				<source src="img/1.mp4" type="video/mp4">
+				Su navegador no admite la reproducción de este video.
+			</video>
+		</div>
+		<div>
+			<video controls>
+				<source src="img/1.mp4" type="video/mp4">
+				Su navegador no admite la reproducción de este video.
+			</video>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="js/vidgal.js"></script>
+	<script>
+		vidgal({
+			sub_botones: true,
+			auto: true,
+			der_botones: true,
+			izq_botones: true,
+			der_izq_botones_size: 2,
+			der_izq_botones_background_color: 'white',
+			der_izq_botones_color: '#333',
+			sub_botones_size: 2,
+			sub_botones_border_width: 2,
+			sub_botones_border_color: 'white',
+			sub_botones_background_color: 'white',
+			sub_botones_sombra: 'oscura'
+		});
+	</script>
+</body>
+</html>

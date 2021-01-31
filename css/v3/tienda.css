@@ -1,0 +1,70 @@
+.filtros-wrapper {
+	margin-top: 20px;
+	padding-left: 80px !important;
+	padding-right: 80px !important;
+}
+	.filtros-wrapper .select-wrapper .dropdown-content {
+		z-index: 2;
+	}
+		.filtros-wrapper .select-wrapper .dropdown-content::-webkit-scrollbar {
+			width: 5px;
+		}
+		.filtros-wrapper .select-wrapper .dropdown-content::-webkit-scrollbar-thumb {
+			background: #DF0209; 
+		}
+		.filtros-wrapper .select-wrapper .dropdown-content li span {
+			font-size: 0.9em;
+			padding: 10px !important;
+		}
+	.btn-eliminar-filtro {
+		background: #CCC !important;
+		color: #000;
+	}
+		.btn-eliminar-filtro:hover {
+			background: #333 !important;
+			color: white;
+			animation-name: rebote;
+		    animation-duration: 0.2s;
+		    animation-iteration-count: 1;
+		}
+	.btn-filtrar {
+		background: #DE480D !important;
+	}
+		.btn-filtrar:hover {
+			background: #333 !important;
+			animation-name: rebote;
+		    animation-duration: 0.2s;
+		    animation-iteration-count: 1;
+		}
+.productos-wrapper {
+	padding-left: 80px !important;
+	padding-right: 80px !important;
+}
+	.pagination .disabled, .pagination .disabled:hover {
+		background: none !important;
+	}
+	.pagination li:hover {
+		background: rgba(0,0,0,.2) !important;
+		animation-name: rebote;
+	    animation-duration: 0.2s;
+	    animation-iteration-count: 1;
+	}
+	.pagination .active {
+		background: #DE480D !important;
+	}
+		.pagination .active:hover {
+			background: #333 !important;
+		}
+@media (max-width: 600px) {
+	.filtros-wrapper {
+		padding-left: 40px !important;
+		padding-right: 40px !important;
+	}
+	.filtros-titulo-wrapper {
+		margin-bottom: 20px;
+	}
+	.productos-wrapper {
+		padding-left: 40px !important;
+		padding-right: 40px !important;
+	}
+}

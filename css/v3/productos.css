@@ -1,0 +1,242 @@
+.producto-wrapper {
+	margin-top: 20px;
+	padding-left: 80px !important;
+	padding-right: 80px !important;
+}
+	.img-producto-wrapper {
+		position: relative;
+	}
+	.img-producto-wrapper .img-principal-wrapper {
+		background-repeat: no-repeat !important;
+		border: 1px solid #999;
+		border-radius: 10px;
+		box-shadow: 0px 0px 20px #CCC;
+		height: 450px !important;
+		margin: auto;
+		width: 450px !important;
+		transition: all 0.5s;
+	}
+	.img-producto-wrapper #video-iframe {
+		border: 1px solid #999;
+		border-radius: 10px;
+		box-shadow: 0px 0px 20px #CCC;
+		display: none;
+		height: 450px !important;
+		/*left: 0;*/
+		margin: auto;
+		/*right: 0;*/
+		/*position: absolute;*/
+		/*top: 0;*/
+		width: 450px !important;
+	}
+	.img-producto-wrapper .img-mini-wrapper {
+		margin-top: 20px;
+	}
+		.img-producto-wrapper .img-mini-wrapper img {
+			border: 1px solid rgba(0,0,0,0);
+			width: 100px;
+			transition: all 0.5s;
+		}
+			.img-producto-wrapper .img-mini-wrapper img:hover {
+				border: 1px solid #999;
+				box-shadow: 0px 0px 20px #CCC;
+			}
+		.mini-video-wrapper {
+			background: #00aaff;
+			border-radius: 50%;
+			color: white;
+			display: inline-block;
+			height: 75px;
+			position: relative;
+			width: 75px;
+		}
+			.mini-video-wrapper:hover {
+				cursor: pointer;
+				animation-name: rebote;
+				animation-duration: 0.2s;
+				animation-iteration-count: 1;
+			}
+			.mini-video-wrapper i {
+				bottom: 0;
+				font-size: 1em;
+				height: 15px;
+				left: 0;
+				margin: auto;
+				right: 0;
+				position: absolute;
+				transform: scale(2.5);
+				top: 0;
+				width: 15px;
+				transition: all .2s;
+			}
+	.info-producto-wrapper {
+		padding-bottom: 40px !important;
+		position: relative;
+	}
+		.titulo-producto {
+			background: #333;
+			border-radius: 0px 0px 10px 10px;
+			color: white;
+			margin-top: 0px;
+			padding-bottom: 10px;
+			padding-top: 10px;
+		}
+		.btn-calificaciones {
+			background: #ff6f00 !important;
+			border-radius: 0px 0px 10px 10px;
+			color: white;
+			margin-bottom: 10px;
+			margin-top: -10px;
+		}
+			.btn-calificaciones:hover {
+				animation-name: rebote;
+				animation-duration: 0.2s;
+				animation-iteration-count: 1;
+			}
+			.calificacion-wrapper {
+				padding-right: 10px;
+			}
+				.numero-calificacion {
+					display: inline-block;
+					transform: translateY(-4px);
+				}
+		.descripcion {
+			padding-top: 90px;
+		}
+		.categoria, .marca, .precio, .codigo, .disponibles {
+			margin-top: -15px;
+		}
+		.precio-antiguo {
+			text-decoration: line-through;
+		}
+		.input-cantidad {
+			background: white !important;
+			border: 1px solid #999 !important;
+			border-radius: 5px !important;
+			box-shadow: 0px 0px 20px #CCC !important;
+			height: 35px !important;
+			margin: 0 !important;
+			margin-top: -30px !important;
+			max-width: 50px;
+			text-align: center;
+		}
+			.input-cantidad:hover, .input-cantidad:focus {
+				border: 1px solid #333 !important;
+			}
+		.color-label {
+			color: #333;
+			text-transform: capitalize;
+		}
+		.btn-anadir-producto {
+			background: #DE480D !important;
+			border-radius: 3px 0px 0px 3px;
+			box-shadow: none !important;
+			color: white !important;
+		}
+		.btn-whatsapp-producto {
+			background: #00d227 !important;
+			border-radius: 0px 3px 3px 0px;
+			box-shadow: none !important;
+			color: white !important;
+		}
+			.btn-anadir-producto i, .btn-whatsapp-producto i {
+				transition: all 0.2s;
+			}
+			.btn-anadir-producto:hover, .btn-whatsapp-producto:hover {
+				animation-name: rebote;
+				animation-duration: 0.2s;
+				animation-iteration-count: 1;
+			}
+			.btn-anadir-producto {
+				position: absolute;
+				top: 100px;
+				left: 0 !important;
+			}
+			.btn-whatsapp-producto {
+				position: absolute;
+				top: 100px;
+				left: 0 !important;
+			}
+		.btn-stock-producto {
+			background: red !important;
+			border-radius: 0px 3px 3px 0px;
+			box-shadow: none !important;
+			color: white !important;
+		}
+		.aviso-stock-producto {
+			margin-bottom: 5px;
+			margin-top: 10px;
+			text-align: center;
+		}
+			.btn-stock-contacto-producto {
+				background: #DE480D !important;
+			}
+				.btn-stock-contacto-producto:hover {
+					background: #333 !important;
+					animation-name: rebote;
+					animation-duration: 0.2s;
+					animation-iteration-count: 1;
+				}
+		.imagen-color {
+			border: 1px solid #999;
+			border-radius: 5px;
+			height: 70px;
+			margin-right: 10px;
+			transition: all 0.5s;
+		}
+			.imagen-color:hover {
+				border: 1px solid #000;
+				box-shadow: 0px 0px 20px #CCC;
+			}
+		.chip-t {
+			background: #e4e4e4 !important;
+			border-left: 1px solid #333;
+			color: #333 !important;
+			height: 44px;
+			margin-top: 10px;
+		}
+			.chip-t:hover {
+				/*background: #333 !important;
+				color: white !important;
+				animation-name: rebote;
+				animation-duration: 0.2s;
+				animation-iteration-count: 1;*/
+			}
+	.ultimas-compras-wrapper {
+		/*max-height: 440px;
+		overflow-y: auto;*/
+	}
+/* Start media queries */
+	@media (max-width: 600px) {
+		.producto-wrapper {
+			padding-left: 40px !important;
+			padding-right: 40px !important;
+		}
+		.btn-whatsapp-producto {
+			top: 130px !important;
+		}
+	}
+	@media (max-width: 992px) {
+		.img-producto-wrapper .img-principal-wrapper {
+			height: 240px !important;
+			width: 100% !important;
+			transition: all 0.5s;
+		}
+		.img-producto-wrapper #video-iframe {
+			height: 240px !important;
+			width: 100% !important;
+		}
+		.img-producto-wrapper .img-mini-wrapper img {
+			width: 50px;
+		}
+		.descripcion {
+			padding-top: 160px;
+		}
+		.btn-anadir-producto {
+			top: 120px;
+		}
+		.btn-whatsapp-producto {
+			top: 110px;
+		}
+	}
+/* End media queries */

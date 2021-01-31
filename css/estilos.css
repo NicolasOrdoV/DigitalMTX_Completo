@@ -1,0 +1,646 @@
+/* --------------------------------------------------------
+Autores: Edwin Velasquez Jimenez, Diego Rodríguez Veloza(@rodvel2910)
+----------------------------------------------------------*/
+
+@media (min-width:2500px) {
+   body {
+      font-size: 200%;
+   }
+}
+
+body {
+   background-color: #fff;
+}
+
+body .logo {
+   margin: auto;
+   position: relative;
+   left: 40%;
+}
+
+.slide_style_left {
+   text-align: left !important;
+}
+
+.slide_style_right {
+   text-align: right !important;
+}
+
+.slide_style_center {
+   text-align: center !important;
+}
+
+.slide-text {
+   left: 0;
+   top: 70%;
+   right: 0;
+   margin: auto;
+   padding: 10px;
+   position: absolute;
+   text-align: left;
+   padding: 10px 85px;
+}
+
+@media (max-width: 800px) {
+   .slide-text {
+      position: absolute;
+      top: 50%;
+   }
+}
+
+.mpago {
+   position: relative;
+   margin: auto;
+   padding-bottom: 20px;
+}
+
+.botonbajo {
+   float: left;
+   margin: 15px;
+   -webkit-transition: margin 0.5s ease-out;
+   -moz-transition: margin 0.5s ease-out;
+   -ms-transition: margin 0.5s ease-out;
+   transition: margin 0.5s ease-out;
+}
+
+.botonbajo:hover {
+   margin-top: 2px;
+}
+
+.carrito {
+   position: fixed;
+   top: 40%;
+   right: 1em;
+   font-size: 12px;
+   padding: 1em;
+   z-index: 250;
+}
+
+.carrito span {
+   display: none;
+}
+
+.carrito:hover>span {
+   display: block;
+   transition: all .5s ease-in-out;
+}
+
+.navbar {
+   /*z-index: 10000 !important;*/
+}
+
+.navbar-nav a {
+   font-size: 14px;
+   text-decoration: none;
+   padding: 1px 3px;
+   display: inline-block;
+   -webkit-transition: all .1s linear;
+   -moz-transition: all .1s linear;
+   -ms-transition: all .1s linear;
+   -o-transition: all .3s linear;
+   transition: all .1s linear;
+}
+
+@media (max-width: 1025px) {
+   .navbar-nav a {
+      font-size: 10px;
+      text-decoration: none;
+      padding: 1px 3px;
+      display: inline-block;
+      -webkit-transition: all .1s linear;
+      -moz-transition: all .1s linear;
+      -ms-transition: all .1s linear;
+      -o-transition: all .3s linear;
+      transition: all .1s linear;
+   }
+}
+
+@media (max-width: 801px) {
+   .navbar-nav a h4 {
+      font-size: 12px;
+   }
+   .navbar-nav a {
+      font-size: 10px;
+      text-decoration: none;
+      padding: 1px 3px;
+      display: inline-block;
+      -webkit-transition: all .1s linear;
+      -moz-transition: all .1s linear;
+      -ms-transition: all .1s linear;
+      -o-transition: all .3s linear;
+      transition: all .1s linear;
+   }
+}
+
+.navbar-nav a:hover {
+   background: #fff;
+   color: #fff;
+   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
+   -webkit-transform: scale(1, 1);
+   -moz-transform: scale(1, 1);
+   -ms-transform: scale(1, 1);
+   -o-transform: scale(1, 1);
+   transform: scale(1, 1);
+   -webkit-transition: all .2s linear;
+   -moz-transition: all .2s linear;
+   -ms-transition: all .2s linear;
+   -o-transition: all .2s linear;
+   transition: all .2s linear;
+   border-radius: 5px 5px 5px 5px;
+   -moz-border-radius: 5px 5px 5px 5px;
+   -webkit-border-radius: 5px 5px 5px 5px;
+   border: .2px solid #A9BCF5;
+}
+
+.divisor {
+   height: 250px;
+   margin-right: 60px;
+   margin-left: -50px;
+   border-right: 1px solid #BDBDBD;
+}
+
+.divisorl {
+   height: 250px;
+   border-left: 1px solid #BDBDBD;
+   margin-left: 60px;
+   margin-right: -50px;
+}
+
+@media (max-width: 799px) {
+   .divisor {
+      display: none !important;
+   }
+   .divisorl {
+      display: none !important;
+   }
+}
+
+.navbar-nav a:active {
+   background-color: #F2F2F2;
+}
+
+.dropdown-menu a:hover {
+   background: #fff;
+   color: #fff;
+   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
+   -webkit-transform: scale(1.1, 1.1);
+   -moz-transform: scale(1.1, 1.1);
+   -ms-transform: scale(1.1, 1.1);
+   -o-transform: scale(1.1, 1.1);
+   transform: scale(1.1, 1.1);
+   -webkit-transition: all .2s linear;
+   -moz-transition: all .2s linear;
+   -ms-transition: all .2s linear;
+   -o-transition: all .2s linear;
+   transition: all .2s linear;
+   border-radius: 5px 5px 5px 5px;
+   -moz-border-radius: 5px 5px 5px 5px;
+   -webkit-border-radius: 5px 5px 5px 5px;
+   border: 0px solid #000000;
+}
+
+#footer-sub {
+   background-color: #f3f7f8;
+   border-top: 1px solid #dbdbdb;
+}
+
+#footer-main {
+   background-color: #679AC4;
+}
+
+#footer-sub h5 {
+   color: #565656;
+   margin-top: 25px;
+}
+
+#footer-sub ul {
+   list-style: none;
+   margin-top: 20px;
+}
+
+#footer-sub hr {
+   margin: 5px;
+}
+
+#footer-sub ul li {
+   margin-left: 0px;
+}
+
+#footer-sub a:link {
+   text-decoration: none;
+   color: #565656;
+   font-size: 12px;
+}
+
+#footer-sub a:visited {
+   text-decoration: none;
+   color: #565656;
+}
+
+#footer-sub a:hover {
+   text-decoration: none;
+   color: blue;
+}
+
+#footer-sub a:active {
+   text-decoration: none;
+   color: #565656;
+}
+
+.vertical-line {
+   border-right: 1px solid #dbdbdb;
+   margin: 8px;
+   padding: 0px;
+}
+
+.icons {
+   font-size: 35px;
+   color: #6d6c6c;
+}
+
+#sub-two {
+   margin: 0px;
+   padding: 0px;
+}
+
+#sub-two .vertical-line h4 {
+   color: #6d6c6c;
+}
+
+#footer-main ul {
+   list-style: none;
+}
+
+#footer-main ul li {
+   float: left;
+   text-decoration: none;
+   padding-left: 15px;
+   margin-top: 17px;
+}
+
+#footer-main a:link {
+   color: white;
+   font-size: 12px;
+}
+
+#footer-main a:visited {
+   color: white;
+}
+
+#footer-main a:hover {
+   text-decoration: none;
+   color: #00b9f5;
+}
+
+#footer-main a:active {
+   color: white;
+}
+
+.glyphicon-search {
+   font-size: 20px;
+}
+
+#social-menu {
+   float: right;
+   margin-right: 60px;
+}
+
+#side-padding {
+   padding: 0px;
+   margin: 0px;
+}
+
+@media (max-width: 800px) {
+   .panel-danger {
+      display: none;
+   }
+}
+
+#nosotros {
+   width: 100%;
+   min-height: 1200px;
+   background-image: url("../img/nosotros.png");
+   background-position: center center;
+   background-repeat: no-repeat;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   background-attachment: fixed;
+   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.navbar-form.navbar-left {
+   display: block;
+}
+
+@media (max-width: 375px) {
+   .buscar_mobile {
+      display: block !important;
+   }
+   /*.navbar-form.navbar-left {
+      display: none;
+   }
+   .buscar_mobile {
+      display: block !important;
+      position: absolute;
+      top: 5px;
+      z-index: 9999;
+      margin: auto;
+      left: 0;
+      right: 0;
+      width: 40% !important;
+      transform: scale(0.9);
+   }
+      .buscar_mobile .form-control.btn-sm::placeholder {
+         text-align: center;
+      }
+      .buscar_mobile button {
+         margin-top: -15px;
+         width: 100%;
+      }*/
+   .navbar-collapse {
+      background-color: #f3f7f8 !important;
+      margin-top: 29px;
+   }
+   .navbar-form.navbar-left {
+      display: none;
+   }
+}
+
+@media (max-width: 425px) {
+
+   .buscar_mobile {
+      display: block !important;
+   }
+   /*
+   .navbar-form.navbar-left {
+      display: none;
+   }
+   .buscar_mobile {
+      display: block !important;
+      position: absolute;
+      top: 5px;
+      z-index: 9999;
+      margin: auto;
+      left: 0;
+      right: 0;
+      width: 50%;
+      transform: scale(0.9);
+   }
+      .buscar_mobile .form-control.btn-sm::placeholder {
+         text-align: center;
+      }
+      .buscar_mobile button {
+         margin-top: -15px;
+         width: 100%;
+      }*/
+   .navbar-collapse {
+      background-color: #f3f7f8 !important;
+      margin-top: 29px;
+   }
+   .navbar-form.navbar-left {
+      display: none;
+   }
+}
+
+.buscar_mobile {
+   display: none;
+}
+
+.te_llamamos {
+   background: #039be5;
+   border: 3px solid #039be5;
+   border-top: 0;
+   border-radius: 0px 0px 10px 10px;
+   bottom: 0;
+   box-shadow: 0px 2px 10px #039be5;
+   color: white;
+   font-weight: bold;
+   height: 40px;
+   left: -53px;
+   margin: auto;
+   padding: 10px;
+   position: fixed;
+   top: 0;
+   transform: rotate(-90deg);
+   z-index: 250;
+   transition: all 0.5s;
+}
+
+.te_llamamos:hover {
+   background: white;
+   box-shadow: 0px 0px 0px #039be5;
+   color: #039be5;
+   cursor: pointer;
+}
+
+.form_llamanos {
+   background: #039be5;
+   border: 1px solid #039be5;
+   border-radius: 10px 10px 10px 0px;
+   box-shadow: 0px 0px 5px #039be5;
+   bottom: 263px;
+   padding: 10px;
+   position: fixed;
+   left: 20px;
+   transform: rotate(90deg);
+   transition: all 0.5s;
+   width: 220px;
+}
+
+.te_llamamos:hover .form_llamanos {
+   /*bottom: -263px;*/
+   color: black !important;
+   cursor: auto;
+}
+
+.btn_llamanos {
+   background: white;
+   border: 0;
+   border-radius: 10px;
+   color: black;
+   padding: 10px;
+   padding-bottom: 5px;
+   padding-top: 5px;
+   text-align: center;
+   transition: all 0.5s;
+}
+
+.btn_llamanos:hover {
+   transform: scale(1.2);
+}
+
+.btn_llamanos:active {
+   transform: scale(0.5);
+}
+
+.modal-body input {
+   transition: all 0.5s;
+}
+
+.modal-body input:focus,
+.modal-body textarea:focus {
+   background: #039be5;
+   color: white;
+   outline: 0;
+}
+
+.modal-body input:focus::placeholder,
+.modal-body textarea:focus::placeholder {
+   color: white;
+}
+
+.modal-body button {
+   background: #039be5;
+   border: 0;
+   border-radius: 10px;
+   color: white;
+   font-weight: bold;
+   font-size: 1.2em;
+   padding: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+.modal-body button:active {
+   transform: scale(0.9);
+}
+
+.modal-body button:focus {
+   outline: 0;
+}
+
+#mimodal_content input {
+   transition: all 0.5s;
+}
+
+#mimodal_content input:focus,
+#mimodal_content textarea:focus {
+   background: #039be5;
+   color: white;
+   outline: 0;
+}
+
+#mimodal_content input:focus::placeholder,
+#mimodal_content textarea:focus::placeholder {
+   color: white;
+}
+
+#mimodal_content button {
+   background: #039be5;
+   border: 0;
+   border-radius: 10px;
+   color: white;
+   font-weight: bold;
+   font-size: 1.2em;
+   padding: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+#mimodal_content button:active {
+   transform: scale(0.9);
+}
+
+#mimodal_content button:focus {
+   outline: 0;
+}
+
+#mimodal_content #mimodal_close {
+   font-size: 1.2em;
+   padding: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   width: 100px;
+   min-width: 100px;
+   float: right;
+   text-align: center;
+}
+
+#mimodal_content #mimodal_close:hover {
+   cursor: pointer;
+}
+
+#mimodal_content #mimodal_close:active {
+   transform: scale(0.9);
+}
+
+#mimodal_content #mimodal_close:focus {
+   outline: 0;
+}
+
+@media (max-width: 992px) {
+   .celular_llamenos {
+      margin-top: 10px !important;
+   }
+}
+
+/* Inicio nuevo carro de compras */
+
+.pedido-wrapper {
+   border-top: 5px solid #dc0504;
+   border-radius: 2px 2px 10px 10px;
+   box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
+   padding: 20px !important;
+}
+   .pedido-wrapper .titulo {
+      color: #dc0504;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+   }
+   .pedido-wrapper .titulo_producto {
+      color: #dc0504;
+   }
+   .pedido-wrapper .eliminar_producto {
+      color: white;
+      padding: 0;
+      transform: scale(0.8);
+   }
+      .pedido-wrapper .eliminar_producto i {
+         transform: translateY(2px);
+      }
+   .pedido-wrapper .observaciones_pedido {
+      margin-top: 20px;
+   }
+   .pedido-wrapper .boton_comprar {
+      margin-top: 20px;
+   }
+   .pedido-wrapper form {
+      display: inline;
+   }
+   .pedido-wrapper .titulo_forma_pago {
+      margin-top: 20px;
+   }
+
+/* Fin nuevo carro de compras */
+
+/* Inicio botón de WhatsApp */
+
+   .btn-wa {
+      background: url('../img/logo-wa.png');
+      background-size: 70px;
+      bottom: 20px;
+      height: 70px;
+      left: 20px;
+      position: fixed;
+      width: 70px;
+      transition: all 0.5s;
+   }
+      .btn-wa:hover {
+         transform: rotate(360deg);
+      }
+
+   .btn-wa-product {
+      background: #00d227;
+   }
+      .btn-wa-product img {
+         width: 30px;
+      }
+      .btn-wa-product span {
+         color: white;
+         font-weight: bold;
+      }
+
+/* Fin botón de WhatsApp */

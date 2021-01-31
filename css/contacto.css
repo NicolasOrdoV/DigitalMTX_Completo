@@ -1,0 +1,127 @@
+/* --------------------------------------------------------
+Autores: Edwin Velasquez Jimenez, Diego Rodríguez Veloza(@rodvel2910)
+----------------------------------------------------------*/
+
+body {
+   background-color: #D8D8D8;
+}
+
+
+/* navbar */
+
+.navbar-default {
+   background-color: #FE2E2E;
+   border-color: #fff;
+}
+
+.dropdown-menu {
+   background: #FE2E2E;
+}
+
+.nav span {
+   color: #fff;
+}
+
+.nav span:hover {
+   color: #000;
+}
+
+
+/* Title */
+
+.navbar-default .navbar-brand {
+   color: #777;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+   color: #F78181;
+}
+
+
+/* Link */
+
+.navbar-default .navbar-nav>li>a {
+   color: #000;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+   color: #333;
+   background-color: #F78181;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+   color: #fff;
+   background-color: #F78181;
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .navbar-nav>.open>a:focus {
+   color: #fff;
+   background-color: #F78181;
+}
+
+.navbar-default .navbar-nav>.active>.dropdown,
+.navbar-default .navbar-nav>.active>.dropdown:hover,
+.navbar-default .navbar-nav>.active>.dropdown:focus {
+   color: #fff;
+   background-color: #F78181;
+}
+
+.navbar-default .navbar-nav>.open>.dropdown,
+.navbar-default .navbar-nav>.open>.dropdown:hover,
+.navbar-default .navbar-nav>.open>.dropdown:focus {
+   color: #fff;
+   background-color: #F78181;
+}
+
+
+/* Caret */
+
+.navbar-default .navbar-nav>.dropdown>a .caret {
+   border-top-color: #fff;
+   border-bottom-color: #fff;
+}
+
+.navbar-default .navbar-nav>.dropdown>a:hover .caret,
+.navbar-default .navbar-nav>.dropdown>a:focus .caret {
+   border-top-color: #fff;
+   border-bottom-color: #fff;
+}
+
+.navbar-default .navbar-nav>.open>a .caret,
+.navbar-default .navbar-nav>.open>a:hover .caret,
+.navbar-default .navbar-nav>.open>a:focus .caret {
+   border-top-color: #fff;
+   border-bottom-color: #fff;
+}
+
+
+/* Mobile version */
+
+.navbar-default .navbar-toggle {
+   border-color: #fff;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+   background-color: red;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+   background-color: #fff;
+}
+
+@media (max-width: 767px) {
+   .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+      color: #777;
+   }
+   .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
+   .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
+      color: #333;
+   }
+}

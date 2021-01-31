@@ -1,0 +1,59 @@
+/* --------------------------------------------------------
+Autores: Edwin Velasquez Jimenez, Diego Rodríguez Veloza(@rodvel2910)
+----------------------------------------------------------*/
+
+.nav li {
+   font-size: 20px;
+}
+
+.nav li:hover {
+   background-color: #D8D8D8;
+}
+
+.navbar-collapse.collapse {
+   display: block !important;
+   width: auto !important;
+   padding-bottom: 0;
+   overflow: visible !important;
+   height: 100%;
+}
+
+.navbar-collapse.in {
+   overflow-x: visible;
+}
+
+.navbar {
+   max-width: 100%;
+   margin-right: 0;
+   margin-left: 0;
+   height: 100% !important;
+}
+
+.navbar-nav,
+.navbar-nav>li,
+.navbar-left,
+.navbar-right,
+.navbar-header {
+   float: none !important;
+}
+
+.navbar-right .dropdown-menu {
+   left: 0;
+   right: auto;
+}
+
+.navbar-collapse .navbar-nav.navbar-right:last-child {
+   margin-right: 0;
+}
+
+.panel {
+   height: 250px;
+}
+
+.fa {
+   font-size: 30px;
+}
+
+/* --------------------------------------------------------
+Autores: Edwin Velasquez Jimenez, Diego Rodríguez Veloza(@rodvel2910)
+----------------------------------------------------------*/

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Carousel</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="img/icon.png">
+	<style>
+		body {
+			background: #0d47a1;
+			margin: 0;
+		}
+			.caja_banner {
+				height: 425px;
+				overflow: hidden;
+				position: relative;
+				width: 100%;
+			}
+				.item {
+					height: 425px;
+					position: absolute;
+					opacity: 0;
+					width: 100%;
+					transition: all 0.5s;
+				}
+					.item img {
+						height: auto;
+						width: 100%;
+					}
+					.item video {
+						height: 425px;
+						width: 100%;
+					}
+					.visible {
+						opacity: 1;
+					}
+			.caja_botones {
+				right: 0;
+				position: absolute;
+				top: 212px;
+				z-index: 101;
+			}
+	</style>
+</head>
+<body>
+	<div class="caja_banner">
+		<div class="item visible" id="1"><img src="img/1.png"></div>
+		<div class="item" id="2"><img src="img/2.png"></div>
+		<div class="item" id="3"><img src="img/3.png"></div>
+		<div class="item" id="4"><img src="img/4.png"></div>
+		<div class="item" id="5">
+			<video class="video" controls>
+				<source src="img/1.mp4" type="video/mp4">
+				Su navegador no admite la reproducción de este video.
+			</video>
+		</div>
+		<div class="item" id="6">
+			<video class="video" controls>
+				<source src="img/1.mp4" type="video/mp4">
+				Su navegador no admite la reproducción de este video.
+			</video>
+		</div>
+	</div>
+	<div class="caja_botones">
+		<button>Siguiente</button>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var numero_slides = $('.item');
+			var id = $('.visible').attr('id');
+			var animaciones = [
+				'translateX(-100%)',
+				'translateX(100%)',
+				'translateY(100%)',
+				'translateY(-100%)',
+				'translateX(-100%) rotate(180deg)',
+				'translateX(100%) rotate(180deg)',
+				'translateY(100%) rotate(180deg)',
+				'translateY(-100%) rotate(180deg)'
+			];
+			var z_index = 100;
+			for (var i = 1; i <= numero_slides.length; i++) {
+				var item = $('.caja_banner').find('.item:nth-child('+i+')');
+				z_index--;
+				if(item.find('img').length == 1) {
+					item.css('z-index', z_index);
+				} else {
+					item.css('z-index', z_index);
+				}
+			}
+			var conn_video = 0;
+			var intervalo = setInterval(function() {
+				console.log("primero");
+				$('button').click();
+			}, 5000);
+
+			$('video').click(function() {
+				clearInterval(intervalo);
+				if(conn_video == 0) {
+					console.log('muere');
+					conn_video = 1;
+					parar(1);
+				} else {
+					console.log('vive');
+					conn_video = 0;
+					parar(0);
+				}
+			});
+
+			function parar(a) {
+				if(a == 0) {
+					var intervalo_b = setInterval(function() {
+						console.log("segundo");
+						$('button').click();
+					}, 5000);
+				} else {
+					console.log("llego");
+					clearInterval(intervalo_b);
+				}
+			}
+
+			$('button').click(function() {
+				for (var i = 1; i <= numero_slides.length; i++) {
+					var item = $('.caja_banner').find('.item:nth-child('+i+')');
+					if(item.find('video').length == 1) {
+						item.find('video').get(0).pause();
+					}
+				}
+				var aleatorio = Math.floor((Math.random() * animaciones.length) + 0);
+				id++;
+				if(id == 2) {
+					$('.item.visible').css('transform', animaciones[aleatorio]);
+				} else if(id == 3) {
+					$('.item.visible').css('transform', animaciones[aleatorio]);
+				} else if(id == 4) {
+					$('.item.visible').css('transform', animaciones[aleatorio]);
+				} else if(id == 5) {
+					$('.item.visible').css('transform', animaciones[aleatorio]);
+				} else if(id == 6) {
+					$('.item.visible').css('transform', animaciones[aleatorio]);
+				} else if(id == 7) {
+					$('.item.visible').css('transform', animaciones[aleatorio]);
+				}
+				$('.item.visible').removeClass('visible');
+				$('.item:nth-child('+id+')').addClass('visible');
+				if($('.item:nth-child('+id+')').html() == undefined) {
+					id = 1;
+					$('.item.visible').removeClass('visible');
+					$('.item:nth-child('+id+')').addClass('visible');
+					setTimeout(function(){
+						$('.item').css('transform', 'none');
+					}, 250);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

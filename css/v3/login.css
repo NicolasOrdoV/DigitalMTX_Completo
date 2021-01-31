@@ -1,0 +1,38 @@
+#correo:focus, #clave:focus {
+	border-bottom: 2px solid #333;
+	box-shadow: none;
+}
+#correo:focus+label, #clave:focus+label {
+	color: #333;
+}
+i.prefix.active {
+	color: #333 !important;
+	animation-name: rebote;
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+}
+.asterisco {
+	color: red;
+	font-weight: bold;
+}
+.btn-entrar {
+	background: #DE480D !important;
+	color: white !important;
+}
+.btn-facebook {
+	background: #3e5b98 !important;
+	color: white !important;
+}
+.btn-google {
+	background: #4285f4 !important;
+	color: white !important;
+}
+.btn-registrarse {
+	background: #9e9e9e !important;
+	color: white !important;
+}
+	.btn-entrar:hover, .btn-google:hover, .btn-facebook:hover, .btn-registrarse:hover {
+		animation-name: rebote;
+		animation-duration: 0.2s;
+		animation-iteration-count: 1;
+	}

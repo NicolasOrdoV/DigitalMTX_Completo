@@ -1,0 +1,420 @@
+<!doctype html>
+<html>
+<head>
+    <title>jQuery UI autocomplete with PHP and AJAX</title>
+    
+    <!-- Script -->
+    <script src='jquery-3.1.1.min.js' type='text/javascript'></script>
+
+    <!-- jQuery UI -->
+    <link href='jquery-ui.min.css' rel='stylesheet' type='text/css'>
+    <script src='jquery-ui.min.js' type='text/javascript'></script>
+    
+</head>
+<body>
+
+     <table class="table table-bordered table-striped table-hover dataTable js-basic-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Descripcion</th>
+                                            <th>Referencia</th>
+                                            <th>Sello</th>
+                                            <th>Marca</th>
+                                            <th>Cantidad</th>
+                                            <th>Proveedor</th>
+                                            <th>Fecha proveedor</th>
+                                            <th>Observacion del cliente</th>
+                                            <th>¿Se aprueba la garantia?</th>
+                                        </tr>
+                            
+                                    </thead>
+                                    <tbody>
+
+                                                <tr>
+                                                    <td>
+                                                        
+                                                        <input size="5" type="text" class="form-control" name="Codigo_Producto[]" id="Codigo_Producto">
+                                                        <input type="hidden" name="time">
+                                                    </td>
+                                                    <td>
+                                                        <!-- <small style="visibility: hidden">
+                                                            <?php //echo isset($productos['Descripcion']) ? $productos['Descripcion'] : '' ?>
+                                                        </small> -->
+                                                        <textarea rows="5" type="text" class="form-control" name="Descripcion_Producto[]" id="Descripcion_Producto" ></textarea>
+                                                    </td>
+                                                    <td>
+                                                        
+                                                        <input size="5" type="text" class="form-control" name="Referencia[]">
+                                                    </td>
+                                                    <td>
+                                                        <!-- <small style="visibility: hidden">
+                                                            <?php //echo isset($productos['Sello']) ? $productos['Sello'] : '' ?>
+                                                        </small> -->
+                                                        <textarea rows="5" type="text" class="form-control" name="Sello_Producto[]"></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <input size="5" type="text" class="form-control" name="Marca_Producto[]" >
+                                    
+                                                    </td>
+                                                    <td>
+                                                      
+                                                        <input size="5" type="text" class="form-control" name="Cantidad_Producto[]" >
+                                                    </td>
+                                                    <td>
+                                                        <select size="5" name="Codigo_Proveedor[]" class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <?php foreach ($providers as $provider) { ?>
+                                                                <option value="<?php echo $provider->id ?>"><?php echo $provider->id ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input size="5" type="date" name="Fecha_Proveedor[]" class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <textarea size="5" rows="4" class="form-control no-resize" name="Observacion_Cliente[]"></textarea>
+                                                        <input type="hidden" name="Estado[]" value="Tramite">
+                                                    </td>
+                                                    <td>
+                                                        <div class="demo-checkbox form-line">
+                                                            <input size="5" type="checkbox" id="md_checkbox_<?php echo $key + 1; ?>" class="chk-col-red" name="Aprobacion_Garantia[]" value="SI" />
+                                                            <label for="md_checkbox_<?php echo $key + 1; ?>">SI</label>
+                                                            <input type="checkbox" id="md_checkbox_<?php echo $key + 10; ?>" class="chk-col-red" name="Aprobacion_Garantia[]" value="NO" />
+                                                            <label for="md_checkbox_<?php echo $key + 10; ?>">NO</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                 <tr>
+                                                    <td>
+                                                        
+                                                        <input size="5" type="text" class="form-control" name="Codigo_Producto[]" id="Codigo_Producto1">
+                                                        <input type="hidden" name="time">
+                                                    </td>
+                                                    <td>
+                                                        <!-- <small style="visibility: hidden">
+                                                            <?php //echo isset($productos['Descripcion']) ? $productos['Descripcion'] : '' ?>
+                                                        </small> -->
+                                                        <textarea rows="5" type="text" class="form-control" name="Descripcion_Producto[]" id="Descripcion_Producto" ></textarea>
+                                                    </td>
+                                                    <td>
+                                                        
+                                                        <input size="5" type="text" class="form-control" name="Referencia[]">
+                                                    </td>
+                                                    <td>
+                                                        <!-- <small style="visibility: hidden">
+                                                            <?php //echo isset($productos['Sello']) ? $productos['Sello'] : '' ?>
+                                                        </small> -->
+                                                        <textarea rows="5" type="text" class="form-control" name="Sello_Producto[]"></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <input size="5" type="text" class="form-control" name="Marca_Producto[]" >
+                                    
+                                                    </td>
+                                                    <td>
+                                                      
+                                                        <input size="5" type="text" class="form-control" name="Cantidad_Producto[]" >
+                                                    </td>
+                                                    <td>
+                                                        <select size="5" name="Codigo_Proveedor[]" class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <?php foreach ($providers as $provider) { ?>
+                                                                <option value="<?php echo $provider->id ?>"><?php echo $provider->id ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input size="5" type="date" name="Fecha_Proveedor[]" class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <textarea size="5" rows="4" class="form-control no-resize" name="Observacion_Cliente[]"></textarea>
+                                                        <input type="hidden" name="Estado[]" value="Tramite">
+                                                    </td>
+                                                    <td>
+                                                        <div class="demo-checkbox form-line">
+                                                            <input size="5" type="checkbox" id="md_checkbox_<?php echo $key + 2; ?>" class="chk-col-red" name="Aprobacion_Garantia[]" value="SI" />
+                                                            <label for="md_checkbox_<?php echo $key +2; ?>">SI</label>
+                                                            <input type="checkbox" id="md_checkbox_<?php echo $key + 9; ?>" class="chk-col-red" name="Aprobacion_Garantia[]" value="NO" />
+                                                            <label for="md_checkbox_<?php echo $key + 9; ?>">NO</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                 <tr>
+                                                    <td>
+                                                        
+                                                        <input size="5" type="text" class="form-control" name="Codigo_Producto[]" id="Codigo_Producto">
+                                                        <input type="hidden" name="time">
+                                                    </td>
+                                                    <td>
+                                                        <!-- <small style="visibility: hidden">
+                                                            <?php //echo isset($productos['Descripcion']) ? $productos['Descripcion'] : '' ?>
+                                                        </small> -->
+                                                        <textarea rows="5" type="text" class="form-control" name="Descripcion_Producto[]" id="Descripcion_Producto" ></textarea>
+                                                    </td>
+                                                    <td>
+                                                        
+                                                        <input size="5" type="text" class="form-control" name="Referencia[]">
+                                                    </td>
+                                                    <td>
+                                                        <!-- <small style="visibility: hidden">
+                                                            <?php //echo isset($productos['Sello']) ? $productos['Sello'] : '' ?>
+                                                        </small> -->
+                                                        <textarea rows="5" type="text" class="form-control" name="Sello_Producto[]"></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <input size="5" type="text" class="form-control" name="Marca_Producto[]" >
+                                    
+                                                    </td>
+                                                    <td>
+                                                      
+                                                        <input size="5" type="text" class="form-control" name="Cantidad_Producto[]" >
+                                                    </td>
+                                                    <td>
+                                                        <select size="5" name="Codigo_Proveedor[]" class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <?php foreach ($providers as $provider) { ?>
+                                                                <option value="<?php echo $provider->id ?>"><?php echo $provider->id ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input size="5" type="date" name="Fecha_Proveedor[]" class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <textarea size="5" rows="4" class="form-control no-resize" name="Observacion_Cliente[]"></textarea>
+                                                        <input type="hidden" name="Estado[]" value="Tramite">
+                                                    </td>
+                                                    <td>
+                                                        <div class="demo-checkbox form-line">
+                                                            <input size="5" type="checkbox" id="md_checkbox_<?php echo $key + 3; ?>" class="chk-col-red" name="Aprobacion_Garantia[]" value="SI" />
+                                                            <label for="md_checkbox_<?php echo $key + 3; ?>">SI</label>
+                                                            <input type="checkbox" id="md_checkbox_<?php echo $key + 8; ?>" class="chk-col-red" name="Aprobacion_Garantia[]" value="NO" />
+                                                            <label for="md_checkbox_<?php echo $key + 8; ?>">NO</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                 <tr>
+                                                    <td>
+                                                        
+                                                        <input size="5" type="text" class="form-control" name="Codigo_Producto[]" id="Codigo_Producto">
+                                                        <input type="hidden" name="time">
+                                                    </td>
+                                                    <td>
+                                                        <!-- <small style="visibility: hidden">
+                                                            <?php //echo isset($productos['Descripcion']) ? $productos['Descripcion'] : '' ?>
+                                                        </small> -->
+                                                        <textarea rows="5" type="text" class="form-control" name="Descripcion_Producto[]" id="Descripcion_Producto" ></textarea>
+                                                    </td>
+                                                    <td>
+                                                        
+                                                        <input size="5" type="text" class="form-control" name="Referencia[]">
+                                                    </td>
+                                                    <td>
+                                                        <!-- <small style="visibility: hidden">
+                                                            <?php //echo isset($productos['Sello']) ? $productos['Sello'] : '' ?>
+                                                        </small> -->
+                                                        <textarea rows="5" type="text" class="form-control" name="Sello_Producto[]"></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <input size="5" type="text" class="form-control" name="Marca_Producto[]" >
+                                    
+                                                    </td>
+                                                    <td>
+                                                      
+                                                        <input size="5" type="text" class="form-control" name="Cantidad_Producto[]" >
+                                                    </td>
+                                                    <td>
+                                                        <select size="5" name="Codigo_Proveedor[]" class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <?php foreach ($providers as $provider) { ?>
+                                                                <option value="<?php echo $provider->id ?>"><?php echo $provider->id ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input size="5" type="date" name="Fecha_Proveedor[]" class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <textarea size="5" rows="4" class="form-control no-resize" name="Observacion_Cliente[]"></textarea>
+                                                        <input type="hidden" name="Estado[]" value="Tramite">
+                                                    </td>
+                                                    <td>
+                                                        <div class="demo-checkbox form-line">
+                                                            <input size="5" type="checkbox" id="md_checkbox_<?php echo $key + 4; ?>" class="chk-col-red" name="Aprobacion_Garantia[]" value="SI" />
+                                                            <label for="md_checkbox_<?php echo $key + 4; ?>">SI</label>
+                                                            <input type="checkbox" id="md_checkbox_<?php echo $key + 7; ?>" class="chk-col-red" name="Aprobacion_Garantia[]" value="NO" />
+                                                            <label for="md_checkbox_<?php echo $key + 7; ?>">NO</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                 <tr>
+                                                    <td>
+                                                        
+                                                        <input size="5" type="text" class="form-control" name="Codigo_Producto[]" id="Codigo_Producto">
+                                                        <input type="hidden" name="time">
+                                                    </td>
+                                                    <td>
+                                                        <!-- <small style="visibility: hidden">
+                                                            <?php //echo isset($productos['Descripcion']) ? $productos['Descripcion'] : '' ?>
+                                                        </small> -->
+                                                        <textarea rows="5" type="text" class="form-control" name="Descripcion_Producto[]" id="Descripcion_Producto" ></textarea>
+                                                    </td>
+                                                    <td>
+                                                        
+                                                        <input size="5" type="text" class="form-control" name="Referencia[]">
+                                                    </td>
+                                                    <td>
+                                                        <!-- <small style="visibility: hidden">
+                                                            <?php //echo isset($productos['Sello']) ? $productos['Sello'] : '' ?>
+                                                        </small> -->
+                                                        <textarea rows="5" type="text" class="form-control" name="Sello_Producto[]"></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <input size="5" type="text" class="form-control" name="Marca_Producto[]" >
+                                    
+                                                    </td>
+                                                    <td>
+                                                      
+                                                        <input size="5" type="text" class="form-control" name="Cantidad_Producto[]" >
+                                                    </td>
+                                                    <td>
+                                                        <select size="5" name="Codigo_Proveedor[]" class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <?php foreach ($providers as $provider) { ?>
+                                                                <option value="<?php echo $provider->id ?>"><?php echo $provider->id ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input size="5" type="date" name="Fecha_Proveedor[]" class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <textarea size="5" rows="4" class="form-control no-resize" name="Observacion_Cliente[]"></textarea>
+                                                        <input type="hidden" name="Estado[]" value="Tramite">
+                                                    </td>
+                                                    <td>
+                                                        <div class="demo-checkbox form-line">
+                                                            <input size="5" type="checkbox" id="md_checkbox_<?php echo $key + 5; ?>" class="chk-col-red" name="Aprobacion_Garantia[]" value="SI" />
+                                                            <label for="md_checkbox_<?php echo $key + 5; ?>">SI</label>
+                                                            <input type="checkbox" id="md_checkbox_<?php echo $key + 6; ?>" class="chk-col-red" name="Aprobacion_Garantia[]" value="NO" />
+                                                            <label for="md_checkbox_<?php echo $key + 6; ?>">NO</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                    </tbody>
+                                </table>
+
+    <!-- Script -->
+    <script type='text/javascript' >
+    $( function() {
+  
+        $( "#Codigo_Producto" ).autocomplete({
+            source: function( request, response ) {
+                
+                $.ajax({
+                    url: "fetchData.php",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        search: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $('#Codigo_Producto').val(ui.item.label); // display the selected text
+                $('#Descripcion_Producto').val(ui.item.value); // save selected id to input
+                $('#selectuser_id1').val(ui.item.value); // save selected id to input
+                $('#selectuser_id2').val(ui.item.codigo); // save selected id to input
+                $('#selectuser_id3').val(ui.item.value); // save selected id to input
+                $('#selectuser_id4').val(ui.item.value); // save selected id to input
+                return false;
+            }
+        });
+
+
+        $( "#Codigo_Producto1" ).autocomplete({
+            source: function( request, response ) {
+                
+                $.ajax({
+                    url: "fetchData.php",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        search: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $('#Codigo_Producto1').val(ui.item.label); // display the selected text
+                $('#Descripcion_Producto').val(ui.item.value); // save selected id to input
+                $('#selectuser_id1').val(ui.item.value); // save selected id to input
+                $('#selectuser_id2').val(ui.item.codigo); // save selected id to input
+                $('#selectuser_id3').val(ui.item.value); // save selected id to input
+                $('#selectuser_id4').val(ui.item.value); // save selected id to input
+                return false;
+            }
+        });
+
+
+
+
+        // Multiple select
+        $( "#multi_autocomplete" ).autocomplete({
+            source: function( request, response ) {
+                
+                var searchText = extractLast(request.term);
+                $.ajax({
+                    url: "fetchData.php",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        search: searchText
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                });
+            },
+            select: function( event, ui ) {
+                var terms = split( $('#multi_autocomplete').val() );
+                
+                terms.pop();
+                
+                terms.push( ui.item.label );
+                
+                terms.push( "" );
+                $('#multi_autocomplete').val(terms.join( ", " ));
+
+                // Id
+                var terms = split( $('#selectuser_ids').val() );
+                
+                terms.pop();
+                
+                terms.push( ui.item.value );
+                
+                terms.push( "" );
+                $('#selectuser_ids').val(terms.join( ", " ));
+
+                return false;
+            }
+           
+        });
+    });
+
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+
+    </script>
+    
+</body>
+</html>

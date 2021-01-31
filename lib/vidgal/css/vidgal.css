@@ -1,0 +1,268 @@
+/* --------------------------------------------------------
+author: Diego Rordríguez Veloza
+contact: @rodvel2910(Twitter)
+author: Edwin Velasquez Jimenez
+----------------------------------------------------------*/
+
+@charset "UTF-8";
+
+	.titulo_lib {
+		font-family: Tahoma, Geneva, sans-serif;
+		text-align: center;
+		width: 100%;
+	}
+		.titulo_lib div {
+			background: white;
+			border-radius: 10px;
+			display: inline-block;
+			margin-bottom: 20px;
+			margin-top: 20px;
+			padding: 10px;
+			animation-name: parpadeo_fondo;
+			animation-iteration-count: infinite;
+			animation-duration: 2s;
+		}
+			@keyframes parpadeo_fondo {
+				0% {
+					background: rgba(255,255,255,1);
+				}
+				50% {
+					background: rgba(255,255,255,0.5);
+				}
+				100% {
+					background: rgba(255,255,255,1);
+				}
+			}
+	.caja_banner {
+		height: 425px;
+		overflow: hidden;
+		width: 100%;
+	}
+		.item {
+			display: none;
+			height: 425px;
+			opacity: 0;
+			width: 100%;
+			transform: translateY(-426px);
+			transition: all 0.5s;
+		}
+			.item:nth-child(1) {
+				opacity: 1;
+				transform: none;
+			}
+			.item img {
+				height: 425px;
+				width: 100%;
+			}
+			.item video {
+				height: 425px;
+				width: 100%;
+			}
+			.visible {
+				display: block;
+			}
+	.caja_sub_botones {
+		margin-top: 30px;
+		text-align: center;
+		width: 100%;
+	}
+		.sub_boton {
+			background: white;
+			border: 2px solid white;
+			border-radius: 50%;
+			box-shadow: 2px 2px 2px black;
+			display: inline-block;
+			margin-left: 5px;
+			margin-right: 5px;
+			transition: all 0.5s;
+			width: 25px;
+			height: 25px;
+		}
+			.sub_boton:hover {
+				background: rgba(255,255,255,0.5);
+				cursor: pointer;
+				transform: translateY(-5px);
+			}
+			.sub_boton:active {
+				background: rgba(255,255,255,0.5);
+			}
+		.sub_boton_active {
+			background: rgba(0,0,0,0.5) !important;
+			box-shadow: 0px 0px 5px white;
+			transform: translateY(-5px);
+		}
+	.caja_botones {
+		transform: translateY(-213px);
+		width: 100%;
+	}
+		.caja_botones .caja_atras {
+			display: inline-block;
+			padding-left: 20px;
+			padding-right: 20px;
+			width: calc(50% - 40px);
+		}
+		.caja_botones .caja_pos {
+			float: right;
+			padding-left: 20px;
+			padding-right: 20px;
+			text-align: right;
+			width: calc(50% - 40px);
+		}
+			.caja_botones .caja_atras button, .caja_botones .caja_pos button {
+				background: white;
+				border: 0;
+				border-radius: 50%;
+				box-shadow: 0px 0px 4px black;
+				font-family: Tahoma, Geneva, sans-serif;
+				font-weight: bold;
+				outline-width: 0px;
+				text-align: center;
+				height: 30px;
+				width: 30px;
+				transition: all 0.5s;
+			}
+				.caja_botones .caja_atras button:hover, .caja_botones .caja_pos button:hover {
+					cursor: pointer;
+					transform: rotate(360deg);
+				}
+	.menu_doc {
+		font-family: Tahoma, Geneva, sans-serif;
+		margin-bottom: 40px;
+		margin-top: 40px;
+		text-align: center;
+		width: 100%;
+	}
+		.titulo {
+			color: white;
+			font-family: Tahoma, Geneva, sans-serif;
+			font-weight: bold;
+			margin-bottom: 40px;
+			margin-top: 40px;
+			text-align: center;
+			text-shadow: 0px 2px 2px black; 
+			text-transform: uppercase;
+			width: 100%;
+		}
+		.item_menu_doc {
+			background: white;
+			border-radius: 10px;
+			display: inline-block;
+			padding: 10px;
+			transition: all 0.2s;
+		}
+			.item_menu_doc:hover {
+				background: rgba(255,255,255,0.8);
+				cursor: pointer;
+			}
+			.item_menu_doc:active {
+				transform: scale(0.7);
+			}
+	.descargar {
+		margin-bottom: 40px;
+		width: 100%;
+	}
+		.descargar div {
+			background: #AD301F;
+			border-radius: 10px;
+			box-shadow: 0px 0px 4px black;
+			color: white;
+			display: inline-block;
+			padding: 10px;
+			transition: all 0.1s;
+		}
+			.descargar div:hover {
+				box-shadow: 0px 0px 6px black;
+				cursor: pointer;
+				transform: scale(1.05);
+			}
+			.descargar div:active {
+				box-shadow: 0px 0px 2px black;
+				cursor: pointer;
+				transform: scale(0.9);
+			}
+	.documentacion {
+		background: white;
+		border-radius: 20px;
+		box-shadow: 0px 0px 5px white;
+		display: none;
+		font-family: Tahoma, Geneva, sans-serif;
+		margin: auto;
+		margin-bottom: 40px;
+		margin-top: 40px;
+		padding: 20px;
+		width: 70%;
+	}
+		.documentacion ul {
+			list-style-type: decimal;
+		}
+			.js_ul {
+				display: none;
+			}
+			.documentacion ul li {
+				font-weight: bold;
+				margin-bottom: 20px;
+				margin-top: 20px;
+			}
+				.documentacion ul li span {
+					font-weight: normal;
+				}
+				.documentacion ul li .codigo {
+					background: #555;
+					border-radius: 20px;
+					color: white;
+					margin-top: 20px;
+					white-space: pre;
+				}
+
+@media (min-width: 320px) and (max-width: 425px) {
+	.caja_banner {
+		height: 125px;
+	}
+		.item {
+			height: 125px;
+		}
+			.item img, .item video {
+				height: 125px;
+			}
+	.caja_sub_botones {
+		margin-top: 0px;
+	}
+	.caja_botones {
+		transform: translateY(-83px);
+	}
+		.caja_botones .caja_atras {
+			width: 40px;
+		}
+		.caja_botones .caja_pos {
+			width: 40px;
+		}
+}
+@media (min-width: 768px) and (max-width: 992px) {
+	.caja_banner {
+		height: 256px;
+	}
+		.item {
+			height: 256px;
+		}
+			.item img, .item video {
+				height: 256px;
+			}
+	.caja_sub_botones {
+		margin-top: 0px;
+	}
+	.caja_botones {
+		transform: translateY(-143px);
+	}
+		.caja_botones .caja_atras {
+			width: 40px;
+		}
+		.caja_botones .caja_pos {
+			width: 40px;
+		}
+}
+
+@media (min-width: 993px) and (max-width: 1225px) {
+	.caja_sub_botones {
+		margin-top: 0px;
+	}
+}

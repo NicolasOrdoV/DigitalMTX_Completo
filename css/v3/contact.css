@@ -1,0 +1,73 @@
+.contacto-wrapper {
+	padding-left: 90px !important;
+	padding-right: 90px !important;
+}
+	.captcha-wrapper {
+		text-align: center;
+	}
+		.g-recaptcha {
+			display: inline-block;
+		}
+	.btn-enviar-contacto {
+		background: #DE480D !important;
+	}
+		.btn-enviar-contacto:hover {
+			animation-name: rebote;
+			animation-duration: 0.2s;
+			animation-iteration-count: 1;
+		}
+		.btn-enviar-contacto i {
+				transition: 0.5s;
+			}
+				.btn-enviar-contacto:hover i {
+					transform: rotate(360deg);
+				}
+	.item-contacto-wrapper {
+		margin-top: 20px;
+	}
+		.item-contacto {
+			border: 1px solid #CCC;
+			border-radius: 5px;
+			height: 176px;
+			padding-top: 10px !important;
+			transition: all 0.5s;
+			word-break: break-all;
+		}
+			.item-contacto:hover {
+				border: 1px solid #333;
+				box-shadow: 0px 0px 20px #CCC;
+			}
+			.btn-contacto-correo {
+				background: #DE480D !important;
+			}
+			.btn-contacto-whatsapp {
+				background: #00d227 !important;
+			}
+				.btn-contacto-correo:hover, .btn-contacto-whatsapp:hover {
+					animation-name: rebote;
+					animation-duration: 0.2s;
+					animation-iteration-count: 1;
+				}
+@media (max-width: 600px) {
+	.item-contacto {
+		height: auto;
+	}
+}
+@media (max-width: 600px) {
+	#mapa-iframe {
+		margin-top: 40px;
+	}
+	.g-recaptcha {
+		transform: scale(0.8) translateX(-35px);
+	}
+}
+@media (max-width: 397px) {
+	.g-recaptcha {
+		transform: scale(0.8) translateX(-65px);
+	}
+}
+@media (max-width: 384px) {
+	.g-recaptcha {
+		transform: scale(0.8) translateX(-95px);
+	}
+}
