@@ -267,7 +267,8 @@ class Garanty
     public function getAllF($bill)
     {
         try {
-            $strSql = "SELECT g.*,d.* FROM dtm_garantia g INNER JOIN dtm_detalle_garantia d on d.Id_Garantia = g.id   WHERE g.Numero_Factura = '$bill' AND d.Estado = 'Tramite' OR d.Estado = 'Pendiente por servicio tecnico' OR d.Estado = 'Solucionado por servicio tecnico'";
+            $strSql = "SELECT g.*,d.* FROM dtm_garantia g INNER JOIN dtm_detalle_garantia d on d.Id_Garantia = g.id   
+            WHERE g.Numero_Factura = '$bill' AND d.Estado = 'Tramite' OR d.Estado = 'Pendiente por servicio tecnico' OR d.Estado = 'Solucionado por servicio tecnico'";
             $query = $this->pdo->select($strSql);
             return $query;
         } catch (PDOException $e) {

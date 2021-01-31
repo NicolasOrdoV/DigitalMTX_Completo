@@ -285,20 +285,18 @@ class GarantyController
           //$detaills['Aprobacion_Garantia'] = $agN;
           //echo '<hr>';
           //var_dump($detaills);
+          //-----------LA CLAVE ESTA AQUI EN ESTA CONDICION-------------//
           if ($ag == 'SI' || $ag == 'NO') {
             echo "Garantia: ".$g.'<br>'.$dp;
             echo $ag." ag";
 
             if ($g == '1 Año' || $g =='1 año') {
-              $year = date($parts[0]);
-              $afterYear = $year+1;
-              $fecha_proxima = date($afterYear.'-'.$parts[1].'-'.$parts[2]);
-              $date_before = strtotime($fecha_proxima);
+              //AQUI TIENE QUE PONER LOS AÑOS EN MESES TAL CUAL COMO ESTA EN LA LINEA 306 A 311//
+                 $fecha_proxima = date("Y-m-d",strtotime($fecha_factura."+ 12 months"));
+                 $date_before = strtotime($fecha_proxima);
               // echo $fecha_proxima;
             }elseif($g == '2 Años'){
-                $year = date($parts[0]);
-                $afterYear = $year+1;
-                $fecha_proxima = date($afterYear.'-'.$parts[1].'-'.$parts[2]);
+                $fecha_proxima = date("Y-m-d",strtotime($fecha_factura."+ 24 months"));
                 $date_before = strtotime($fecha_proxima);
                 //echo $fecha_proxima;    
             }elseif($g == '6 Meses' || $g == '6 meses' ){
@@ -315,10 +313,9 @@ class GarantyController
                 $date_before = strtotime($fecha_proxima);
                 //echo $fecha_proxima;
             }elseif($g == "1 año freidora - 6 meses en panel táctil " || $g == '1 año telefono - 6 meses de batería y cargador'){
-              $year = date($parts[0]);
-              $afterYear = $year+1;
-              $fecha_proxima = date($afterYear.'-'.$parts[1].'-'.$parts[2]);
-
+              //FALTA AQUI TAMBIEN//
+              $fecha_proxima = date("Y-m-d",strtotime($fecha_factura."+ 12 months "));
+             //Ya
               $date_before = strtotime($fecha_proxima);
               $fecha_proxima_mes =  date("Y-m-d", strtotime($fecha_factura.'+ 6 months'));
               $date_month = strtotime($fecha_proxima_mes);
