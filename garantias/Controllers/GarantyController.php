@@ -285,25 +285,25 @@ class GarantyController
             echo "Garantia: ".$g.'<br>'.$dp;
             echo $ag." ag";
 
-            if ($g == '1 Año' || $g =='1 año') {
+            if ($g == '1 Año' || $g =='1 año' || $g =='12 meses'  || $g =='12') {
               //AQUI TIENE QUE PONER LOS AÑOS EN MESES TAL CUAL COMO ESTA EN LA LINEA 306 A 311//
                  $fecha_proxima = date("Y-m-d",strtotime($fecha_factura."+ 12 months"));
                  $date_before = strtotime($fecha_proxima);
               // echo $fecha_proxima;
-            }elseif($g == '2 Años'){
+            }elseif($g == '2 Años' || $g =='24 meses' || $g =='24'){
                 $fecha_proxima = date("Y-m-d",strtotime($fecha_factura."+ 24 months"));
                 $date_before = strtotime($fecha_proxima);
                 //echo $fecha_proxima;    
-            }elseif($g == '6 Meses' || $g == '6 meses' ){
+            }elseif($g == '6 Meses' || $g == '6 meses' || $g =='6'){
               echo $g;
                 $fecha_proxima = date("Y-m-d",strtotime($fecha_factura."+ 6 months"));
                 $date_before = strtotime($fecha_proxima);
                 //echo $fecha_proxima;   
-            }elseif($g == '3 meses'){
+            }elseif($g == '3 meses' || $g =='3'){
                 $fecha_proxima = date("Y-m-d",strtotime($fecha_factura."+ 3 months"));
                 $date_before = strtotime($fecha_proxima);
                 //echo $fecha_proxima;    
-            }elseif($g == '1 mes' || $g == '1 meses'){
+            }elseif($g == '1 mes' || $g == '1 meses' || $g =='1'){
                 $fecha_proxima = date("Y-m-d",strtotime($fecha_factura."+ 1 month"));
                 $date_before = strtotime($fecha_proxima);
                 //echo $fecha_proxima;

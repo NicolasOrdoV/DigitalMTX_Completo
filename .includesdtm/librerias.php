@@ -505,6 +505,13 @@ class librerias
             <?php
         }
 
+        if ((isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE)||(isset($_SESSION['contenido'])&&$_SESSION['contenido']==TRUE)){
+            ?>
+                <li><a class="item_menu waves-effect waves-dark" href="servicio_tecnico/?controller=dashboard" target="_self"><i class="material-icons left">dashboard</i>Servicio tecnico</a></li>
+            <?php
+        }
+
+
         //-----------------------------------------------------------------------------------------
          if ((isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE)||(isset($_SESSION['guia'])&&$_SESSION['guia']==TRUE)) {
             ?>
@@ -528,6 +535,13 @@ class librerias
                 <li><a class="item_menu waves-effect waves-dark" href="garantias/?controller=person&method=template" target="_self"><i class="material-icons left">dashboard</i>Tecnico Garantias</a></li>
             <?php
         }
+
+        if (isset($_SESSION['tecnico'])&&$_SESSION['tecnico']==TRUE) {
+            ?>
+                <li><a class="item_menu waves-effect waves-dark" href="servicio_tecnico/?controller=dashboard" target="_self"><i class="material-icons left">dashboard</i>Tecnico servicios</a></li>
+            <?php
+        }
+
          if (isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
             ?>
                 <li><a class="item_menu waves-effect waves-dark" href="garantias/?controller=person&method=template" target="_self"><i class="material-icons left">dashboard</i>Recepcionar Garantia</a></li>
