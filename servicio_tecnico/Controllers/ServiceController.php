@@ -2,6 +2,7 @@
 
 require 'Models/Service.php';
 require 'Models/Mark.php';
+require 'Models/User.php';
 
 /**
  * Controlador servicios
@@ -10,11 +11,13 @@ class ServiceController
 {
 	private $model;
 	private $mark;
+	private $user;
 
 	public function __construct()
 	{
 		$this->model = new Service;
 		$this->mark = new Mark;
+		$this->user = new User;
 	}
 
 	public function index()
@@ -36,6 +39,7 @@ class ServiceController
 		$services = $this->model->getAll();
 		$total_data = count($services);
 		$marks = $this->mark->getAll();
+		$users = $this->user->getAll();
 		require 'Views/Service/new.php';
 		require 'Views/Scripts.php';
 	}

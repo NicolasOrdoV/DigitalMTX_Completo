@@ -35,4 +35,13 @@ class User
             die($e->getMessage());
         }
     }
+
+    public function newUser($data)
+    {
+        try {
+           $this->pdo->insert('dtm_user', $data); 
+        } catch ( PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 }

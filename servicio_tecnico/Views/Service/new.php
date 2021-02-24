@@ -57,15 +57,20 @@ $td = $total_data + 0001;
                                 <div class="col-sm-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label>NIT O CC </label>
-                                            <input type="text" autofocus class="form-control" name="identificacion_Cliente" id="Identificacion_Cliente">
+                                            <label>NIT o CC:</label>                             
+                                            <input list="Id" autofocus class="form-control input-medium ui-autocomplete-input" name="identificacion_cliente" id="identificacion_cliente" value="" autocomplete="off" required>
+                                            <datalist id="Id">
+                                                <?php foreach ($users as $user) { ?>
+                                                    <option value="<?php echo $user->identificacion ?>"><?php echo $user->identificacion ?></option>
+                                                <?php } ?>
+                                            </datalist>        
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group form-float">
                                         <label>¿No existe el cliente en la base de datos? Puedes registrarlo aqui </label>
-                                        <a href="#" class="btn btn-danger">+Crear cliente</a>
+                                        <a href="?controller=client&method=newClient" class="btn btn-danger">+Crear cliente</a>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +79,7 @@ $td = $total_data + 0001;
                                     <div class="form-group">
                                         <div class="form-line">
                                             <label>Nombre de cliente </label>
-                                            <input type="text" class="form-control" name="nombre_cliente" id="Nombre_Cliente" required readonly>
+                                            <input type="text" class="form-control" name="nombre_cliente" id="nombre_cliente" required readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +89,7 @@ $td = $total_data + 0001;
                                     <div class="form-group">
                                         <div class="form-line">
                                             <label>Telefono de cliente </label>
-                                            <input type="text" class="form-control" name="telefono_cliente" id="Telefono_Cliente" required readonly>
+                                            <input type="number" class="form-control" name="telefono_cliente" id="telefono_cliente" value="" required readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +97,7 @@ $td = $total_data + 0001;
                                     <div class="form-group">
                                         <div class="form-line">
                                             <label>Direccion de cliente </label>
-                                            <input type="text" class="form-control" name="direccion_cliente" id="Direccion_Cliente" required readonly>
+                                            <input type="text" class="form-control" name="direccion_cliente" id="direccion_cliente" value="" required readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -100,67 +105,65 @@ $td = $total_data + 0001;
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label>Correo<small class="text-danger">*</small></label>
-                                            <input type="email" class="form-control" name="correo_cliente" id="Correo_Cliente" required>
+                                            <input type="email" class="form-control" name="correo_cliente" id="correo_cliente" value="" required>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <h2>Informacion del producto<button class="btn btn-danger">+Agregar producto</button></h2>
-                            <div class="row clearfix">
-                                <div class="col-sm-6">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label>¿Tiene codigo de DTX? Digitelo</label>
-                                            <input type="number" class="form-control" name="codigo_producto" id="codigo_producto">
+                            <h2>Informacion del producto      <button class="btn btn-danger" type="button" id="adicional" name="adicional">+Agregar producto</button></h2>
+                            <div id="table">
+                                <button type="button" id="eliminar" class="btn btn-danger float-right">X</button>
+                               <div class="row clearfix">
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <label>¿Tiene codigo de DTX? Digitelo</label>
+                                                <input type="number" class="form-control" name="codigo_producto" id="codigo_producto[]">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 text-right">
-                                    <div class="form-group form-float">
-                                        <button class="btn btn-danger float-right">X</button>
+                                <div class="row clearfix">
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <label>Serie</label>
+                                                <input type="number" class="form-control" name="serie[]" id="serie" required>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <label>Tipo de equipo</label>
+                                                <input type="text" class="form-control" name="tipo_equipo[]" id="tipo_equipo" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <label>Marca</label>
+                                                <select class="form-control" name="marca[]" required>
+                                                    <option>Seleccione...</option>
+                                                    <?php foreach ($marks as $mark) { ?>
+                                                        <option value="<?php echo $mark->nombre?>"><?php echo $mark->nombre?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <label>Modelo</label>
+                                                <input type="text" class="form-control" name="modelo[]" id="modelo" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                             </div>
-                            <div class="row clearfix">
-                                <div class="col-sm-6">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label>Serie</label>
-                                            <input type="number" class="form-control" name="serie" id="serie">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label>Tipo de equipo</label>
-                                            <input type="text" class="form-control" name="tipo_equipo" id="tipo_equipo">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label>Marca</label>
-                                            <select class="form-control" name="marca">
-                                                <option>Seleccione...</option>
-                                                <?php foreach ($marks as $mark) { ?>
-                                                    <option value="<?php echo $mark->nombre?>"><?php echo $mark->nombre?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label>Modelo</label>
-                                            <input type="text" class="form-control" name="modelo" id="modelo">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                             <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <div class="form-group form-float">
@@ -224,6 +227,22 @@ $td = $total_data + 0001;
             <!--#END# Switch Button -->
         </div>
 </section>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+
+<script>        
+    $(function(){
+        // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+        $("#adicional").on('click', function(){
+            $("#table").clone().appendTo("#table");
+        });
+     
+        // Evento que selecciona la fila y la elimina 
+        $(document).on("click","#eliminar",function(){
+            var parent = $(this).parents().get(0);
+            $(parent).remove();
+        });
+    });
+</script>
 <!-- <script type="text/javascript">
     function habilitarCampos(key){
 
@@ -372,22 +391,64 @@ $td = $total_data + 0001;
         }
     }
 </script> -->
-<!-- <script type="text/javascript">
+<!-- <script src="../garantias/Assets/js/jquery-2.2.4.min.js"></script> -->
+<script type="text/javascript">
     $(function() {
-        $("#Identificacion_Cliente").autocomplete({
-            source: "personal.php",
+        $("#identificacion_cliente").autocomplete({
+            source: "users.php",
             minLength: 2,
             select: function(event, ui) {
                 event.preventDefault();
-                $('#Identificacion_Cliente').val(ui.item.Identificacion_Cliente);
-                $('#Correo_Cliente').val(ui.item.Correo_Cliente);
-                $('#Nombre_Cliente').val(ui.item.Nombre_Cliente);
-                $("#Identificacion_Cliente").focus();
+                $('#identificacion_cliente').val(ui.item.identificacion);
+                $('#correo_cliente').val(ui.item.correo);
+                $('#nombre_cliente').val(ui.item.nombre);
+                $('#direccion_cliente').val(ui.item.direccion);
+                $('#telefono_cliente').val(ui.item.telefono);
+                $("#identificacion_cliente").focus();
             }
         });
     });
-</script> -->
-<!--<script>
+</script>
+<script>
+    document.getElementById("identificacion_cliente").onchange = function() {
+        alerta()
+    };
+
+    function alerta() {
+        // Creando el objeto para hacer el request
+        var request = new XMLHttpRequest();
+        // Objeto PHP que consultaremos
+        request.open("POST", "Views/Service/servicesclients.php");
+
+        // Definiendo el listener
+        request.onreadystatechange = function() {
+
+            // Revision si fue completada la peticion y si fue exitosa
+            if (this.readyState === 4 && this.status === 200) {
+                // Ingresando la respuesta obtenida del PHP
+                var data = JSON.parse(this.responseText);
+                var data = data.toString().split(",");
+                //alert(data[0]);
+                //contenidosRecibidos = this.responseText.replace(contenidosRecibidos,'"]');
+
+                document.getElementById("correo_cliente").value = data[0];
+                document.getElementById("nombre_cliente").value = data[1];
+                document.getElementById("direccion_cliente").value = data[2];
+                document.getElementById("telefono_cliente").value = data[3];
+
+            }
+        };
+
+
+        // Recogiendo la data del HTML
+        var myForm = document.getElementById("form_validation");
+        var formData = new FormData(myForm);
+
+        // Enviando la data al PHP
+        request.send(formData);
+    }
+</script>
+<!-- <script>
     document.getElementById("Codigo_Producto").onchange = function() {
         alerta2()
     };
@@ -420,47 +481,7 @@ $td = $total_data + 0001;
         // Enviando la data al PHP
         request.send(formData);
     }
-</script>
-<script>
-    document.getElementById("Identificacion_Cliente").onchange = function() {
-        alerta()
-    };
-
-    function alerta() {
-        // Creando el objeto para hacer el request
-        var request = new XMLHttpRequest();
-        // Objeto PHP que consultaremos
-        request.open("POST", "Views/Garanty/servicesclients.php");
-
-        // Definiendo el listener
-        request.onreadystatechange = function() {
-
-            // Revision si fue completada la peticion y si fue exitosa
-            if (this.readyState === 4 && this.status === 200) {
-                // Ingresando la respuesta obtenida del PHP
-                var data = JSON.parse(this.responseText);
-                var data = data.toString().split(",");
-                //alert(data[0]);
-                //contenidosRecibidos = this.responseText.replace(contenidosRecibidos,'"]');
-
-                document.getElementById("id").value = data[0];
-                document.getElementById("Correo_Cliente").value = data[1];
-                document.getElementById("Nombre_Cliente").value = data[2];
-
-            }
-        };
-
-
-        // Recogiendo la data del HTML
-        var myForm = document.getElementById("form_validation");
-        var formData = new FormData(myForm);
-
-        // Enviando la data al PHP
-        request.send(formData);
-    }
-</script>-->
-
-
+</script> -->
 <!----Funcionalidad de mostrar y ocultar la opcion de flete----->
 <!-- <script type="text/javascript">
     function showContent() {

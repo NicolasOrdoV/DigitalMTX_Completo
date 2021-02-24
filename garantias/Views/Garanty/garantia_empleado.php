@@ -22,7 +22,7 @@ $td = $total_data + 0001;
                 <?php } ?>    
                 <div class="card">
                     <div class="header">
-                        <h2>
+                        <h2> 
                             Ingresar Garantías
                         </h2>
                     </div>
