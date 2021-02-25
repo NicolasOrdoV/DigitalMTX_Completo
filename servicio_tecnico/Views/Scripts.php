@@ -43,6 +43,6 @@
 
     <!-- Custom Js -->
     <script src="../garantias/Assets/js/admin.js"></script>
-    <!-- <script src="../garantias/Assets/js/pages/tables/jquery-datatable.js"></script> -->
+    <script src="../garantias/Assets/js/pages/tables/jquery-datatable.js"></script>
     <script src="../garantias/Assets/js/pages/forms/form-validation.js"></script>
    <!--  <script src="Aseets/js/pages/ui/modals.js"></script>

@@ -1,4 +1,3 @@
-
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
@@ -7,7 +6,6 @@
                 <small>Consulta los servicios</small>
             </h2>
         </div>
-        <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
@@ -25,7 +23,7 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover dataTable js-basic-example">
+                            <table class="table table-bordered table-striped table-hover dataTable <?php echo isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE ? 'js-exportable' : 'js-basic-example' ?>">
                                 <thead>
                                     <tr>
                                         <th>Acciones</th>
@@ -34,32 +32,30 @@
                                         <th>Hora servicio</th>
                                         <th>Cliente</th>
                                         <th>Correo</th>
-                                        <th>Estado</th>
-                                        
+                                        <th>Estado</th>                    
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <?php foreach ($services as $service) { ?>
+                                    <?php foreach ($services as $service) { ?>
+                                        <tr>
                                             <td>
-                                                <a href="#" class="btn btn-success">+</a>
+                                                <a href="#" class="btn btn-primary">+</a>
                                                 <a href="#" class="btn btn-success">+</a>
                                             </td>
-                                            <td><?php $service->consecutivo?></td>
-                                            <td><?php $service->fecha ?></td>
-                                            <td><?php $service->hora ?></td>
-                                            <td><?php $service->nombre_cliente ?></td>
-                                            <td><?php $service->correo_cliente ?></td>
-                                            <td><?php $service->estado ?></td>
-                                        <?php } ?>
-                                    </tr>
+                                            <td><?php echo $service->consecutivo?></td>
+                                            <td><?php echo $service->fecha ?></td>
+                                            <td><?php echo $service->hora ?></td>
+                                            <td><?php echo $service->nombre_cliente ?></td>
+                                            <td><?php echo $service->correo_cliente ?></td>
+                                            <td><?php echo $service->estado ?></td>
+                                        </tr>    
+                                    <?php } ?>
                                 </tbody>
                             </table>
+                        </div>    
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- #END# Exportable Table -->
     </div>
 </section>
