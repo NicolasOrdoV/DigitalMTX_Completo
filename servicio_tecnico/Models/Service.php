@@ -78,4 +78,17 @@ class Service
 			die($e->getMessage());
 		}
 	}
+
+	public function getByIdSV($id)
+	{
+		try {
+			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id_sv, dsv.codigo_producto, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado FROM dtm_sv sv
+			    INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id WHERE sv.id = :id GROUP BY dsv.id";
+			$array = ['id' => $id];
+			$query = $this->pdo->select($strSql,$array);
+			return $query;    
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
 }

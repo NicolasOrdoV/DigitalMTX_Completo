@@ -39,8 +39,21 @@
                                     <?php foreach ($services as $service) { ?>
                                         <tr>
                                             <td>
-                                                <a href="#" class="btn btn-primary">+</a>
-                                                <a href="#" class="btn btn-success">+</a>
+                                                <?php if($service->estado = 'tramite'){ ?>
+                                                    <div class="row clearfix">
+                                                        <div class="col-xs-12">
+                                                            <form action="?controller=service&method=consecutive" method="POST">
+                                                                <input type="hidden" name="id" value="<?php echo $service->id_sv ?>">
+                                                                <button type="submit" class="btn btn-primary"><i class="material-icons">assignment</i></button>
+                                                            </form>
+                                                            <br>
+                                                            <form action="?controller=service&method=ticket" method="POST">
+                                                                <input type="hidden" name="id" value="<?php echo $service->id_sv ?>">
+                                                                <button type="submit" class="btn btn-success"><i class="material-icons">theaters</i></button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
                                             </td>
                                             <td><?php echo $service->consecutivo?></td>
                                             <td><?php echo $service->fecha ?></td>
