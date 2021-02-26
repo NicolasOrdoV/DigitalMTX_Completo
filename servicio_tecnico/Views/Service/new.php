@@ -203,8 +203,10 @@ $td = $total_data + 0001;
                                         <div class="form-line">
                                             <label>Tecnico asignado<small class="text-danger">*</small></label>
                                             <select class="form-control" name='tecnico_asignado' required>
-                                                <option>Seleccione</option>
-                                                <option value="PEPE">Pepe</option>
+                                                <option>Seleccione...</option>
+                                                <?php foreach($technicals as $technical) { ?>
+                                                    <option value="<?php echo $technical->nombre." ".$technical->apellidos ?>"><?php echo $technical->nombre." ".$technical->apellidos ?></option>
+                                                <?php } ?> 
                                             </select>
                                         </div>
                                     </div>

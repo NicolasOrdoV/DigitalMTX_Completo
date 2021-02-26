@@ -4,6 +4,7 @@ require 'Models/Service.php';
 require 'Models/Mark.php';
 require 'Models/User.php';
 require 'Models/Product.php';
+require 'Models/Employee.php';
 
 /**
  * Controlador servicios
@@ -14,6 +15,7 @@ class ServiceController
 	private $mark;
 	private $user;
 	private $product;
+	private $employee;
 
 	public function __construct()
 	{
@@ -21,6 +23,7 @@ class ServiceController
 		$this->mark = new Mark;
 		$this->user = new User;
 		$this->product = new Product;
+		$this->employee = new Employee;
 	}
 
 	public function index()
@@ -45,6 +48,7 @@ class ServiceController
 			$marks = $this->mark->getAll();
 			$users = $this->user->getAll();
 			$products = $this->product->getAll();
+			$technicals = $this->employee->getAll();
 			require 'Views/Service/new.php';
 			require 'Views/Scripts.php';
 		}else{
@@ -56,9 +60,8 @@ class ServiceController
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE || isset($_SESSION['tecnico'])&&$_SESSION['tecnico']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE ) {
 			if (isset($_POST)) {
-				$fecha = date('Y-m-d' , $_POST['fecha']);
 				$data = [
-					'fecha' => $fecha,
+					'fecha' => $_POST['fecha'],
 					'hora' => $_POST['hora'],
 					'nombre_cliente' => $_POST['nombre_cliente'],
 					'identificacion_cliente' => $_POST['identificacion_cliente'],
@@ -74,7 +77,7 @@ class ServiceController
 
 				$answerNewService = $this->model->newService($data);
 				$lastId = $this->model->getLastId();
-
+                echo $lastId[0]->id;
 				$codigo_producto = $_POST['codigo_producto'];
 				$serie = $_POST['serie'];
 				$tipo_equipo = $_POST['tipo_equipo'];
@@ -95,7 +98,7 @@ class ServiceController
 					$md = (($item5 !== false) ? $item5 : '');
 
 					$details = [
-						'id_sv'           => $lastId,
+						'id_sv'           => $lastId[0]->id,
 						'codigo_producto' => $cp,
 						'serie'           => $s,
 						'tipo_equipo'     => $tp,
