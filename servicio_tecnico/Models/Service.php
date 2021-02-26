@@ -57,4 +57,25 @@ class Service
 			die($e->getMessage());
 		}
 	}
+
+	public function getAllDetails($id)
+	{
+		try {
+			$strSql = "SELECT * FROM dtm_sv WHERE id = :id";
+			$array = ['id' => $id];
+			$query = $this->pdo->select($strSql,$array);
+			return $query;
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+	public function getAllDetailsServices($id)
+	{
+		try {
+			$strSql = "SELECT * FROM dtm_detalle_sv WHERE id_sv = $id";
+			$query = $this->pdo->select($strSql);
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
 }
