@@ -18,9 +18,6 @@ $hora_actual = date("h:i a"); ?>
                             <h2>Detalle del servicio</h2>
                         </div>
                         <div class="body">
-                            <h3>Observacion de recepción: <?php echo $id;?></h3><?php echo $data[0]->observacion_equipo ?>
-                        </div>
-                        <div class="body">
                             <h2>Producto</h2>
                             <div class="row clearfix">
                                 <div class="col-sm-12">
@@ -45,9 +42,13 @@ $hora_actual = date("h:i a"); ?>
                                 </div>
                             </div>
                             <div class="row clearfix">
-                                <div class="col-sm-3">
-                                    <h5>Observaciones generales</h5>
+                                <div class="col-sm-6">
+                                    <h5>Observaciones del cliente</h5>
                                     <p><?php echo $data[0]->observacion_cliente?></p>
+                                </div>
+                                <div  class="col-sm-6">
+                                    <h5>Observacion del equipo:</h5>
+                                    <p><?php echo $data[0]->observacion_equipo ?></p>
                                 </div>
                             </div>
                             <?php if(isset($consecutives)){ ?>

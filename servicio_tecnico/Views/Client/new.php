@@ -3,7 +3,7 @@
         <!-- Input -->
         <div class="block-header">
             <h2>
-                <a href="?controller=service" class="btn btn-danger"><<</a>
+                <a href="?controller=service&method=newService" class="btn btn-danger"><<</a>
                 REGISTRO DE CLIENTES
                 <small>Aqui puedes registrar los clientes que no esten en la base de datos</small>
             </h2>
