@@ -212,7 +212,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=revision&name=<?php echo $_SESSION['nombre'] ?>" class="menu-toggle">
                                     <span>Anexo de revisiones</span>
                                 </a>
                             </li>
