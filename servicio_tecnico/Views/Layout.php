@@ -237,7 +237,7 @@
                                 
                             </li>
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=service&method=prefinish" class="menu-toggle">
                                     <span>Informacion de servicio tecnico</span>
                                 </a> 
                             </li>

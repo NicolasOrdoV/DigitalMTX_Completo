@@ -5,7 +5,7 @@
     <script src="../garantias/Assets/plugins/bootstrap/js/bootstrap.js"></script> 
 
     <!-- Slimscroll Plugin Js -->
-    <script src="../garantias/Assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+<!--     <script src="../garantias/Assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script> -->
 
     <!-- Waves Effect Plugin Js -->
     <script src="../garantias/Assets/plugins/node-waves/waves.js"></script>

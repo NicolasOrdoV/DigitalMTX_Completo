@@ -117,4 +117,31 @@ class Service
 			die($e->getMessage());
 		}
 	}
+
+	public function getAllPreFinish()
+	{
+		try {
+			$strSql = "SELECT sv.*,dsv.* FROM dtm_sv sv
+			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv 
+			           WHERE dsv.estado = 'Reparación terminada'";
+			$query = $this->pdo->select($strSql);
+			return $query;    
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+
+	public function getByIdTecRevision($name,$id)
+	{
+		try {
+			$strSql = "SELECT sv.*,dsv.*,t.* FROM dtm_sv sv
+			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
+			           INNER JOIN dtm_tecnico_sv t ON sv.id = t.id_sv  
+			           WHERE dsv.estado = 'Reparación terminada'";
+			$query = $this->pdo->select($strSql);
+			return $query;
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
 }
