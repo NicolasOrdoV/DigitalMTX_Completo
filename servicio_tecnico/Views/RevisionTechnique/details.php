@@ -80,24 +80,8 @@ $hora_actual = date("h:i a"); ?>
                                         <input type="hidden" name="id_sv" value="<?php echo $data[0]->id?>">
                                         <input type="hidden" name="Id_Empleado" value="<?php echo $_SESSION['id']?>
                                         ">
-                                        <div class="row clearfix">
-                                            <div class="col-sm-6">
-                                                <div class="form-group form-float">
-                                                    <div class="form-line">
-                                                        <label>Fecha:</label>
-                                                        <input type="text" name="fecha" class="form-control" value="<?php echo date('Y/m/d') ?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group form-float">
-                                                    <div class="form-line">
-                                                        <label>Hora:</label>
-                                                        <input type="text" name="hora" class="form-control" value="<?php echo $hora_actual ?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <input type="hidden" name="fecha_tec" class="form-control" value="<?php echo date('Y/m/d') ?>">
+                                         <input type="hidden" name="hora_tec" class="form-control" value="<?php echo $hora_actual ?>">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <textarea rows="4" class="form-control no-resize" name="informe_tecnico" required></textarea>

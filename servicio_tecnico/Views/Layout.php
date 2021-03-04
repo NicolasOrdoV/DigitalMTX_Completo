@@ -217,7 +217,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=revision&method=story&name=<?php echo $_SESSION['nombre'] ?>" class="menu-toggle">
                                     <span>Historicos de productos revisados por servicio tecnico</span>
                                 </a>
                             </li>
@@ -253,7 +253,7 @@
                                 
                             </li>
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=service&method=story" class="menu-toggle">
                                     <span>Historico de garantias finalizadas</span>
                                 </a> 
                             </li>

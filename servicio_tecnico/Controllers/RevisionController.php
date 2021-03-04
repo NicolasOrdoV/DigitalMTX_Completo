@@ -249,13 +249,44 @@ class RevisionController
 	}
 
 	public function sucessfull()
-	 {
+	{
 	   if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['tecnico'])&&$_SESSION['tecnico']==TRUE) {
-	      require 'Views/Layout.php';
-	      require 'Views/RevisionTechnique/succesfull.php';
-	      require 'Views/Scripts.php';
+	      	require 'Views/Layout.php';
+	      	require 'Views/RevisionTechnique/succesfull.php';
+	      	require 'Views/Scripts.php';
 	    }else{
 	      header('Location: ?controller=login');
 	    } 
+	}
+
+	public function story()
+	{
+		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['tecnico'])&&$_SESSION['tecnico']==TRUE) {
+			if (isset($_GET['name'])) {
+				$name = $_GET['name'];
+				require 'Views/Layout.php';
+				$dates = $this->model->getByStoryForTechnical($name);
+		      	require 'Views/RevisionTechnique/story.php';	      	
+		      	require 'Views/Scripts.php';
+			}
+		}else{
+	      header('Location: ?controller=login');
+	    }	
+	}
+
+	public function detailsStory()
+	{
+		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['tecnico'])&&$_SESSION['tecnico']==TRUE) {
+			if ($_POST) {
+				$name = $_POST['name'];
+				$id = $_POST['id'];
+				require 'Views/Layout.php';
+				$data = $this->model->getByIdDetails($name,$id);
+				require 'Views/RevisionTechnique/detailsStory.php';
+				require 'Views/Scripts.php';
+			}
+		}else{
+	      header('Location: ?controller=login');
+	    }	
 	}
 }

@@ -48,4 +48,32 @@ class Technical
 			die($e->getMessage());
 		}
 	}
+
+	public function getByStoryForTechnical($name)
+	{
+		try {
+			$strSql = "SELECT t.*,dsv.*,sv.* FROM dtm_tecnico_sv t
+			INNER JOIN dtm_detalle_sv dsv ON dsv.id = t.id_sv
+            INNER JOIN dtm_sv sv ON sv.id = dsv.id_sv
+			WHERE sv.tecnico_asignado = '$name' GROUP BY sv.id";
+		    $query = $this->pdo->select($strSql);
+		    return $query;	
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+
+	public function getByIdDetails($name,$id)
+	{
+		try {
+			$strSql = "SELECT t.*,dsv.*,sv.* FROM dtm_tecnico_sv t
+			INNER JOIN dtm_detalle_sv dsv ON dsv.id = t.id_sv
+            INNER JOIN dtm_sv sv ON sv.id = dsv.id_sv
+            WHERE dsv.modelo = '$name' AND sv.id = $id";
+		    $query = $this->pdo->select($strSql);
+		    return $query;	
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
 }

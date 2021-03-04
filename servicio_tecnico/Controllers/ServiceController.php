@@ -586,4 +586,101 @@ class ServiceController
 	      header('Location: ?controller=login');
 	    }	
 	}
+
+	public function story()
+	{
+		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
+			require 'Views/Layout.php';
+			$data = $this->model->getByIdStory();
+			require 'Views/Service/story.php';
+			require 'Views/Scripts.php';
+		}else{
+	      header('Location: ?controller=login');
+	    }	
+	}
+
+	public function details()
+	{
+		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
+			if ($_POST) {
+				$name = $_POST['name'];
+				$id = $_POST['id'];
+				require 'Views/Layout.php';
+				$data = $this->model->getByIdDetails($name,$id);
+				require 'Views/Service/detailsStory.php';
+				require 'Views/Scripts.php';
+			}
+		}else{
+	      header('Location: ?controller=login');
+	    }	
+	}
+
+	public function excelComplete()
+	{          
+	    $timestamp = time();
+	    $filename = 'Servicios_tecnicos_' . $timestamp . '.xls';
+	    
+	    header("Pragma: public");
+	    header("Expires: 0");
+	    header("Content-type: application/x-msdownload");
+	    header("Content-Type: text/csv; charset-utf8");
+	    header("Content-Disposition: attachment; filename=\"$filename\"");
+	    header("Pragma: no-cache");
+	    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	    
+	    $isPrintHeader = false;
+	    $productResult = $this->model->getComplete();
+	    
+	    if ( !$isPrintHeader ) {
+	        $html = '<table>
+	                <thead>
+	                    <tr>
+	                        <th>Consecutivo</th>
+	                        <th>Fecha_ingreso</th>
+	                        <th>Hora_ingreso</th>
+	                        <th>Nombre Cliente</th>
+	                        <th>Identificacion Cliente</th>
+	                        <th>Correo Cliente</th>
+	                        <th>Telefono Cliente</th>
+	                        <th>Observacion Tecnico</th>
+	                        <th>Empleado</th>
+	                        <th>Codigo_Producto</th>
+	                        <th>Tipo_Producto</th>
+	                        <th>Marca_Producto</th>
+	                        <th>Serie_Producto</th>
+	                        <th>Observacion_Cliente</th>
+	                        <th>Estado</th>
+	                        <th>Fecha_anexo_Tecnico</th>
+	                        <th>Hora_Anexo_Tecnico</th>
+	                    </tr>
+	                </thead>
+	                <tbody>';
+	                foreach ($productResult as $garanty) {
+	                  $html .= '<tr>
+	                    <td>'.$garanty->consecutivo.'</td>
+	                    <td>'.$garanty->fecha.'</td>
+	                    <td>'.$garanty->hora.'</td>
+	                    <td>'.$garanty->nombre_cliente.'</td>
+	                    <td>'.$garanty->identificacion_cliente.'</td>
+	                    <td>'.$garanty->correo_cliente.'</td>
+	                    <td>'.$garanty->telefono_cliente.'</td>
+	                    <td>'.$garanty->informe_tecnico.'</td>
+	                    <td>'.$garanty->tecnico_asignado.'</td>
+	                    <td>'.$garanty->codigo_producto.'</td>
+	                    <td>'.$garanty->tipo_equipo.'</td>
+	                    <td>'.$garanty->marca.'</td>
+	                    <td>'.$garanty->serie.'</td>
+	                    <td>'.$garanty->observacion_cliente.'</td>
+	                    <td>'.$garanty->estado.'</td>
+	                    <td>'.$garanty->fecha_tec.'</td>
+	                    <td>'.$garanty->hora_tec.'</td>
+	                  </tr>';
+	                }  
+	                $html .= '</tbody>
+	            </table>';
+	        echo $html;    
+	        $isPrintHeader = true;
+	    }
+	    exit();
+	}
 }

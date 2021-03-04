@@ -137,7 +137,47 @@ class Service
 			$strSql = "SELECT sv.*,dsv.*,t.* FROM dtm_sv sv
 			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
 			           INNER JOIN dtm_tecnico_sv t ON sv.id = t.id_sv  
-			           WHERE dsv.estado = 'Reparación terminada'";
+			           WHERE dsv.estado = 'Reparación terminada' AND dsv.modelo = '$name' AND dsv.id = $id";
+			$query = $this->pdo->select($strSql);
+			return $query;
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+
+	public function getByIdStory()
+	{
+		try {
+			$strSql = "SELECT sv.*,dsv.*,t.* FROM dtm_sv sv
+			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
+			           INNER JOIN dtm_tecnico_sv t ON sv.id = t.id_sv GROUP BY sv.id";
+			$query = $this->pdo->select($strSql);
+			return $query;
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+
+	public function getByIdDetails($name,$id)
+	{
+		try {
+			$strSql = "SELECT sv.*,dsv.*,t.* FROM dtm_sv sv
+			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
+			           INNER JOIN dtm_tecnico_sv t ON sv.id = t.id_sv
+			           WHERE dsv.modelo = '$name' AND dsv.id = $id";
+			$query = $this->pdo->select($strSql);
+			return $query;
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+
+	public function getComplete()
+	{
+		try {
+			$strSql = "SELECT sv.*,dsv.*,t.* FROM dtm_sv sv
+			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
+			           INNER JOIN dtm_tecnico_sv t ON sv.id = t.id_sv";
 			$query = $this->pdo->select($strSql);
 			return $query;
 		} catch (PDOException $e) {
