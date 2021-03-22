@@ -61,8 +61,8 @@ class RevisionController
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['tecnico'])&&$_SESSION['tecnico']==TRUE) {
 			$data = [
 	           'id_sv' => $_POST['id_sv'],
-	           'fecha' => $_POST['fecha'],
-	           'hora' => $_POST['hora'],
+	           'fecha_tec' => $_POST['fecha_tec'],
+	           'hora_tec' => $_POST['hora_tec'],
 	           'informe_tecnico' => $_POST['informe_tecnico'],
 	           'Id_Empleado' => $_POST['Id_Empleado']
 			];

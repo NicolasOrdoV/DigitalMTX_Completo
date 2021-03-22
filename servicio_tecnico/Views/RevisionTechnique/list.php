@@ -40,7 +40,7 @@
                                                     <div class="row clearfix">
                                                         <?php if ($service->estado == "Tramite" || $service->estado == "Sin revisar" || $service->estado == "En reparación") { ?>
                                                             <div class="col-sm-6">
-                                                                <a href='?controller=revision&method=details&id=<?php echo $service->id_sv ?>&name=<?php echo $service->modelo ?>' class="btn btn-info"><i class="material-icons">add</i></a>
+                                                                <a href='?controller=revision&method=details&id=<?php echo $service->idDetalle ?>&name=<?php echo $service->modelo ?>' class="btn btn-info"><i class="material-icons">add</i></a>
                                                             </div>
                                                         <?php } ?>
                                                     </div>

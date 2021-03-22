@@ -63,8 +63,8 @@ $hora_actual = date("h:i a"); ?>
                                                 <tbody>
                                                     <?php foreach($consecutives as $consecutive){?>
                                                     <tr>
-                                                        <td><?php echo $consecutive->fecha?></td>
-                                                        <td><?php echo $consecutive->hora?></td>
+                                                        <td><?php echo $consecutive->fecha_tec?></td>
+                                                        <td><?php echo $consecutive->hora_tec?></td>
                                                         <td><?php echo $consecutive->informe_tecnico?></td>
                                                     </tr>
                                                     <?php } ?>

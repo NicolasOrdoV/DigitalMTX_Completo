@@ -130,29 +130,29 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=service" class="menu-toggle">
                                     <span>Anexo orden de servicio</span>
                                 </a>
                                 
                             </li>
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=service&method=prefinish" class="menu-toggle">
                                     <span>Informacion de servicio tecnico</span>
                                 </a> 
                             </li>
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=service&method=finish" class="menu-toggle">
                                     <span>Finalizacion</span>
                                 </a> 
                             </li>
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=service&method=third" class="menu-toggle">
                                     <span><b>Servicios a terceros</b></span>
                                 </a>
                                 
                             </li>
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=service&method=story" class="menu-toggle">
                                     <span>Historico de garantias finalizadas</span>
                                 </a> 
                             </li>
@@ -193,12 +193,12 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=revision&name=<?php echo $_SESSION['nombre'] ?>" class="menu-toggle">
                                     <span>Anexo de revisiones</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=revision&method=story&name=<?php echo $_SESSION['nombre'] ?>" class="menu-toggle">
                                     <span>Historicos de productos revisados por servicio tecnico</span>
                                 </a>
                             </li>
@@ -242,12 +242,12 @@
                                 </a> 
                             </li>
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=service&method=finish" class="menu-toggle">
                                     <span>Finalizacion</span>
                                 </a> 
                             </li>
                             <li>
-                                <a href="#" class="menu-toggle">
+                                <a href="?controller=service&method=third" class="menu-toggle">
                                     <span><b>Servicios a terceros</b></span>
                                 </a>
                                 
