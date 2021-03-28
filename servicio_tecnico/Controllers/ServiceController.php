@@ -926,7 +926,7 @@ class ServiceController
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
 			require 'Views/Layout.php';
-			$data = $this->model->getAllFinish();
+			$data = $this->model->getAllFinish(); 
 			require 'Views/Service/finish.php';
 			require 'Views/Scripts.php';
 		}else{
@@ -941,7 +941,18 @@ class ServiceController
 				$id = $_GET['id'];
 				require 'Views/Layout.php';
 				$data = $this->model->getByIdTecRevisionFinale($id);
-				require 'Views/Service/detailsFinish.php';
+				//$countPreFinish = count($data);
+				//echo $countPreFinish;
+				foreach ($data as $finish) {
+					$status = $finish->estado;		
+				}
+				if ($status == 'Pre finalizado para entrega al cliente' || 
+					$status == 'Pre-finalizado para nota crédito' ||
+					$status == 'Pre finalizado para caso cerrado') {
+					require 'Views/Service/detailsFinish.php';
+				}else{
+					require 'Views/Service/lackFinish.php';
+				}
 				require 'Views/Scripts.php';
 			}
 		}else{

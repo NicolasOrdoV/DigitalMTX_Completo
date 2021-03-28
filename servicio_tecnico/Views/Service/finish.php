@@ -16,7 +16,7 @@
                             </h2>
                         </div>
                         <div class="body">
-                            <div class="table-responsive">
+                            <div class="table-responsive"> 
                                 <table class="table table-bordered table-striped table-hover dataTable <?php echo $_SESSION['cargo'] == "Administrador" ? 'js-exportable ' : 'js-basic-example' ?>">
                                     <thead>
                                         <tr>
