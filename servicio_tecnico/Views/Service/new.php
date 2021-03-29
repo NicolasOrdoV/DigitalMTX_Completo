@@ -3,7 +3,7 @@ date_default_timezone_set('America/Bogota');
 $hora_actual = date("h:i a");
 $td = $total_data + 0001;
 ?>
-<section class="content">
+<section class="content"> 
     <div class="container-fluid">
         <div class="block-header">
             <h2>
@@ -110,25 +110,20 @@ $td = $total_data + 0001;
                                     </div>
                                 </div>
                             </div>
-                            <h2>Informacion del producto      <button class="btn btn-danger" type="button" id="adicional" name="adicional">+Agregar producto</button></h2>
+                            <h2>Informacion del producto  <button class="btn btn-danger" type="button" id="adicional" name="adicional">+Agregar producto</button></h2>
                             <div id="table">
+                                <input type="hidden" name="contador" id="contador" value="0">
                                 <button type="button" id="eliminar" class="btn btn-danger float-right">X</button>
                                <div class="row clearfix">
                                     <div class="col-sm-6">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <label>¿Tiene codigo de DTX? Digitelo</label>
-                                                <!-- <input list="IdP" autofocus class="form-control input-medium ui-autocomplete-input" name="codigo_producto" id="codigo_producto" value="" autocomplete="off" required> -->
                                                 <input type="number"  name="codigo_producto[]" id="codigo_producto" class="form-control">
-                                               <!--  <datalist id="IdP">
-                                                    <?php foreach ($products as $product) { ?>
-                                                        <option value="<?php echo $product->codigo ?>"><?php echo $product->codigo ?></option>
-                                                    <?php } ?>
-                                                </datalist>   -->  
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="row clearfix">
                                     <div class="col-sm-6">
                                         <div class="form-group form-float">
@@ -164,12 +159,15 @@ $td = $total_data + 0001;
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <label>Modelo</label>
-                                                <textarea rows="3" class="form-control" value="" name="modelo[]" id="modelo" required></textarea>
+                                                <input type="text" class="form-control" value="" name="modelo[]" id="modelo" required>
                                             </div>
                                         </div>
                                     </div>
                                 </div> 
                                 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                            </div>
+                            <div class="td">
+                                
                             </div>
                             <div class="row clearfix">
                                 <div class="col-sm-6">
@@ -242,7 +240,27 @@ $td = $total_data + 0001;
     $(function(){
         // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
         $("#adicional").on('click', function(){
-            $("#table").clone().appendTo("#table");
+            var i = $('#contador').val();
+            $("#table").clone().appendTo(".td");
+           
+            //$("#contador").clone().appendTo(".input").find('input').val(i);
+            $("#codigo_producto").attr('id', 'codigo_producto'+ i++);
+            $("#contador").attr('id', 'contador'+ i);
+            $("#codigo_producto").val("");
+            $("#serie").val("");
+            $("#tipo_equipo").val("");
+            $("#modelo").val("");
+            $("#marca").val("");
+            
+            // $('#count').text('Informacion del producto ' + i);  
+            // console.log(i);
+            // i++;
+            
+            
+            //$("#table").clone().appendTo(".td").find('textarea').val("");
+            $('#contador').val(i);
+            //$('#contadorFinal').val(i);
+            //console.log(i);
         });
      
         // Evento que selecciona la fila y la elimina 
@@ -310,7 +328,6 @@ $td = $total_data + 0001;
                 document.getElementById("nombre_cliente").value = data[1];
                 document.getElementById("direccion_cliente").value = data[2];
                 document.getElementById("telefono_cliente").value = data[3];
-
             }
         };
 
@@ -325,6 +342,7 @@ $td = $total_data + 0001;
     
 </script>
 <script>
+    //var i = getElementById('contador').value;
     document.getElementById("codigo_producto").onchange = function() {
         alerta2()
     };
