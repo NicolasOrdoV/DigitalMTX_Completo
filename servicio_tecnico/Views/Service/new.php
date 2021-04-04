@@ -111,63 +111,62 @@ $td = $total_data + 0001;
                                 </div>
                             </div>
                             <h2>Informacion del producto  <button class="btn btn-danger" type="button" id="adicional" name="adicional">+Agregar producto</button></h2>
+                            <input type="hidden" name="contador" id="contador" value="0">
                             <div id="table">
-                                <input type="hidden" name="contador" id="contador" value="0">
-                                <button type="button" id="eliminar" class="btn btn-danger float-right">X</button>
-                               <div class="row clearfix">
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <label>¿Tiene codigo de DTX? Digitelo</label>
-                                                <input type="number"  name="codigo_producto[]" id="codigo_producto" class="form-control">
+                               <div class="tde" data-section="section0">
+                                    <button type="button" id="eliminar" class="btn btn-danger float-right">X</button>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label>¿Tiene codigo de DTX? Digitelo</label>
+                                                    <input type="number"  name="codigo_producto[]" id="codigo_producto" class="form-control codigo_producto">
+                                                </div>
+                                            </div> 
+                                        </div>
+                                    </div> 
+                                    <div class="row clearfix">
+                                        <div class="col-sm-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label>Serie</label>
+                                                    <input type="text" class="form-control" value="" name="serie[]" id="serie" required>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div> 
-                                <div class="row clearfix">
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <label>Serie</label>
-                                                <input type="text" class="form-control" value="" name="serie[]" id="serie" required>
+                                        <div class="col-sm-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label>Tipo de equipo</label>
+                                                    <input type="text" class="form-control tipo_equipo" value="" name="tipo_equipo[]" id="tipo_equipo" required>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <label>Tipo de equipo</label>
-                                                <input type="text" class="form-control" value="" name="tipo_equipo[]" id="tipo_equipo" required>
+                                        <div class="col-sm-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label>Marca</label>
+                                                    <input list="mark" class="form-control marca" value="" name="marca[]" id="marca" value="" required>
+                                                    <datalist id="mark">
+                                                        <option>Seleccione...</option>
+                                                        <?php foreach ($marks as $mark) { ?>
+                                                            <option value="<?php echo $mark->nombre?>"><?php echo $mark->nombre?></option>
+                                                        <?php } ?>
+                                                    </datalist>    
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <label>Marca</label>
-                                                <input list="mark" class="form-control" value="" name="marca[]" id="marca" value="" required>
-                                                <datalist id="mark">
-                                                    <option>Seleccione...</option>
-                                                    <?php foreach ($marks as $mark) { ?>
-                                                        <option value="<?php echo $mark->nombre?>"><?php echo $mark->nombre?></option>
-                                                    <?php } ?>
-                                                </datalist>    
+                                        <div class="col-sm-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label>Modelo</label>
+                                                    <input type="text" class="form-control modelo" value="" name="modelo[]" id="modelo" required>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <label>Modelo</label>
-                                                <input type="text" class="form-control" value="" name="modelo[]" id="modelo" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                                ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                            </div>
-                            <div class="td">
-                                
+                                    </div> 
+                               </div>
+                               <hr>
                             </div>
                             <div class="row clearfix">
                                 <div class="col-sm-6">
@@ -235,32 +234,15 @@ $td = $total_data + 0001;
         </div>
 </section>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
-
 <script type="text/javascript">        
     $(function(){
         // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
         $("#adicional").on('click', function(){
-            var i = $('#contador').val();
-            $("#table").clone().appendTo(".td");
-           
-            //$("#contador").clone().appendTo(".input").find('input').val(i);
-            $("#codigo_producto").attr('id', 'codigo_producto'+ i++);
-            $("#contador").attr('id', 'contador'+ i);
-            $("#codigo_producto").val("");
-            $("#serie").val("");
-            $("#tipo_equipo").val("");
-            $("#modelo").val("");
-            $("#marca").val("");
-            
-            // $('#count').text('Informacion del producto ' + i);  
-            // console.log(i);
-            // i++;
-            
-            
-            //$("#table").clone().appendTo(".td").find('textarea').val("");
-            $('#contador').val(i);
-            //$('#contadorFinal').val(i);
-            //console.log(i);
+            var i = $("#contador").val();
+            i++;
+            $("#table div:eq(0)").clone().attr("data-section", 'section'+i).appendTo("#table").find('input').val('');
+            $("#contador").val(i);
+            console.log(i);
         });
      
         // Evento que selecciona la fila y la elimina 
@@ -270,38 +252,7 @@ $td = $total_data + 0001;
         });
     });
 </script>
-<!-- <script type="text/javascript">
-    $(function() {
-        $("#identificacion_cliente").autocomplete({
-            source: "users.php",
-            minLength: 2,
-            select: function(event, ui) {
-                event.preventDefault();
-                $('#identificacion_cliente').val(ui.item.identificacion);
-                $('#correo_cliente').val(ui.item.correo);
-                $('#nombre_cliente').val(ui.item.nombre);
-                $('#direccion_cliente').val(ui.item.direccion);
-                $('#telefono_cliente').val(ui.item.telefono);
-                $("#identificacion_cliente").focus();
-            }
-        });
-    });
-</script> -->
-<!-- <script type="text/javascript">
-    $(function() {
-        $("#codigo_producto").autocomplete({
-            source: "products.php",
-            minLength: 2,
-            select: function(event, ui) {
-                event.preventDefault();
-                $('#codigo_producto').val(ui.item.codigo);
-                $('#marca').val(ui.item.marca);
-                $('#tipo_equipo').val(ui.item.tipo);
-                $("#codigo_producto").focus();
-            }
-        });
-    });
-</script> -->
+
 <script>
     document.getElementById("identificacion_cliente").onchange = function() {
         alerta()
@@ -339,20 +290,22 @@ $td = $total_data + 0001;
         // Enviando la data al PHP
         request.send(formData);
     }
-    
 </script>
-<script>
-    //var i = getElementById('contador').value;
-    document.getElementById("codigo_producto").onchange = function() {
-        alerta2()
-    };
+<script type="text/javascript">
+    //var i = document.getElementById('contador').value;
 
-    function alerta2() {
+    $("#table").on('change', '.codigo_producto', function() {
+        var codigo = $(this).val();
+        var parent = $(this).closest('.tde').data('section');
+        alerta2(codigo, parent);
+    })
+
+    function alerta2(codigo, parent) {
         // Creando el objeto para hacer el request
         var request = new XMLHttpRequest();
 
         // Objeto PHP que consultaremos
-        request.open("POST", "Views/Service/servicesproducts.php");
+        request.open("POST", "Views/Service/servicesproducts.php?codigo="+codigo);
 
         // Definiendo el listener
         request.onreadystatechange = function() {
@@ -362,10 +315,9 @@ $td = $total_data + 0001;
                 var data = JSON.parse(this.responseText);
                 var data = data.toString().split(",");
                 // Ingresando la respuesta obtenida del PHP
-                document.getElementById("modelo").value = data[0];
-                document.getElementById("tipo_equipo").value = data[1];
-                document.getElementById("marca").value = data[2];
-
+                $("div[data-section="+parent+"] .modelo").val(data[0])
+                $("div[data-section="+parent+"] .tipo_equipo").val(data[1])
+                $("div[data-section="+parent+"] .marca").val(data[2])
             }
         };
 

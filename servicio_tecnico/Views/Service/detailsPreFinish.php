@@ -31,18 +31,18 @@ $hora_actual = date("h:i a"); ?>
                             </div>
                             <div class="row clearfix">
                                 <div class="col-sm-12">
-                                    <table class="table">
-                                        <thead>
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="bg-red">
                                             <tr>
                                                 <th><h5>Observaciones del tecnico</h5></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <?php foreach($data as $observation){ ?>
+                                            <?php foreach($data as $observation){ ?>
+                                                <tr>
                                                     <td><?php echo $observation->informe_tecnico ?></td>
-                                                <?php } ?>
-                                            </tr>
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
