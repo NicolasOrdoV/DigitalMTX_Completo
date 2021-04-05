@@ -37,7 +37,7 @@
                                                         <div class="col-xs-12">
                                                             <form action="?controller=service&method=detailsThird" method="POST">
                                                                 <input type="hidden" name="id" value="<?php echo $service->id_sv ?>">
-                                                                <button type="submit" class="btn btn-warning"><i class="material-icons">+</i></button>
+                                                                <button type="submit" class="btn btn-warning"><i class="material-icons">add</i></button>
                                                             </form>
                                                             <br>
                                                         </div>

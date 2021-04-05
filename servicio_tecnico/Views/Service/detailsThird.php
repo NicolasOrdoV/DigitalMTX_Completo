@@ -3,7 +3,7 @@ date_default_timezone_set('America/Bogota');
 $hora_actual = date("h:i a"); ?> 
 <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
+            <div class="block-header"> 
                 <h2>
                     <a href="?controller=service&method=third" class="btn btn-danger"><<</a>
                     DETALLES DE SERVICIO A TERCEROS
@@ -14,7 +14,6 @@ $hora_actual = date("h:i a"); ?>
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-
                         <div class="body">
                             <div class="row clearfix">
                                 <div class="col-sm-12">

@@ -129,7 +129,7 @@ $td = $total_data + 0001;
                                         <div class="col-sm-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <label>Serie</label>
+                                                    <label>Serie<small class="text-danger">*</small></label>
                                                     <input type="text" class="form-control" value="" name="serie[]" id="serie" required>
                                                 </div>
                                             </div>
@@ -137,7 +137,7 @@ $td = $total_data + 0001;
                                         <div class="col-sm-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <label>Tipo de equipo</label>
+                                                    <label>Tipo de equipo<small class="text-danger">*</small></label>
                                                     <input type="text" class="form-control tipo_equipo" value="" name="tipo_equipo[]" id="tipo_equipo" required>
                                                 </div>
                                             </div>
@@ -145,7 +145,7 @@ $td = $total_data + 0001;
                                         <div class="col-sm-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <label>Marca</label>
+                                                    <label>Marca<small class="text-danger">*</small></label>
                                                     <input list="mark" class="form-control marca" value="" name="marca[]" id="marca" value="" required>
                                                     <datalist id="mark">
                                                         <option>Seleccione...</option>
@@ -159,7 +159,7 @@ $td = $total_data + 0001;
                                         <div class="col-sm-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
-                                                    <label>Modelo</label>
+                                                    <label>Modelo<small class="text-danger">*</small></label>
                                                     <input type="text" class="form-control modelo" value="" name="modelo[]" id="modelo" required>
                                                 </div>
                                             </div>

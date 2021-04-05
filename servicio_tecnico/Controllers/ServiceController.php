@@ -606,8 +606,8 @@ class ServiceController
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
 			if ($_POST) {
-				$name = $_POST['name'];
 				$id = $_POST['id'];
+				$name = $_POST['name'];
 				require 'Views/Layout.php';
 				$data = $this->model->getByIdDetails($name,$id);
 				require 'Views/Service/detailsStory.php';
@@ -695,7 +695,7 @@ class ServiceController
 			require 'Views/Service/third.php';
 			require 'Views/Scripts.php';
 		}else{
-	      header('Location: ?controller=login');
+	      header('Location: ?controller=login'); 
 	    }	
 	}
 
@@ -944,11 +944,12 @@ class ServiceController
 				//$countPreFinish = count($data);
 				//echo $countPreFinish;
 				foreach ($data as $finish) {
-					$status = $finish->estado;		
+					$status[] = $finish->estado;		
 				}
-				if ($status == 'Pre finalizado para entrega al cliente' || 
-					$status == 'Pre-finalizado para nota crédito' ||
-					$status == 'Pre finalizado para caso cerrado') {
+				var_dump($status);
+				if (!in_array('Reparación terminada', $status) ||
+			        !in_array('Tramite', $status) ||
+			        !in_array('Se pasa a un tercero', $status)  ) {
 					require 'Views/Service/detailsFinish.php';
 				}else{
 					require 'Views/Service/lackFinish.php';

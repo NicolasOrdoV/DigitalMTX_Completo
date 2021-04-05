@@ -64,7 +64,7 @@ $hora_actual = date("h:i a"); ?>
                                                     <tr>
                                                         <td><?php echo $consecutive->fecha?></td>
                                                         <td><?php echo $consecutive->hora?></td>
-                                                        <td><?php echo $consecutive->informe_tecnico?></td>
+                                                        <td><?php echo $consecutive->estado?></td>
                                                     </tr>
                                                     <?php } ?>
                                                 </tbody>

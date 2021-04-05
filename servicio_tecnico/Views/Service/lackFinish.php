@@ -2,7 +2,7 @@
         <div class="container-fluid">
             <div class="block-header">
                 <h2>
-                   Registro exitoso 
+                   Registro no encontrado
                 </h2>
             </div>
             <!-- Input -->
