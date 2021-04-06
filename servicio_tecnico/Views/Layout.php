@@ -160,7 +160,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">backup_table</i>
                             <span>Tipo de equipo</span>
                         </a>
                         <ul class="ml-menu">
@@ -261,7 +261,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">backup_table</i>
                             <span>Tipo de equipo</span>
                         </a>
                         <ul class="ml-menu">
@@ -275,7 +275,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">build</i>
                             <span>Repuestos</span>
                         </a>
                         <ul class="ml-menu">

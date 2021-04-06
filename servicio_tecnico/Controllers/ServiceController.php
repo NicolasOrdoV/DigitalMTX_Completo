@@ -947,9 +947,7 @@ class ServiceController
 					$status[] = $finish->estado;		
 				}
 				var_dump($status);
-				if (!in_array('Reparación terminada', $status) ||
-			        !in_array('Tramite', $status) ||
-			        !in_array('Se pasa a un tercero', $status)  ) {
+				if (!in_array('Reparación terminada', $status)) {
 					require 'Views/Service/detailsFinish.php';
 				}else{
 					require 'Views/Service/lackFinish.php';
