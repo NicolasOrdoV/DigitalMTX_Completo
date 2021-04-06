@@ -101,7 +101,7 @@ class RevisionController
 	            $header .= "X-Mailer: PHP5/". phpversion()."\n";
 	            $header .= 'MIME-Version: 1.0' . "\n";
 	            $header .= "Content-Type: text/html; charset=UTF-8";          
-	            $asunto="DigitalMTX: Notificacion de garantia.";
+	            $asunto="DigitalMTX: Notificacion de servicio tecnico.";
 
 			    $body    = '
 				  <!DOCTYPE html>

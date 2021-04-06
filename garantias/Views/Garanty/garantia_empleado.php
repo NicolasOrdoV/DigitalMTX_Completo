@@ -55,7 +55,7 @@ $td = $total_data + 0001;
                             <?php } ?>
                             <h1>Detalle de factura: <?php echo isset($bills[0]) ? $bills[0]->Numero_Factura : '' ?></h1>
                             <input type="hidden" name="Numero_Factura" value="<?php echo isset($bills) ? $bills[0]->Numero_Factura : '' ?>">
-                            <input type="hidden" name="Empleado" value="<?php echo $_SESSION['user']->nombre ?>">
+                            <input type="hidden" name="Empleado" value="<?php echo $_SESSION['nombre'] ?>">
                             <div class="row clearfix">
                                 <div class="col-sm-12">
                                     <div class="form-group form-float">
