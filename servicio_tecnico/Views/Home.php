@@ -87,7 +87,7 @@
                                 <thead>
                                     <th style="width: 45px;">#</th>
                                     <th>Nombre</th>
-                                    <th style="width: 95px;">Producto</th>
+                                    <th style="width: 95px;">Fecha sv</th>
                                 </thead>
                                 <tbody>
                                   <?php foreach ($limitGaranties as $limitGaranty) {?>

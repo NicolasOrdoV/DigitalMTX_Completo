@@ -25,12 +25,8 @@ $td = $total_data + 0001;
                         <form action="?controller=service&method=save" method="POST" id="form_validation" novalidate>
                             <div class="row clearfix">
                                 <div class="col-sm-12">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label>Numero Garantia</label>
-                                            <input type="text" class="form-control" name="consecutivo" value="<?php echo "SV-" . $td; ?>" readonly required>
-                                        </div>
-                                    </div>
+                                    <h2>CONSECUTIVO: <?php echo "SV-".$td ?></h2>
+                                    <input type="hidden" class="form-control" name="consecutivo" value="<?php echo "SV-" . $td; ?>">
                                 </div>
                             </div>
                             <div class="row clearfix">
