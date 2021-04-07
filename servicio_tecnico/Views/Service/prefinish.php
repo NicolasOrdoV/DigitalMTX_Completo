@@ -42,7 +42,11 @@
                                                             <div class="col-sm-6">
                                                                 <a href='?controller=service&method=detailsPreFinish&id=<?php echo $service->id_sv ?>&name=<?php echo $service->modelo ?>' class="btn btn-warning"><i class="material-icons">add</i></a>
                                                             </div>
-                                                        <?php } ?>
+                                                        <?php }elseif($service->estado == "En reparación"){ ?>
+                                                            <div class="col-sm-6">
+                                                                <a href='?controller=service&method=detailsReparation&id=<?php echo $service->id_sv ?>&name=<?php echo $service->modelo ?>' class="btn btn-success"><i class="material-icons">add</i></a>
+                                                            </div>
+                                                        <?php } ?>    
                                                     </div>
                                                 </td>
                                             </tr>

@@ -14,7 +14,6 @@ $hora_actual = date("h:i a"); ?>
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-
                         <div class="body">
                             <div class="row clearfix">
                                 <div class="col-sm-12">
@@ -43,13 +42,17 @@ $hora_actual = date("h:i a"); ?>
                                 </div>
                             </div>
                             <div class="row clearfix">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <h5>Observaciones del cliente</h5>
                                     <p><?php echo $data[0]->observacion_cliente?></p>
                                 </div>
-                                <div  class="col-sm-6">
+                                <div  class="col-sm-4">
                                     <h5>Observacion del equipo:</h5>
                                     <p><?php echo $data[0]->observacion_equipo ?></p>
+                                </div>
+                                <div  class="col-sm-4">
+                                    <h5>Monto del tercero:</h5>
+                                    <p><?php echo $data[0]->monto_tercero ?></p>
                                 </div>
                             </div> 
                             <div class="row clearfix">

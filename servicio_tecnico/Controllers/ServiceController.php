@@ -42,6 +42,7 @@ class ServiceController
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE || isset($_SESSION['tecnico'])&&$_SESSION['tecnico']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE ) {
 			require 'Views/Layout.php';
 			$services = $this->model->getAll();
+			var_dump($services);
 			$total_data = count($services);
 			require 'Views/Service/list.php';
 			require 'Views/Scripts.php';
@@ -78,6 +79,7 @@ class ServiceController
 					'identificacion_cliente' => $_POST['identificacion_cliente'],
 					'telefono_cliente' => $_POST['telefono_cliente'],
 					'consecutivo' => $_POST['consecutivo'],
+					'direccion_cliente' => $_POST['direccion_cliente'],
 					'correo_cliente' => $_POST['correo_cliente'],
 					'observacion_cliente' => $_POST['observacion_cliente'],
 					'observacion_equipo' => $_POST['observacion_equipo'],
@@ -222,6 +224,93 @@ class ServiceController
 		}else{
 			header('Location: ?controller=login');
 		}		
+	}
+
+	public function edit()
+	{
+		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE)  {
+			if (isset($_POST['id'])) {
+				$id = $_POST['id'];
+				require 'Views/Layout.php';
+				$data = $this->model->getByid($id);
+	            require 'Views/Service/edit.php';
+	            require 'Views/Scripts.php';
+			}
+		}else{
+			header('Location: ?controller=login');
+		}	
+	}
+
+	public function saveEdit()
+	{
+		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE)  {
+			if (isset($_POST)) {
+				$data = [
+					'id' => $_POST['id'],
+					'fecha' => $_POST['fecha'],
+					'hora' => $_POST['hora'],
+					'nombre_cliente' => $_POST['nombre_cliente'],
+					'identificacion_cliente' => $_POST['identificacion_cliente'],
+					'telefono_cliente' => $_POST['telefono_cliente'],
+					'consecutivo' => $_POST['consecutivo'],
+					'direccion_cliente' => $_POST['direccion_cliente'],
+					'correo_cliente' => $_POST['correo_cliente'],
+					'observacion_cliente' => $_POST['observacion_cliente'],
+					'observacion_equipo' => $_POST['observacion_equipo'],
+					'fecha_pactada' => $_POST['fecha_pactada'],
+					'tecnico_asignado' => $_POST['tecnico_asignado'],
+					'monto' => $_POST['monto']
+				];
+
+				$answerEditService = $this->model->editMoneyServices($data);
+
+				$codigo_producto = $_POST['codigo_producto'];
+				$serie = $_POST['serie'];
+				$tipo_equipo = $_POST['tipo_equipo'];
+				$marca = $_POST['marca'];
+				$modelo = $_POST['modelo'];
+
+				while (true) {
+					$item1 = current($codigo_producto);
+					$item2 = current($serie);
+					$item3 = current($tipo_equipo);
+					$item4 = current($marca);
+					$item5 = current($modelo);
+
+					$cp = (($item1 !== false) ? $item1 : '');
+					$s  = (($item2 !== false) ? $item2 : '');
+					$tp = (($item3 !== false) ? $item3 : '');
+					$mc = (($item4 !== false) ? $item4 : '');
+					$md = (($item5 !== false) ? $item5 : '');
+
+					$details = [
+						'id' => $_POST['idDetail'],
+						'id_sv'           => $_POST['id'],
+						'codigo_producto' => $cp,
+						'serie'           => $s,
+						'tipo_equipo'     => $tp,
+						'marca'           => $mc,
+						'modelo'          => $md,
+						'estado'          => 'Tramite'
+					];
+
+					if ($answerEditService == true) {
+						$this->technical->editStatusServices($details);
+					}
+					
+					$item1 = next($codigo_producto);
+					$item2 = next($serie);
+					$item3 = next($tipo_equipo);
+					$item4 = next($marca);
+					$item5 = next($modelo);
+
+					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false) break;
+				}
+            	header('Location: ?controller=service&method=sucessfull');
+			}
+		}else{
+			header('Location: ?controller=login');
+		}	
 	}
 
 	public function sucessfull()
@@ -401,6 +490,22 @@ class ServiceController
 	    }
 	}
 
+	public function detailsReparation()
+	{
+		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
+			if ($_GET) {
+				$name = $_GET['name'];
+				$id = $_GET['id'];
+				require 'Views/Layout.php';
+				$data = $this->model->getByIdDetails($name,$id);
+				require 'Views/service/detailsReparation.php';
+				require 'Views/Scripts.php';
+			}
+		}else{
+	      header('Location: ?controller=login');
+	    }
+	}
+
 	public function prefinish()
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
@@ -433,7 +538,16 @@ class ServiceController
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
 			if ($_POST) {
-				$this->technical->editStatusServices($_POST);
+				$dates = [
+					'id' => $_POST['id'],
+					'estado' => $_POST['estado']
+				];
+				$dateMoney = [
+					'id' => $_POST['id_sv'],
+					'monto_final' => $_POST['monto_final'] 
+				];
+				$this->technical->editStatusServices($dates);
+				$this->model->editMoneyServices($dateMoney);
 				$data = $this->model->getByIdSV($_POST['id']);
 				$mail = new PHPMailer(true);
 				try {
@@ -719,20 +833,18 @@ class ServiceController
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
 			$data = [];
-			if (isset($_POST['nombre_tercero1'])) {
+			if (isset($_POST['nombre_tercero'])) {
 				$data = [
-					'id' => $_POST['id_sv'],
+					'id'             => $_POST['id_sv'],
 					'nombre_tercero' => $_POST['nombre_tercero1'],
-				];
-			}else{
-				$data = [
-					'id' => $_POST['id_sv'],
-					'nombre_tercero' => $_POST['nombre_tercero2'],
+					'orden_tercero'             => $_POST['orden_tercero'],
+				    'monto_tercero'             => $_POST['monto_tercero'],
+				    'observacion_razon_tercero' => $_POST['observacion_razon_tercero']
 				];
 			}
 			$data1 = [
-				'id' => $_POST['id_sv'],
-				'estado' => 'Tercero remitido'
+				'id'                        => $_POST['id_sv'],
+				'estado'                    => 'Tercero remitido'
 			];
 			$this->technical->editStatusServicesThird($data);
 			$this->technical->editStatusServices($data1);
@@ -946,8 +1058,11 @@ class ServiceController
 				foreach ($data as $finish) {
 					$status[] = $finish->estado;		
 				}
+				var_dump($status);
 				//var_dump($status);
-				if (!in_array('Reparación terminada', $status)) {
+				if (in_array('Pre finalizado para entrega al cliente', $status) ||
+			        in_array('Pre-finalizado para nota crédito', $status) ||
+			        in_array('Pre finalizado para caso cerrado', $status)) {
 					require 'Views/Service/detailsFinish.php';
 				}else{
 					require 'Views/Service/lackFinish.php';

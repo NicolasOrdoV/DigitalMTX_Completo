@@ -23,8 +23,8 @@
                                         <th>No</th>
                                         <th>Fecha servicio</th>
                                         <th>Hora servicio</th>
-                                        <th>Cliente</th>
-                                        <th>Correo</th>
+                                        <th>Producto</th>
+                                        <th>Modelo</th>
                                         <th>Estado</th>                    
                                     </tr>
                                 </thead>
@@ -36,7 +36,7 @@
                                                     <?php if($service->estado == 'Se pasa a un tercero'){ ?>
                                                         <div class="col-xs-12">
                                                             <form action="?controller=service&method=detailsThird" method="POST">
-                                                                <input type="hidden" name="id" value="<?php echo $service->id_sv ?>">
+                                                                <input type="hidden" name="id" value="<?php echo $service->id ?>">
                                                                 <button type="submit" class="btn btn-warning"><i class="material-icons">add</i></button>
                                                             </form>
                                                             <br>
@@ -44,7 +44,7 @@
                                                     <?php }elseif($service->estado == 'Tercero remitido'){ ?>
                                                         <div class="col-xs-12">
                                                             <form action="?controller=service&method=detailsThirdComing" method="POST">
-                                                                <input type="hidden" name="id" value="<?php echo $service->id_sv ?>">
+                                                                <input type="hidden" name="id" value="<?php echo $service->id ?>">
                                                                 <button type="submit" class="btn bg-black"><i class="material-icons">done</i></button>
                                                             </form>
                                                             <br>
@@ -55,8 +55,8 @@
                                             <td><?php echo $service->consecutivo?></td>
                                             <td><?php echo $service->fecha ?></td>
                                             <td><?php echo $service->hora ?></td>
-                                            <td><?php echo $service->nombre_cliente ?></td>
-                                            <td><?php echo $service->correo_cliente ?></td>
+                                            <td><?php echo $service->modelo ?></td>
+                                            <td><?php echo $service->tipo_equipo ?></td>
                                             <td><?php echo $service->estado ?></td>
                                         </tr>    
                                     <?php } ?>

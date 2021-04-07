@@ -18,7 +18,6 @@ $hora_actual = date("h:i a"); ?>
                             <h2>Detalle del servicio</h2>
                         </div>
                         <div class="body">
-                            <h2>Producto</h2>
                             <div class="row clearfix">
                                 <div class="col-sm-12">
                                     <h5>Consecutivo servicio</h5>
@@ -97,7 +96,6 @@ $hora_actual = date("h:i a"); ?>
                                                 <label>Estado del tecnico<small class="text-danger">*</small></label>
                                                 <select name="estado_tecnico" class="form-control show-tick" required>
                                                     <option value="">Seleccione..</option>
-                                                    <option value="Sin revisar">Sin revisar</option>
                                                     <option value="En reparación">En reparación</option>
                                                     <option value="Reparación terminada">Reparación terminada</option>
                                                     <option value="Emitir nota crédito">Emitir nota crédito</option>

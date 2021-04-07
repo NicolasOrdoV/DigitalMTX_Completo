@@ -20,7 +20,7 @@ class Service
 	{
 		try {
 			$strSql = "SELECT sv.*,dsv.* FROM dtm_sv sv
-			INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv GROUP BY sv.id";
+			INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv GROUP BY dsv.id_sv";
 			$query = $this->pdo->select($strSql);
 			return $query;
 		} catch (PDOException $e) {
@@ -43,6 +43,20 @@ class Service
 		try {
 			$strSql = "SELECT MAX(id) as id FROM dtm_sv";
 			$query = $this->pdo->select($strSql);
+			return $query;
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+
+	public function getByid($id)
+	{
+		try {
+			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, sv.monto_final, dsv.id as idDetail, dsv.id_sv, dsv.codigo_producto, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado FROM dtm_sv sv
+			INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
+			WHERE sv.id = :id";
+			$array = ['id' => $id];
+			$query = $this->pdo->select($strSql, $array);
 			return $query;
 		} catch (PDOException $e) {
 			die($e->getMessage());
@@ -123,7 +137,7 @@ class Service
 		try {
 			$strSql = "SELECT sv.*,dsv.* FROM dtm_sv sv
 			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv 
-			           WHERE dsv.estado = 'Reparación terminada'";
+			           WHERE dsv.estado = 'Reparación terminada' OR dsv.estado = 'En reparación'";
 			$query = $this->pdo->select($strSql);
 			return $query;    
 		} catch (PDOException $e) {
@@ -134,7 +148,7 @@ class Service
 	public function getByIdTecRevision($name,$id) 
 	{
 		try {
-			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto,dsv.id as idsv, dsv.id_sv, dsv.codigo_producto,dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado,t.id, t.id_sv, t.fecha_tec, t.hora_tec, t.informe_tecnico as informe_tecnico, t.nombre_tercero, t.Id_Empleado FROM dtm_sv sv
+			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto,dsv.id as idsv, dsv.id_sv, dsv.codigo_producto,dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado,t.id, t.id_sv, t.fecha_tec, t.hora_tec, t.informe_tecnico as informe_tecnico, t.nombre_tercero, t.orden_tercero, t.monto_tercero, t.observacion_razon_tercero, t.Id_Empleado FROM dtm_sv sv
 			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
 			           INNER JOIN dtm_tecnico_sv t ON sv.id = t.id_sv  
 			           WHERE dsv.modelo = '$name' AND dsv.id_sv = $id";
@@ -148,7 +162,7 @@ class Service
 	public function getByIdTecRevisionFinale($id)
 	{
 		try {
-			$strSql = "SELECT sv.id as idsv, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto,dsv.* FROM dtm_sv sv
+			$strSql = "SELECT sv.id as idsv, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, sv.monto_final, dsv.* FROM dtm_sv sv
 			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv 
 			           WHERE dsv.id_sv = $id";
 			$query = $this->pdo->select($strSql);
@@ -214,9 +228,10 @@ class Service
 	public function getAllDetailsThird($id)
 	{
 		try {
-			$strSql = "SELECT sv.*,dsv.* FROM dtm_sv sv
+			$strSql = "SELECT sv.*,dsv.*,t.* FROM dtm_sv sv
 			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
-			           WHERE sv.id = $id";
+			           INNER JOIN dtm_tecnico_sv t ON dsv.id = t.id_sv
+			           WHERE dsv.id = $id";
 			$query = $this->pdo->select($strSql);
 			return $query;           
 		} catch (PDOException $e) {
@@ -234,6 +249,16 @@ class Service
 			           OR dsv.estado = 'Pre finalizado para caso cerrado' GROUP BY sv.id";
 			$query = $this->pdo->select($strSql);
 			return $query;           
+		} catch (PDOException $e) {
+			die($e->getMessage());
+		}
+	}
+
+	public function editMoneyServices($data)
+	{
+		try {
+			$strWhere = "id=". $data['id'];
+			$this->pdo->update('dtm_sv' , $data , $strWhere);
 		} catch (PDOException $e) {
 			die($e->getMessage());
 		}

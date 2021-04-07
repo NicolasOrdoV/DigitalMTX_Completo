@@ -18,7 +18,6 @@ $hora_actual = date("h:i a"); ?>
                             <h2>Detalle del servicio</h2>
                         </div>
                         <div class="body">
-                            <h2>Producto</h2>
                             <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <h5>Consecutivo servicio</h5>
@@ -29,6 +28,30 @@ $hora_actual = date("h:i a"); ?>
                                     <p><?php echo $data[0]->estado?></p>
                                 </div>
                             </div>
+                            <?php foreach($data as $product){ ?>
+                                <div class="row clearfix">
+                                    <div class="col-sm-2">
+                                        <h5>Codigo del producto</h5>
+                                        <p><?php echo $product->codigo_producto?></p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h5>modelo</h5>
+                                        <p><?php echo $product->modelo?></p>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5>Serie</h5>
+                                        <p><?php echo $product->serie?></p>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5>Tipo de equipo</h5>
+                                        <p><?php echo $product->tipo_equipo?></p>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5>Marca</h5>
+                                        <p><?php echo $product->marca?></p>
+                                    </div>
+                                </div>
+                            <?php } ?>
                             <div class="row clearfix">
                                 <div class="col-sm-12">                                   
                                     <table class="table">
@@ -50,14 +73,11 @@ $hora_actual = date("h:i a"); ?>
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="col-sm-12 text-right">                          
+                                <div class="col-sm-12 text-left">                          
                                     <?php
-                                        $total = null;
-                                        $num = 0;
-                                        $total += $finish->monto;
-                                        $num = count($data);
                                         //echo $num;
-                                        echo '<h2>Monto: $'.$total.'</h2>';
+                                        echo '<h2>Monto: $'.$data[0]->monto.'</h2>
+                                              <h2>Monto final: $'.$data[0]->monto_final.'</h2>';
                                     ?>                                    
                                 </div>
                             </div>

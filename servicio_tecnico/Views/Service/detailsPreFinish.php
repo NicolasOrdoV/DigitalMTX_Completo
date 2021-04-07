@@ -18,15 +18,22 @@ $hora_actual = date("h:i a"); ?>
                             <h2>Detalle del servicio</h2>
                         </div>
                         <div class="body">
-                            <h2>Producto</h2>
                             <div class="row clearfix">
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                     <h5>Consecutivo servicio</h5>
                                     <h1><?php echo $data[0]->consecutivo?></h1>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                     <h5>Telefono del cliente para contacto:</h5>
                                     <p><?php echo $data[0]->telefono_cliente ?></p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h5>¿Se paso a un tercero? Este es el monto pactado</h5>
+                                    <p><?php echo $data[0]->monto_tercero ?></p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h5>monto inicial:</h5>
+                                    <p><?php echo $data[0]->monto ?></p>
                                 </div>
                             </div>
                             <div class="row clearfix">
@@ -55,6 +62,7 @@ $hora_actual = date("h:i a"); ?>
                                 <div class="col-sm-12"> 
                                     <form action="?controller=service&method=savePre" method="POST" id="form_validation">
                                         <input type="hidden" name="id" value="<?php echo $data[0]->idsv?>">
+                                        <input type="hidden" name="id_sv" value="<?php echo $data[0]->id?>">
                                         <div class="row clearfix">
                                             <div class="col-sm-6">
                                                 <label>Estado del tecnico<small class="text-danger">*</small></label>
@@ -64,6 +72,10 @@ $hora_actual = date("h:i a"); ?>
                                                     <option value="Pre-finalizado para nota crédito">Pre-finalizado para nota crédito</option> 
                                                     <option value="Pre finalizado para caso cerrado">Pre finalizado para caso cerrado</option> 
                                                 </select>    
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Monto final para cobrar<small class="text-danger">*</small></label>
+                                                <input type="number" name="monto_final" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="form-group form-float">

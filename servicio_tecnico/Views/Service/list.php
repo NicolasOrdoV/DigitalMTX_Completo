@@ -39,7 +39,9 @@
                                     <?php foreach ($services as $service) { ?>
                                         <tr>
                                             <td>
-                                                <?php if($service->estado = 'tramite'){ ?>
+                                                <?php if($service->estado == 'tramite' ||
+                                                         $service->estado == 'En reparación' ||
+                                                         $service->estado == 'Reparación terminada'){ ?>
                                                     <div class="row clearfix">
                                                         <div class="col-xs-12">
                                                             <form action="?controller=service&method=consecutive" method="POST">
@@ -51,7 +53,12 @@
                                                                 <input type="hidden" name="id" value="<?php echo $service->id_sv ?>">
                                                                 <button type="submit" class="btn btn-success"><i class="material-icons">theaters</i></button>
                                                             </form>
-                                                        </div>
+                                                            <br>
+                                                            <form action="?controller=service&method=edit" method="POST">
+                                                                <input type="hidden" name="id" value="<?php echo $service->id_sv ?>">
+                                                                <button type="submit" class="btn btn-warning"><i class="material-icons">create</i></button>
+                                                            </form>
+                                                        </div>  
                                                     </div>
                                                 <?php } ?>
                                             </td>
