@@ -39,7 +39,7 @@
                                     <?php foreach ($services as $service) { ?>
                                         <tr>
                                             <td>
-                                                <?php if($service->estado == 'tramite' ||
+                                                <?php if($service->estado == 'Tramite' ||
                                                          $service->estado == 'En reparación' ||
                                                          $service->estado == 'Reparación terminada'){ ?>
                                                     <div class="row clearfix">

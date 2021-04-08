@@ -28,7 +28,7 @@ class Service
 		}
 	}
 
-	public function newService($data)
+	public function newServiceT($data)
 	{
 		try {
 			$this->pdo->insert('dtm_sv', $data);
@@ -259,6 +259,7 @@ class Service
 		try {
 			$strWhere = "id=". $data['id'];
 			$this->pdo->update('dtm_sv' , $data , $strWhere);
+			return true;
 		} catch (PDOException $e) {
 			die($e->getMessage());
 		}

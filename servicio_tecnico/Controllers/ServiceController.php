@@ -7,6 +7,7 @@ require 'Models/Product.php';
 require 'Models/Employee.php';
 require 'Models/TechnicalR.php';
 require 'Models/Provider.php';
+require 'Models/TypeService.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -25,6 +26,7 @@ class ServiceController
 	private $employee;
 	private $technical;
 	private $provider;
+	private $typeService;
 
 	public function __construct()
 	{
@@ -35,6 +37,7 @@ class ServiceController
 		$this->employee = new Employee;
 		$this->technical = new Technical;
 		$this->provider = new Provider;
+		$this->typeService = new TypeService;
 	}
 
 	public function index()
@@ -42,7 +45,6 @@ class ServiceController
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE || isset($_SESSION['tecnico'])&&$_SESSION['tecnico']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE ) {
 			require 'Views/Layout.php';
 			$services = $this->model->getAll();
-			var_dump($services);
 			$total_data = count($services);
 			require 'Views/Service/list.php';
 			require 'Views/Scripts.php';
@@ -61,6 +63,7 @@ class ServiceController
 			$users = $this->user->getAll();
 			$products = $this->product->getAll();
 			$technicals = $this->employee->getAll();
+			$types = $this->typeService->getAll();
 			require 'Views/Service/new.php';
 			require 'Views/Scripts.php';
 		}else{
@@ -88,10 +91,11 @@ class ServiceController
 					'monto' => $_POST['monto']
 				];
 
-				$answerNewService = $this->model->newService($data);
+				$answerNewService = $this->model->newServiceT($data);
 				$lastId = $this->model->getLastId();
 
 				$codigo_producto = $_POST['codigo_producto'];
+				$tipo_servicio = $_POST['tipo_servicio'];
 				$serie = $_POST['serie'];
 				$tipo_equipo = $_POST['tipo_equipo'];
 				$marca = $_POST['marca'];
@@ -99,20 +103,23 @@ class ServiceController
 
 				while (true) {
 					$item1 = current($codigo_producto);
-					$item2 = current($serie);
-					$item3 = current($tipo_equipo);
-					$item4 = current($marca);
-					$item5 = current($modelo);
+					$item2 = current($tipo_servicio);
+					$item3 = current($serie);
+					$item4 = current($tipo_equipo);
+					$item5 = current($marca);
+					$item6 = current($modelo);
 
 					$cp = (($item1 !== false) ? $item1 : '');
-					$s  = (($item2 !== false) ? $item2 : '');
-					$tp = (($item3 !== false) ? $item3 : '');
-					$mc = (($item4 !== false) ? $item4 : '');
-					$md = (($item5 !== false) ? $item5 : '');
+					$ts = (($item2 !== false) ? $item2 : '');
+					$s  = (($item3 !== false) ? $item3 : '');
+					$tp = (($item4 !== false) ? $item4 : '');
+					$mc = (($item5 !== false) ? $item5 : '');
+					$md = (($item6 !== false) ? $item6 : '');
 
 					$details = [
 						'id_sv'           => $lastId[0]->id,
 						'codigo_producto' => $cp,
+						'tipo_servicio'   => $ts,
 						'serie'           => $s,
 						'tipo_equipo'     => $tp,
 						'marca'           => $mc,
@@ -125,12 +132,13 @@ class ServiceController
 					}
 					
 					$item1 = next($codigo_producto);
-					$item2 = next($serie);
-					$item3 = next($tipo_equipo);
-					$item4 = next($marca);
-					$item5 = next($modelo);
+					$item2 = next($tipo_servicio);
+					$item3 = next($serie);
+					$item4 = next($tipo_equipo);
+					$item5 = next($marca);
+					$item6 = next($modelo);
 
-					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false) break;
+					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false) break;
 				}
 
 				$dates = $this->model->getAllDetails($lastId[0]->id);
@@ -263,6 +271,7 @@ class ServiceController
 				];
 
 				$answerEditService = $this->model->editMoneyServices($data);
+				echo $answerEditService; 
 
 				$codigo_producto = $_POST['codigo_producto'];
 				$serie = $_POST['serie'];
@@ -284,20 +293,19 @@ class ServiceController
 					$md = (($item5 !== false) ? $item5 : '');
 
 					$details = [
-						'id' => $_POST['idDetail'],
+						'id'               => $_POST['idDetail'],
 						'id_sv'           => $_POST['id'],
 						'codigo_producto' => $cp,
 						'serie'           => $s,
 						'tipo_equipo'     => $tp,
 						'marca'           => $mc,
-						'modelo'          => $md,
-						'estado'          => 'Tramite'
+						'modelo'          => $md
 					];
 
 					if ($answerEditService == true) {
 						$this->technical->editStatusServices($details);
 					}
-					
+
 					$item1 = next($codigo_producto);
 					$item2 = next($serie);
 					$item3 = next($tipo_equipo);
@@ -753,22 +761,27 @@ class ServiceController
 	                <thead>
 	                    <tr>
 	                        <th>Consecutivo</th>
-	                        <th>Fecha_ingreso</th>
-	                        <th>Hora_ingreso</th>
+	                        <th>Fecha ingreso</th>
+	                        <th>Hora ingreso</th>
 	                        <th>Nombre Cliente</th>
 	                        <th>Identificacion Cliente</th>
 	                        <th>Correo Cliente</th>
 	                        <th>Telefono Cliente</th>
 	                        <th>Observacion Tecnico</th>
 	                        <th>Empleado</th>
-	                        <th>Codigo_Producto</th>
-	                        <th>Tipo_Producto</th>
-	                        <th>Marca_Producto</th>
-	                        <th>Serie_Producto</th>
-	                        <th>Observacion_Cliente</th>
+	                        <th>Codigo Producto</th>
+	                        <th>Tipo Producto</th>
+	                        <th>Marca Producto</th>
+	                        <th>Serie Producto</th>
+	                        <th>Observacion Cliente</th>
 	                        <th>Estado</th>
-	                        <th>Fecha_anexo_Tecnico</th>
-	                        <th>Hora_Anexo_Tecnico</th>
+	                        <th>Fecha anexo Tecnico</th>
+	                        <th>Hora Anexo Tecnico</th>
+	                        <th>Informe tecnico</th>
+	                        <th>Nombre tercero</th>
+	                        <th>Orden tercero</th>
+	                        <th>Monto tercero</th>
+	                        <th>¿Por que se mando al tercero?</th>
 	                    </tr>
 	                </thead>
 	                <tbody>';
@@ -791,6 +804,11 @@ class ServiceController
 	                    <td>'.$garanty->estado.'</td>
 	                    <td>'.$garanty->fecha_tec.'</td>
 	                    <td>'.$garanty->hora_tec.'</td>
+	                    <td>'.$garanty->informe_tecnico.'</td>
+	                    <td>'.$garanty->nombre_tercero.'</td>
+	                    <td>'.$garanty->orden_tercero.'</td>
+	                    <td>'.$garanty->monto_tercero.'</td>
+	                    <td>'.$garanty->observacion_razon_tercero.'</td>
 	                  </tr>';
 	                }  
 	                $html .= '</tbody>
@@ -1055,16 +1073,21 @@ class ServiceController
 				$data = $this->model->getByIdTecRevisionFinale($id);
 				//$countPreFinish = count($data);
 				//echo $countPreFinish;
+				$status = [];
 				foreach ($data as $finish) {
 					$status[] = $finish->estado;		
 				}
-				var_dump($status);
+				
+				$indexR = array_search('Reparación terminada', $status);
+				$indexT = array_search('Tramite', $status);
 				//var_dump($status);
-				if (in_array('Pre finalizado para entrega al cliente', $status) ||
-			        in_array('Pre-finalizado para nota crédito', $status) ||
-			        in_array('Pre finalizado para caso cerrado', $status)) {
+				if (empty($indexR) && empty($indexT)) {
+					echo $indexR;
+					echo $indexT;
 					require 'Views/Service/detailsFinish.php';
 				}else{
+					echo $indexR.'<br>';
+					echo $indexT;
 					require 'Views/Service/lackFinish.php';
 				}
 				require 'Views/Scripts.php';

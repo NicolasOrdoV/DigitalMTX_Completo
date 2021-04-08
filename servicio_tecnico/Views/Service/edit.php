@@ -1,8 +1,3 @@
-<?php
-date_default_timezone_set('America/Bogota');
-$hora_actual = date("h:i a");
-$td = $total_data + 0001;
-?>
 <section class="content"> 
     <div class="container-fluid">
         <div class="block-header">
@@ -27,7 +22,7 @@ $td = $total_data + 0001;
                             <input type="hidden" name="idDetail" value="<?php echo $data[0]->idDetail?>">
                             <div class="row clearfix">
                                 <div class="col-sm-12">
-                                    <h2>CONSECUTIVO: <?php echo "SV-".$td ?></h2>
+                                    <h2>CONSECUTIVO: <?php echo $data[0]->consecutivo ?></h2>
                                     <input type="hidden" class="form-control" name="consecutivo" value="<?php echo $data[0]->consecutivo ?>">
                                 </div>
                             </div>
@@ -107,7 +102,7 @@ $td = $total_data + 0001;
                                                 <div class="form-group form-float">
                                                     <div class="form-line">
                                                         <label>¿Tiene codigo de DTX? Digitelo</label>
-                                                        <input type="number"  name="codigo_producto[]" id="codigo_producto" class="form-control codigo_producto" value="<?php echo $data[0]->codigo_producto?>">
+                                                        <input type="number"  name="codigo_producto[]" id="codigo_producto" class="form-control codigo_producto" value="<?php echo $product->codigo_producto?>">
                                                     </div>
                                                 </div> 
                                             </div>
@@ -117,7 +112,7 @@ $td = $total_data + 0001;
                                                 <div class="form-group form-float">
                                                     <div class="form-line">
                                                         <label>Serie<small class="text-danger">*</small></label>
-                                                        <input type="text" class="form-control" name="serie[]" id="serie" required value="<?php echo $data[0]->serie?>">
+                                                        <input type="text" class="form-control" name="serie[]" id="serie" required value="<?php echo $product->serie?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -125,7 +120,7 @@ $td = $total_data + 0001;
                                                 <div class="form-group form-float">
                                                     <div class="form-line">
                                                         <label>Tipo de equipo<small class="text-danger">*</small></label>
-                                                        <input type="text" class="form-control tipo_equipo" value="<?php echo $data[0]->tipo_equipo?>" name="tipo_equipo[]" id="tipo_equipo" required>
+                                                        <input type="text" class="form-control tipo_equipo" value="<?php echo $product->tipo_equipo?>" name="tipo_equipo[]" id="tipo_equipo" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -133,7 +128,7 @@ $td = $total_data + 0001;
                                                 <div class="form-group form-float">
                                                     <div class="form-line">
                                                         <label>Marca<small class="text-danger">*</small></label>
-                                                        <input list="mark" class="form-control marca" value="<?php echo $data[0]->marca?>" name="marca[]" id="marca" required>
+                                                        <input list="mark" class="form-control marca" value="<?php echo $product->marca?>" name="marca[]" id="marca" required>
                                                         <datalist id="mark">
                                                             <option>Seleccione...</option>
                                                             <?php foreach ($marks as $mark) { ?>
@@ -147,7 +142,7 @@ $td = $total_data + 0001;
                                                 <div class="form-group form-float">
                                                     <div class="form-line">
                                                         <label>Modelo<small class="text-danger">*</small></label>
-                                                        <input type="text" class="form-control modelo" value="<?php echo $data[0]->modelo?>" name="modelo[]" id="modelo" required>
+                                                        <input type="text" class="form-control modelo" value="<?php echo $product->modelo?>" name="modelo[]" id="modelo" required>
                                                     </div>
                                                 </div>
                                             </div>

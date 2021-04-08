@@ -120,6 +120,19 @@ $td = $total_data + 0001;
                                                 </div>
                                             </div> 
                                         </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label>Tipo de servicio<small class="text-danger">*</small></label>
+                                                    <select name="tipo_servicio[]" id="tipo_servicio" class="form-control" required>
+                                                        <option>Seleccione...</option>
+                                                        <?php foreach($types as $type){ ?>
+                                                            <option value="<?php echo $type->tipo_servicio." - ". $type->precio?>"><?php echo $type->tipo_servicio." - $". $type->precio?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>    
+                                        </div>
                                     </div> 
                                     <div class="row clearfix">
                                         <div class="col-sm-6">
@@ -208,7 +221,7 @@ $td = $total_data + 0001;
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label>Monto estimado<small class="text-danger">*</small></label>
-                                            <input type="number" class="form-control" name="monto" id="monto" required>
+                                            <input type="number" class="form-control" value="" name="monto" id="monto" required>
                                         </div>
                                     </div>
                                 </div>
@@ -323,5 +336,13 @@ $td = $total_data + 0001;
 
         // Enviando la data al PHP
         request.send(formData);
-    }
+    }    
+</script>
+<script type="text/javascript">
+    // var i = 0;
+    // var m = document.getElementById('tipo_servicio').value;
+    // var monto = m.split(' - ');
+    // console.log(monto);
+    // var i = i+monto;
+    // document.getElementById('monto').value = i;
 </script>
