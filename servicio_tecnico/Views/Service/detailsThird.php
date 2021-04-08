@@ -54,7 +54,7 @@ $hora_actual = date("h:i a"); ?>
                             <div class="row clearfix">
                                 <div class="col-sm-12">  
                                     <form action="?controller=service&method=saveThird" method="POST" id="form_validation">
-                                        <input type="hidden" name="id_sv" value="<?php echo $data[0]->id?>">
+                                        <input type="hidden" name="id_sv" value="<?php echo $data[0]->idS?>">
                                         <div class="row clearfix">
                                             <div class="col-sm-6">
                                                 <label>¿A que tercero se remitira?</label>
@@ -67,7 +67,7 @@ $hora_actual = date("h:i a"); ?>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>¿El proveedor no esta en la lista? Por favor registrelo aqui</label>
-                                                <a href="?controller=third&method=new" class="btn btn-danger">+Crear tercero</a>
+                                                <a href="?controller=third&method=new&id=<?php echo $id?>" class="btn btn-danger">+Crear tercero</a>
                                             </div>
                                         </div>
                                         <div class="row clearfix">

@@ -228,7 +228,7 @@ class Service
 	public function getAllDetailsThird($id)
 	{
 		try {
-			$strSql = "SELECT sv.*,dsv.*,t.* FROM dtm_sv sv
+			$strSql = "SELECT sv.*,dsv.id as idS, dsv.id_sv, dsv.codigo_producto, dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado,t.* FROM dtm_sv sv 
 			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
 			           INNER JOIN dtm_tecnico_sv t ON dsv.id = t.id_sv
 			           WHERE dsv.id = $id";

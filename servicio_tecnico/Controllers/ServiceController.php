@@ -838,8 +838,8 @@ class ServiceController
 	public function detailsThird()
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
-			if ($_POST['id']) {
-				$id = $_POST['id'];
+			if ($_REQUEST['id']) {
+				$id = $_REQUEST['id'];
 				require 'Views/Layout.php';
 				$providers = $this->provider->getAll();
 				$data = $this->model->getAllDetailsThird($id);
@@ -1084,14 +1084,15 @@ class ServiceController
 				
 				$indexR = array_search('Reparación terminada', $status);
 				$indexT = array_search('Tramite', $status);
+				$indexThird = array_search('Se pasa a un tercero', $status);
 				//var_dump($status);
-				if (empty($indexR) && empty($indexT)) {
-					echo $indexR;
-					echo $indexT;
+				if (empty($indexR) && empty($indexT) && empty($indexThird)) {
+					//echo $indexR;
+					//echo $indexT;
 					require 'Views/Service/detailsFinish.php';
 				}else{
-					echo $indexR.'<br>';
-					echo $indexT;
+					//echo $indexR.'<br>';
+					//echo $indexT;
 					require 'Views/Service/lackFinish.php';
 				}
 				require 'Views/Scripts.php';

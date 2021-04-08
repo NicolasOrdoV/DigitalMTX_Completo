@@ -16,22 +16,33 @@ class ThirdController
 
 	public function new()
 	{
-		require 'Views/Layout.php';
-		require 'Views/Third/new.php';
-		require 'Views/Scripts.php';
+		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
+			if (isset($_GET['id'])) {
+				$id = $_GET['id'];
+				require 'Views/Layout.php';
+				require 'Views/Third/new.php';
+				require 'Views/Scripts.php';
+			}
+		}else{
+	      header('Location: ?controller=login');
+	    }
 	}
 
 	public function save()
 	{
-		if ($_POST) {
-			$data = $this->model->getAll();
-			$id = count($data);
-			$array = [
-				'id' => $id,
-				'Nombre_Proveedor' => $_POST['Nombre_Proveedor'] 
-			];
-			$this->model->save($array);
-			header('Location: ?controller=service&method=third');
-		}
+		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
+			if ($_POST) {
+				$data = $this->model->getAll();
+				$id = count($data);
+				$array = [
+					'id' => $id,
+					'Nombre_Proveedor' => $_POST['Nombre_Proveedor'] 
+				];
+				$this->model->save($array);
+				header('Location: ?controller=service&method=third');
+			}
+		}else{
+	      header('Location: ?controller=login');
+	    }
 	}
 }
