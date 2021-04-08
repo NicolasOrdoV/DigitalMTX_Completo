@@ -1,3 +1,6 @@
+<?php
+$count = count($data);
+?>
 <section class="content"> 
     <div class="container-fluid">
         <div class="block-header">
@@ -19,7 +22,6 @@
                     <div class="body">
                         <form action="?controller=service&method=saveEdit" method="POST" id="form_validation" novalidate>
                             <input type="hidden" name="id" value="<?php echo $data[0]->id_sv?>">
-                            <input type="hidden" name="idDetail" value="<?php echo $data[0]->idDetail?>">
                             <div class="row clearfix">
                                 <div class="col-sm-12">
                                     <h2>CONSECUTIVO: <?php echo $data[0]->consecutivo ?></h2>
@@ -92,10 +94,11 @@
                                 </div>
                             </div>
                             <h2>Informacion del producto  <button class="btn btn-danger" type="button" id="adicional" name="adicional">+Agregar producto</button></h2>
-                            <input type="hidden" name="contador" id="contador" value="0">
+                            <input type="hidden" name="contador" id="contador" value="<?php echo $count?>">
                             <?php foreach ($data as $product) {?>
                                 <div id="table">
                                    <div class="tde" data-section="section0">
+                                        <input type="hidden" name="idDetail[]" value="<?php echo $product->idDetail?>">
                                         <button type="button" id="eliminar" class="btn btn-danger float-right">X</button>
                                         <div class="row clearfix">
                                             <div class="col-sm-6">

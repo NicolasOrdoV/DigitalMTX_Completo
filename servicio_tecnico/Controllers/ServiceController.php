@@ -271,8 +271,9 @@ class ServiceController
 				];
 
 				$answerEditService = $this->model->editMoneyServices($data);
-				echo $answerEditService; 
+				//echo $answerEditService; 
 
+				$idDetail = $_POST['idDetail'];
 				$codigo_producto = $_POST['codigo_producto'];
 				$serie = $_POST['serie'];
 				$tipo_equipo = $_POST['tipo_equipo'];
@@ -285,15 +286,17 @@ class ServiceController
 					$item3 = current($tipo_equipo);
 					$item4 = current($marca);
 					$item5 = current($modelo);
+					$item6 = current($idDetail);
 
 					$cp = (($item1 !== false) ? $item1 : '');
 					$s  = (($item2 !== false) ? $item2 : '');
 					$tp = (($item3 !== false) ? $item3 : '');
 					$mc = (($item4 !== false) ? $item4 : '');
 					$md = (($item5 !== false) ? $item5 : '');
+					$id = (($item6 !== false) ? $item6 : '');
 
 					$details = [
-						'id'               => $_POST['idDetail'],
+						'id'              => $id,
 						'id_sv'           => $_POST['id'],
 						'codigo_producto' => $cp,
 						'serie'           => $s,
@@ -311,8 +314,9 @@ class ServiceController
 					$item3 = next($tipo_equipo);
 					$item4 = next($marca);
 					$item5 = next($modelo);
+					$item6 = next($idDetail);
 
-					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false) break;
+					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false) break;
 				}
             	header('Location: ?controller=service&method=sucessfull');
 			}
