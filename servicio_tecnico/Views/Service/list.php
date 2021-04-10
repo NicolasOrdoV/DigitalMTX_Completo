@@ -54,7 +54,7 @@
                                                                 <button type="submit" class="btn btn-success"><i class="material-icons">theaters</i></button>
                                                             </form>
                                                             <br>
-                                                            <form action="?controller=service&method=edit" method="POST">
+                                                            <form action="?controller=service&method=edit&id=<?php echo $service->id_sv ?>" method="POST">
                                                                 <input type="hidden" name="id" value="<?php echo $service->id_sv ?>">
                                                                 <button type="submit" class="btn btn-warning"><i class="material-icons">create</i></button>
                                                             </form>

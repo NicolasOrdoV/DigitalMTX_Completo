@@ -95,65 +95,67 @@ $count = count($data);
                             </div>
                             <h2>Informacion del producto  <button class="btn btn-danger" type="button" id="adicional" name="adicional">+Agregar producto</button></h2>
                             <input type="hidden" name="contador" id="contador" value="<?php echo $count?>">
-                            <?php foreach ($data as $product) {?>
                                 <div id="table">
-                                   <div class="tde" data-section="section0">
-                                        <input type="hidden" name="idDetail[]" value="<?php echo $product->idDetail?>">
-                                        <button type="button" id="eliminar" class="btn btn-danger float-right">X</button>
-                                        <div class="row clearfix">
-                                            <div class="col-sm-6">
-                                                <div class="form-group form-float">
-                                                    <div class="form-line">
-                                                        <label>¿Tiene codigo de DTX? Digitelo</label>
-                                                        <input type="number"  name="codigo_producto[]" id="codigo_producto" class="form-control codigo_producto" value="<?php echo $product->codigo_producto?>">
-                                                    </div>
-                                                </div> 
-                                            </div>
-                                        </div> 
-                                        <div class="row clearfix">
-                                            <div class="col-sm-6">
-                                                <div class="form-group form-float">
-                                                    <div class="form-line">
-                                                        <label>Serie<small class="text-danger">*</small></label>
-                                                        <input type="text" class="form-control" name="serie[]" id="serie" required value="<?php echo $product->serie?>">
+                                    <?php foreach ($data as $key => $product) {?>
+                                       <div class="tde" data-section="section<?php echo $key ?>">
+                                            <input type="hidden" name="idDetail[]" value="<?php echo $product->idDetail?>">
+                                            <button type="button" name="btnEliminar" id="eliminar" class="btn btn-danger"
+                                            onClick="javascript:Eliminar('<?php echo $product->idDetail?>')">X
+                                            </button>
+                                            <div class="row clearfix">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <label>¿Tiene codigo de DTX? Digitelo</label>
+                                                            <input type="number"  name="codigo_producto[]" id="codigo_producto" class="form-control codigo_producto" value="<?php echo $product->codigo_producto?>">
+                                                        </div> 
+                                                    </div>  
+                                                </div>
+                                            </div> 
+                                            <div class="row clearfix">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <label>Serie<small class="text-danger">*</small></label>
+                                                            <input type="text" class="form-control" name="serie[]" id="serie" required value="<?php echo $product->serie?>">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group form-float">
-                                                    <div class="form-line">
-                                                        <label>Tipo de equipo<small class="text-danger">*</small></label>
-                                                        <input type="text" class="form-control tipo_equipo" value="<?php echo $product->tipo_equipo?>" name="tipo_equipo[]" id="tipo_equipo" required>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <label>Tipo de equipo<small class="text-danger">*</small></label>
+                                                            <input type="text" class="form-control tipo_equipo" value="<?php echo $product->tipo_equipo?>" name="tipo_equipo[]" id="tipo_equipo" required>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group form-float">
-                                                    <div class="form-line">
-                                                        <label>Marca<small class="text-danger">*</small></label>
-                                                        <input list="mark" class="form-control marca" value="<?php echo $product->marca?>" name="marca[]" id="marca" required>
-                                                        <datalist id="mark">
-                                                            <option>Seleccione...</option>
-                                                            <?php foreach ($marks as $mark) { ?>
-                                                                <option value="<?php echo $mark->nombre?>"><?php echo $mark->nombre?></option>
-                                                            <?php } ?>
-                                                        </datalist>    
+                                                <div class="col-sm-6">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <label>Marca<small class="text-danger">*</small></label>
+                                                            <input list="mark" class="form-control marca" value="<?php echo $product->marca?>" name="marca[]" id="marca" required>
+                                                            <datalist id="mark">
+                                                                <option>Seleccione...</option>
+                                                                <?php foreach ($marks as $mark) { ?>
+                                                                    <option value="<?php echo $mark->nombre?>"><?php echo $mark->nombre?></option>
+                                                                <?php } ?>
+                                                            </datalist>    
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group form-float">
-                                                    <div class="form-line">
-                                                        <label>Modelo<small class="text-danger">*</small></label>
-                                                        <input type="text" class="form-control modelo" value="<?php echo $product->modelo?>" name="modelo[]" id="modelo" required>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <label>Modelo<small class="text-danger">*</small></label>
+                                                            <input type="text" class="form-control modelo" value="<?php echo $product->modelo?>" name="modelo[]" id="modelo" required>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div> 
-                                   </div>
-                                   <hr>
+                                            </div> 
+                                       </div>
+                                       <hr>
+                                <?php } ?>
                                 </div>
-                            <?php } ?>
                             <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <div class="form-group form-float">
@@ -313,5 +315,15 @@ $count = count($data);
 
         // Enviando la data al PHP
         request.send(formData);
+    }
+</script>
+<script type="text/javascript">
+    function Eliminar(txtID){
+        $.ajax({
+                type: "POST",
+                url: "Views/Service/delete.php",
+                cache: false,
+                data: {txtID}
+        });
     }
 </script>

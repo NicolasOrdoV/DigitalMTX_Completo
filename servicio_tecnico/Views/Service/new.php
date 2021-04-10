@@ -5,7 +5,7 @@ $td = $total_data + 0001;
 ?>
 <section class="content"> 
     <div class="container-fluid">
-        <div class="block-header">
+        <div class="block-header"> 
             <h2>
                 <a href="?controller=service" class="btn btn-danger"><<</a>
                 REGISTRO DE SERVICIO TECNICO
@@ -124,7 +124,7 @@ $td = $total_data + 0001;
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label>Tipo de servicio<small class="text-danger">*</small></label>
-                                                    <select name="tipo_servicio[]" id="tipo_servicio" class="form-control" required>
+                                                    <select name="tipo_servicio[]" id="tipo_servicio" class="form-control tipo_servicio" required>
                                                         <option>Seleccione...</option>
                                                         <?php foreach($types as $type){ ?>
                                                             <option value="<?php echo $type->tipo_servicio." - ". $type->precio?>"><?php echo $type->tipo_servicio." - $". $type->precio?></option>
@@ -252,8 +252,22 @@ $td = $total_data + 0001;
             $("#table div:eq(0)").clone().attr("data-section", 'section'+i).appendTo("#table").find('input').val('');
             $("#contador").val(i);
             console.log(i);
+            $('select.tipo_servicio').on('change',function(){
+                var valor = $('.tipo_servicio').val();
+                var array = valor.split(" - ");
+                var inNum = parseInt(array[1]);
+                var monto = array();
+                monto.push(inNum);
+                var montoTotal = 0;
+                for (var j = 0; j >= monto.length; j++) {
+                    montoTotal += monto[j];
+                }
+                console.log(montoTotal);
+                $("#monto").val(montoTotal);
+            });
         });
-     
+
+
         // Evento que selecciona la fila y la elimina 
         $(document).on("click","#eliminar",function(){
             var parent = $(this).parents().get(0);
@@ -327,6 +341,7 @@ $td = $total_data + 0001;
                 $("div[data-section="+parent+"] .modelo").val(data[0])
                 $("div[data-section="+parent+"] .tipo_equipo").val(data[1])
                 $("div[data-section="+parent+"] .marca").val(data[2])
+                $("div[data-section="+parent+"] .tipo_servicio").val('')
             }
         };
 

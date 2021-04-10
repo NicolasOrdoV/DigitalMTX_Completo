@@ -305,8 +305,12 @@ class ServiceController
 						'modelo'          => $md
 					];
 
-					if ($answerEditService == true) {
+					if ($answerEditService == true && $id != null) {
 						$this->technical->editStatusServices($details);
+					}else{
+						unset($details[0]);
+						$details['Estado'] = "Tramite";
+						$this->model->newDetailService($details);
 					}
 
 					$item1 = next($codigo_producto);
