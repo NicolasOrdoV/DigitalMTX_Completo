@@ -111,6 +111,19 @@ $count = count($data);
                                                         </div> 
                                                     </div>  
                                                 </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <label>Tipo de servicio<small class="text-danger">*</small></label>
+                                                            <select name="tipo_servicio[]" id="tipo_servicio" class="form-control tipo_servicio" required>
+                                                                <option value="">Seleccione...</option>
+                                                                <?php foreach($types as $type){ ?>
+                                                                    <option value="<?php echo $type->tipo_servicio." - ". $type->precio?>"><?php echo $type->tipo_servicio." - $". $type->precio?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>    
+                                                </div>
                                             </div> 
                                             <div class="row clearfix">
                                                 <div class="col-sm-6">
@@ -230,13 +243,27 @@ $count = count($data);
             i++;
             $("#table div:eq(0)").clone().attr("data-section", 'section'+i).appendTo("#table").find('input').val('');
             $("#contador").val(i);
-            console.log(i);
         });
-     
+
+        $('#table').on('change', '.tipo_servicio',function(){
+            ActualizarMonto();
+        });
+
+        function ActualizarMonto(){
+            var valor = 0;
+            var temp = 0;
+            $('.tipo_servicio').each(function(indice,elemento){
+                temp = parseInt($(elemento).val().split(" - ")[1]);
+                valor += temp;
+            });
+            $("#monto").val(valor);
+        }
+
         // Evento que selecciona la fila y la elimina 
         $(document).on("click","#eliminar",function(){
             var parent = $(this).parents().get(0);
             $(parent).remove();
+            ActualizarMonto();
         });
     });
 </script>

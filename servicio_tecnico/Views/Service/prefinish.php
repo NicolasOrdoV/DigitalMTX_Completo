@@ -40,7 +40,7 @@
                                                     <div class="row clearfix">
                                                         <?php if ($service->estado == "Reparación terminada") { ?>
                                                             <div class="col-sm-6">
-                                                                <a href='?controller=service&method=detailsPreFinish&id=<?php echo $service->id_sv ?>&name=<?php echo $service->modelo ?>' class="btn btn-warning"><i class="material-icons">add</i></a>
+                                                                <a href='?controller=service&method=detailsPreFinish&id=<?php echo $service->id ?>&name=<?php echo $service->modelo ?>' class="btn btn-warning"><i class="material-icons">add</i></a>
                                                             </div>
                                                         <?php }elseif($service->estado == "En reparación"){ ?>
                                                             <div class="col-sm-6">

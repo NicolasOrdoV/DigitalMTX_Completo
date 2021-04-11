@@ -151,7 +151,7 @@ class Service
 			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto,dsv.id as idsv, dsv.id_sv, dsv.codigo_producto,dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado,t.id, t.id_sv, t.fecha_tec, t.hora_tec, t.informe_tecnico as informe_tecnico, t.nombre_tercero, t.orden_tercero, t.monto_tercero, t.observacion_razon_tercero, t.Id_Empleado FROM dtm_sv sv
 			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
 			           INNER JOIN dtm_tecnico_sv t ON sv.id = t.id_sv  
-			           WHERE dsv.modelo = '$name' AND dsv.id_sv = $id";
+			           WHERE dsv.modelo = '$name' AND dsv.id = $id";
 			$query = $this->pdo->select($strSql);
 			return $query;
 		} catch (PDOException $e) {

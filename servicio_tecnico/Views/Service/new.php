@@ -251,27 +251,27 @@ $td = $total_data + 0001;
             i++;
             $("#table div:eq(0)").clone().attr("data-section", 'section'+i).appendTo("#table").find('input').val('');
             $("#contador").val(i);
-            console.log(i);
-            $('select.tipo_servicio').on('change',function(){
-                var valor = $('.tipo_servicio').val();
-                var array = valor.split(" - ");
-                var inNum = parseInt(array[1]);
-                var monto = array();
-                monto.push(inNum);
-                var montoTotal = 0;
-                for (var j = 0; j >= monto.length; j++) {
-                    montoTotal += monto[j];
-                }
-                console.log(montoTotal);
-                $("#monto").val(montoTotal);
-            });
         });
 
+        $('#table').on('change', '.tipo_servicio',function(){
+            ActualizarMonto();
+        });
+
+        function ActualizarMonto(){
+            var valor = 0;
+            var temp = 0;
+            $('.tipo_servicio').each(function(indice,elemento){
+                temp = parseInt($(elemento).val().split(" - ")[1]);
+                valor += temp;
+            });
+            $("#monto").val(valor);
+        }
 
         // Evento que selecciona la fila y la elimina 
         $(document).on("click","#eliminar",function(){
             var parent = $(this).parents().get(0);
             $(parent).remove();
+            ActualizarMonto();
         });
     });
 </script>

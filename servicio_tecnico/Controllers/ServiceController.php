@@ -241,6 +241,7 @@ class ServiceController
 				$id = $_POST['id'];
 				require 'Views/Layout.php';
 				$data = $this->model->getByid($id);
+				$types = $this->typeService->getAll();
 	            require 'Views/Service/edit.php';
 	            require 'Views/Scripts.php';
 			}
