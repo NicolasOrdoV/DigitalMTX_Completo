@@ -2,6 +2,7 @@
 
 require 'Models/Service.php';
 require 'Models/TechnicalR.php';
+require 'Models/Audit.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -16,11 +17,13 @@ class RevisionController
 {
 	private $model;
 	private $service;
+	private $audit;
 
 	public function __construct()
 	{
 		$this->service = new Service;
 		$this->model = new Technical;
+		$this->audit = new Audit;
 	}
 
 	public function index()
@@ -71,6 +74,7 @@ class RevisionController
 			//$id = $_REQUEST['Id_Garantia'];
 			$this->model->newRevision($data);
 			$role = $this->model->consecutives($_POST['id_sv']);
+			$datesForAudit = $this->service->getByIdSVA($_POST['id_sv']);
 			$dates = [];
 			if ($role[0]->estado == "Tramite" || $role[0]->estado == "Sin revisar" || $role[0]->estado == "En reparación") {
 				$dates = [
@@ -78,21 +82,41 @@ class RevisionController
 					'estado' => $_POST['estado_tecnico']
 				];
 				$this->model->editStatusServices($dates);
-				echo '<pre>';
-				var_dump($dates);
-				echo '</pre>';
-
 			}else{
 				$dates = [
 					'id' => $data['id_sv'],
 					'estado' => $_POST['estado_tecnico']
 				];
 				$this->model->editStatusServices($dates);
-				echo '<pre>';
-				var_dump($role);
-				echo '</pre>';
 			}
 			$this->model->editStatusServices($dates);
+			$auditArray = [
+				'fecha'                  => date('d-m-Y'),
+				'hora'                   => $hora_actual,
+				'nombre_cliente'         => $datesForAudit[0]->nombre_cliente,
+				'identificacion_cliente' => $datesForAudit[0]->identificacion_cliente,
+				'telefono_cliente'       => $datesForAudit[0]->telefono_cliente,
+				'consecutivo'            => $datesForAudit[0]->consecutivo,
+				'direccion_cliente'      => $datesForAudit[0]->direccion_cliente,
+				'correo_cliente'         => $datesForAudit[0]->correo_cliente,
+				'observacion_cliente'    => $datesForAudit[0]->observacion_cliente,
+				'observacion_equipo'     => $datesForAudit[0]->observacion_equipo,
+				'fecha_pactada'          => $datesForAudit[0]->fecha_pactada,
+				'tecnico_asignado'       => $datesForAudit[0]->tecnico_asignado,
+				'monto'                  => $datesForAudit[0]->monto,
+				'codigo_producto'        => $datesForAudit[0]->codigo_producto,
+				'tipo_servicio'          => $datesForAudit[0]->tipo_servicio,
+				'serie'                  => $datesForAudit[0]->serie,
+				'tipo_equipo'            => $datesForAudit[0]->tipo_equipo,
+				'marca'                  => $datesForAudit[0]->marca,
+				'modelo'                 => $datesForAudit[0]->modelo,
+				'estado'                 => $dates['estado'],
+				'fecha_tec'              => $_POST['fecha_tec'],
+	            'hora_tec'               => $_POST['hora_tec'],
+	            'informe_tecnico'        => $_POST['informe_tecnico'],
+	            'id_empleado_fk'         => $_POST['Id_Empleado']
+			];
+			$this->audit->newAudit($auditArray);
 			$mail = new PHPMailer(true);
 			try {
 				$email=$role['correo_cliente'];   // Add a recipient

@@ -8,6 +8,7 @@ require 'Models/Employee.php';
 require 'Models/TechnicalR.php';
 require 'Models/Provider.php';
 require 'Models/TypeService.php';
+require 'Models/Audit.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -27,6 +28,7 @@ class ServiceController
 	private $technical;
 	private $provider;
 	private $typeService;
+	private $audit;
 
 	public function __construct()
 	{
@@ -38,6 +40,7 @@ class ServiceController
 		$this->technical = new Technical;
 		$this->provider = new Provider;
 		$this->typeService = new TypeService;
+		$this->audit = new Audit;
 	}
 
 	public function index()
@@ -76,19 +79,19 @@ class ServiceController
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE || isset($_SESSION['tecnico'])&&$_SESSION['tecnico']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE ) {
 			if (isset($_POST)) {
 				$data = [
-					'fecha' => $_POST['fecha'],
-					'hora' => $_POST['hora'],
-					'nombre_cliente' => $_POST['nombre_cliente'],
+					'fecha'                  => $_POST['fecha'],
+					'hora'                   => $_POST['hora'],
+					'nombre_cliente'         => $_POST['nombre_cliente'],
 					'identificacion_cliente' => $_POST['identificacion_cliente'],
-					'telefono_cliente' => $_POST['telefono_cliente'],
-					'consecutivo' => $_POST['consecutivo'],
-					'direccion_cliente' => $_POST['direccion_cliente'],
-					'correo_cliente' => $_POST['correo_cliente'],
-					'observacion_cliente' => $_POST['observacion_cliente'],
-					'observacion_equipo' => $_POST['observacion_equipo'],
-					'fecha_pactada' => $_POST['fecha_pactada'],
-					'tecnico_asignado' => $_POST['tecnico_asignado'],
-					'monto' => $_POST['monto']
+					'telefono_cliente'       => $_POST['telefono_cliente'],
+					'consecutivo'            => $_POST['consecutivo'],
+					'direccion_cliente'      => $_POST['direccion_cliente'],
+					'correo_cliente'         => $_POST['correo_cliente'],
+					'observacion_cliente'    => $_POST['observacion_cliente'],
+					'observacion_equipo'     => $_POST['observacion_equipo'],
+					'fecha_pactada'          => $_POST['fecha_pactada'],
+					'tecnico_asignado'       => $_POST['tecnico_asignado'],
+					'monto'                  => $_POST['monto']
 				];
 
 				$answerNewService = $this->model->newServiceT($data);
@@ -127,8 +130,32 @@ class ServiceController
 						'estado'          => 'Tramite'
 					];
 
+					$auditArray = [
+						'fecha'                  => $data['fecha'],
+						'hora'                   => $data['hora'],
+						'nombre_cliente'         => $data['nombre_cliente'],
+						'identificacion_cliente' => $data['identificacion_cliente'],
+						'telefono_cliente'       => $data['telefono_cliente'],
+						'consecutivo'            => $data['consecutivo'],
+						'direccion_cliente'      => $data['direccion_cliente'],
+						'correo_cliente'         => $data['correo_cliente'],
+						'observacion_cliente'    => $data['observacion_cliente'],
+						'observacion_equipo'     => $data['observacion_equipo'],
+						'fecha_pactada'          => $data['fecha_pactada'],
+						'tecnico_asignado'       => $data['tecnico_asignado'],
+						'monto'                  => $data['monto'],
+						'codigo_producto'        => $cp,
+						'tipo_servicio'          => $ts,
+						'serie'                  => $s,
+						'tipo_equipo'            => $tp,
+						'marca'                  => $mc,
+						'modelo'                 => $md,
+						'estado'                 => 'Tramite'
+					];
+
 					if (isset($lastId[0]->id) && $answerNewService == true) {
 						$this->model->newDetailService($details);
+						$this->audit->newAudit($auditArray);
 					}
 					
 					$item1 = next($codigo_producto);
@@ -555,16 +582,43 @@ class ServiceController
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
 			if ($_POST) {
+				date_default_timezone_set('America/Bogota');
+                $hora_actual = date("h:i a");
 				$dates = [
 					'id' => $_POST['id'],
-					'estado' => $_POST['estado']
-				];
-				$dateMoney = [
-					'id' => $_POST['id_sv'],
+					'estado' => $_POST['estado'],
 					'monto_final' => $_POST['monto_final'] 
 				];
 				$this->technical->editStatusServices($dates);
-				$this->model->editMoneyServices($dateMoney);
+				$datesForAudit = $this->model->getAllDetailsThird($_POST['id']);
+				$auditArray = [
+					'fecha'                  => date('d-m-Y'),
+					'hora'                   => $hora_actual,
+					'nombre_cliente'         => $datesForAudit[0]->nombre_cliente,
+					'identificacion_cliente' => $datesForAudit[0]->identificacion_cliente,
+					'telefono_cliente'       => $datesForAudit[0]->telefono_cliente,
+					'consecutivo'            => $datesForAudit[0]->consecutivo,
+					'direccion_cliente'      => $datesForAudit[0]->direccion_cliente,
+					'correo_cliente'         => $datesForAudit[0]->correo_cliente,
+					'observacion_cliente'    => $datesForAudit[0]->observacion_cliente,
+					'observacion_equipo'     => $datesForAudit[0]->observacion_equipo,
+					'fecha_pactada'          => $datesForAudit[0]->fecha_pactada,
+					'tecnico_asignado'       => $datesForAudit[0]->tecnico_asignado,
+					'monto'                  => $datesForAudit[0]->monto,
+					'monto_final'            => $dates['monto_final'],
+					'codigo_producto'        => $datesForAudit[0]->codigo_producto,
+					'tipo_servicio'          => $datesForAudit[0]->tipo_servicio,
+					'serie'                  => $datesForAudit[0]->serie,
+					'tipo_equipo'            => $datesForAudit[0]->tipo_equipo,
+					'marca'                  => $datesForAudit[0]->marca,
+					'modelo'                 => $datesForAudit[0]->modelo,
+					'estado'                 => $dates['estado'],
+					'fecha_tec'              => $datesForAudit[0]->fecha_tec,
+		            'hora_tec'               => $datesForAudit[0]->hora_tec,
+		            'informe_tecnico'        => $datesForAudit[0]->informe_tecnico,
+		            'id_empleado_fk'         => $datesForAudit[0]->Id_Empleado
+				];
+				$this->audit->newAudit($auditArray);
 				$data = $this->model->getByIdSV($_POST['id']);
 				$mail = new PHPMailer(true);
 				try {
@@ -770,6 +824,7 @@ class ServiceController
 	                <thead>
 	                    <tr>
 	                        <th>Consecutivo</th>
+	                        <th>Empleado</th>
 	                        <th>Fecha ingreso</th>
 	                        <th>Hora ingreso</th>
 	                        <th>Nombre Cliente</th>
@@ -777,7 +832,6 @@ class ServiceController
 	                        <th>Correo Cliente</th>
 	                        <th>Telefono Cliente</th>
 	                        <th>Observacion Tecnico</th>
-	                        <th>Empleado</th>
 	                        <th>Codigo Producto</th>
 	                        <th>Tipo Producto</th>
 	                        <th>Marca Producto</th>
@@ -797,6 +851,7 @@ class ServiceController
 	                foreach ($productResult as $garanty) {
 	                  $html .= '<tr>
 	                    <td>'.$garanty->consecutivo.'</td>
+	                    <td>'.$garanty->tecnico_asignado.'</td>
 	                    <td>'.$garanty->fecha.'</td>
 	                    <td>'.$garanty->hora.'</td>
 	                    <td>'.$garanty->nombre_cliente.'</td>
@@ -804,7 +859,6 @@ class ServiceController
 	                    <td>'.$garanty->correo_cliente.'</td>
 	                    <td>'.$garanty->telefono_cliente.'</td>
 	                    <td>'.$garanty->informe_tecnico.'</td>
-	                    <td>'.$garanty->tecnico_asignado.'</td>
 	                    <td>'.$garanty->codigo_producto.'</td>
 	                    <td>'.$garanty->tipo_equipo.'</td>
 	                    <td>'.$garanty->marca.'</td>
@@ -860,10 +914,12 @@ class ServiceController
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
 			$data = [];
+			date_default_timezone_set('America/Bogota');
+            $hora_actual = date("h:i a");
 			if (isset($_POST['nombre_tercero'])) {
 				$data = [
-					'id'             => $_POST['id_sv'],
-					'nombre_tercero' => $_POST['nombre_tercero1'],
+					'id'                        => $_POST['id_sv'],
+					'nombre_tercero'            => $_POST['nombre_tercero'],
 					'orden_tercero'             => $_POST['orden_tercero'],
 				    'monto_tercero'             => $_POST['monto_tercero'],
 				    'observacion_razon_tercero' => $_POST['observacion_razon_tercero']
@@ -875,6 +931,38 @@ class ServiceController
 			];
 			$this->technical->editStatusServicesThird($data);
 			$this->technical->editStatusServices($data1);
+			$datesForAudit = $this->model->getAllDetailsThird($_POST['id_sv']);
+			$auditArray = [
+				'fecha'                     => date('d-m-Y'),
+				'hora'                      => $hora_actual,
+				'nombre_cliente'            => $datesForAudit[0]->nombre_cliente,
+				'identificacion_cliente'    => $datesForAudit[0]->identificacion_cliente,
+				'telefono_cliente'          => $datesForAudit[0]->telefono_cliente,
+				'consecutivo'               => $datesForAudit[0]->consecutivo,
+				'direccion_cliente'         => $datesForAudit[0]->direccion_cliente,
+				'correo_cliente'            => $datesForAudit[0]->correo_cliente,
+				'observacion_cliente'       => $datesForAudit[0]->observacion_cliente,
+				'observacion_equipo'        => $datesForAudit[0]->observacion_equipo,
+				'fecha_pactada'             => $datesForAudit[0]->fecha_pactada,
+				'tecnico_asignado'          => $datesForAudit[0]->tecnico_asignado,
+				'monto'                     => $datesForAudit[0]->monto,
+				'codigo_producto'           => $datesForAudit[0]->codigo_producto,
+				'tipo_servicio'             => $datesForAudit[0]->tipo_servicio,
+				'serie'                     => $datesForAudit[0]->serie,
+				'tipo_equipo'               => $datesForAudit[0]->tipo_equipo,
+				'marca'                     => $datesForAudit[0]->marca,
+				'modelo'                    => $datesForAudit[0]->modelo,
+				'estado'                    => $data1['estado'],
+				'fecha_tec'                 => $datesForAudit[0]->fecha_tec,
+	            'hora_tec'                  => $datesForAudit[0]->hora_tec,
+	            'informe_tecnico'           => $datesForAudit[0]->informe_tecnico,
+	            'nombre_tercero'            => $data['nombre_tercero'],
+				'orden_tercero'             => $data['orden_tercero'],
+				'monto_tercero'             => $data['monto_tercero'],
+				'observacion_razon_tercero' => $data['observacion_razon_tercero'],
+	            'id_empleado_fk'            => $datesForAudit[0]->Id_Empleado
+			];
+			$this->audit->newAudit($auditArray);
 			$data = $this->model->getByIdSV($_POST['id_sv']);
 			$mail = new PHPMailer(true);
 			try {
@@ -1049,11 +1137,45 @@ class ServiceController
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
 			if ($_POST) {
+				date_default_timezone_set('America/Bogota');
+                $hora_actual = date("h:i a");
 				$data = [
 					'id' => $_POST['id_sv'],
 					'estado' => $_POST['estado_tecnico']
 				];
 				$this->technical->editStatusServices($data);
+				$datesForAudit = $this->model->getAllDetailsThird($_POST['id_sv']);
+				$auditArray = [
+					'fecha'                     => date('d-m-Y'),
+					'hora'                      => $hora_actual,
+					'nombre_cliente'            => $datesForAudit[0]->nombre_cliente,
+					'identificacion_cliente'    => $datesForAudit[0]->identificacion_cliente,
+					'telefono_cliente'          => $datesForAudit[0]->telefono_cliente,
+					'consecutivo'               => $datesForAudit[0]->consecutivo,
+					'direccion_cliente'         => $datesForAudit[0]->direccion_cliente,
+					'correo_cliente'            => $datesForAudit[0]->correo_cliente,
+					'observacion_cliente'       => $datesForAudit[0]->observacion_cliente,
+					'observacion_equipo'        => $datesForAudit[0]->observacion_equipo,
+					'fecha_pactada'             => $datesForAudit[0]->fecha_pactada,
+					'tecnico_asignado'          => $datesForAudit[0]->tecnico_asignado,
+					'monto'                     => $datesForAudit[0]->monto,
+					'codigo_producto'           => $datesForAudit[0]->codigo_producto,
+					'tipo_servicio'             => $datesForAudit[0]->tipo_servicio,
+					'serie'                     => $datesForAudit[0]->serie,
+					'tipo_equipo'               => $datesForAudit[0]->tipo_equipo,
+					'marca'                     => $datesForAudit[0]->marca,
+					'modelo'                    => $datesForAudit[0]->modelo,
+					'estado'                    => $data['estado'],
+					'fecha_tec'                 => $datesForAudit[0]->fecha_tec,
+		            'hora_tec'                  => $datesForAudit[0]->hora_tec,
+		            'informe_tecnico'           => $datesForAudit[0]->informe_tecnico,
+		            'nombre_tercero'            => $datesForAudit[0]->nombre_tercero,
+					'orden_tercero'             => $datesForAudit[0]->orden_tercero,
+					'monto_tercero'             => $datesForAudit[0]->monto_tercero,
+					'observacion_razon_tercero' => $datesForAudit[0]->observacion_razon_tercero,
+		            'id_empleado_fk'            => $datesForAudit[0]->Id_Empleado
+				];
+				$this->audit->newAudit($auditArray);
 				header('Location: ?controller=service&method=third');
 			}
 		}else{
@@ -1111,6 +1233,8 @@ class ServiceController
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['recepcion'])&&$_SESSION['recepcion']==TRUE) {
 			if ($_POST) {
+				date_default_timezone_set('America/Bogota');
+                $hora_actual = date("h:i a");
 				$id = $_POST['id'];
 				while (TRUE) {
 					$item1 = current($id);
@@ -1120,6 +1244,35 @@ class ServiceController
 					'estado' => $_POST['estado']
 					];
 					$respChangeStatus = $this->technical->editStatusServices1($data);
+					$datesForAudit = $this->model->getAllDetailsThird($cp);
+					$auditArray = [
+						'fecha'                  => date('d-m-Y'),
+						'hora'                   => $hora_actual,
+						'nombre_cliente'         => $datesForAudit[0]->nombre_cliente,
+						'identificacion_cliente' => $datesForAudit[0]->identificacion_cliente,
+						'telefono_cliente'       => $datesForAudit[0]->telefono_cliente,
+						'consecutivo'            => $datesForAudit[0]->consecutivo,
+						'direccion_cliente'      => $datesForAudit[0]->direccion_cliente,
+						'correo_cliente'         => $datesForAudit[0]->correo_cliente,
+						'observacion_cliente'    => $datesForAudit[0]->observacion_cliente,
+						'observacion_equipo'     => $datesForAudit[0]->observacion_equipo,
+						'fecha_pactada'          => $datesForAudit[0]->fecha_pactada,
+						'tecnico_asignado'       => $datesForAudit[0]->tecnico_asignado,
+						'monto'                  => $datesForAudit[0]->monto,
+						'monto_final'            => $datesForAudit[0]->monto_final,
+						'codigo_producto'        => $datesForAudit[0]->codigo_producto,
+						'tipo_servicio'          => $datesForAudit[0]->tipo_servicio,
+						'serie'                  => $datesForAudit[0]->serie,
+						'tipo_equipo'            => $datesForAudit[0]->tipo_equipo,
+						'marca'                  => $datesForAudit[0]->marca,
+						'modelo'                 => $datesForAudit[0]->modelo,
+						'estado'                 => $data['estado'],
+						'fecha_tec'              => $datesForAudit[0]->fecha_tec,
+			            'hora_tec'               => $datesForAudit[0]->hora_tec,
+			            'informe_tecnico'        => $datesForAudit[0]->informe_tecnico,
+			            'id_empleado_fk'         => $datesForAudit[0]->Id_Empleado
+					];
+					$this->audit->newAudit($auditArray);
 					$item1 = next($id);
 					if ($item1 === false)break;
 				}

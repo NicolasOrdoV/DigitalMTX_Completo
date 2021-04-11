@@ -75,9 +75,13 @@ $hora_actual = date("h:i a"); ?>
                                 </div>
                                 <div class="col-sm-12 text-left">                          
                                     <?php
+                                        $suma = 0;
+                                        foreach ($data as $s) {
+                                           $suma += $s->monto_final;
+                                        }
                                         //echo $num;
                                         echo '<h2>Monto: $'.$data[0]->monto.'</h2>
-                                              <h2>Monto final: $'.$data[0]->monto_final.'</h2>';
+                                              <h2>Monto final: $'.$suma.'</h2>';     
                                     ?>                                    
                                 </div>
                             </div>

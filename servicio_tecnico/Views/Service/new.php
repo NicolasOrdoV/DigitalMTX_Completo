@@ -6,7 +6,7 @@ $td = $total_data + 0001;
 <section class="content"> 
     <div class="container-fluid">
         <div class="block-header"> 
-            <h2>
+            <h2> 
                 <a href="?controller=service" class="btn btn-danger"><<</a>
                 REGISTRO DE SERVICIO TECNICO
                 <small>Aqui puedes registrar el servicio tecnico dando las especificaciones necesarias</small>

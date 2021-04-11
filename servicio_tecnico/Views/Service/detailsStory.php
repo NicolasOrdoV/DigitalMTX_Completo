@@ -18,29 +18,32 @@ $hora_actual = date("h:i a"); ?>
                             <h2>Detalle del servicio</h2>
                         </div>
                         <div class="body">
-                            <h2>Producto</h2>
                             <div class="row clearfix">
                                 <div class="col-sm-12">
                                     <h5>Consecutivo servicio</h5>
                                     <h1><?php echo $data[0]->consecutivo?></h1>
                                 </div>
-                                <div class="col-sm-3">
-                                    <h5>Codigo del producto</h5>
-                                    <p><?php echo $data[0]->codigo_producto?></p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <h5>modelo</h5>
-                                    <p><?php echo $data[0]->modelo?></p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <h5>Serie</h5>
-                                    <p><?php echo $data[0]->serie?></p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <h5>Tipo de equipo</h5>
-                                    <p><?php echo $data[0]->tipo_equipo?></p>
-                                </div>
                             </div>
+                            <?php foreach($data as $product){ ?>
+                                <div class="row clearfix">
+                                    <div class="col-sm-3">
+                                        <h5>Codigo del producto</h5>
+                                        <p><?php echo $product->codigo_producto?></p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h5>modelo</h5>
+                                        <p><?php echo $product->modelo?></p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h5>Serie</h5>
+                                        <p><?php echo $product->serie?></p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h5>Tipo de equipo</h5>
+                                        <p><?php echo $product->tipo_equipo?></p>
+                                    </div>
+                                </div>
+                            <?php } ?>
                             <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <h5>Observaciones del cliente</h5>
