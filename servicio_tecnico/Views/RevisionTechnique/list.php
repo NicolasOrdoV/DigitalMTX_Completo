@@ -36,7 +36,7 @@
                                                 <td><?php echo $service->marca ?></td>
                                                 <td><?php echo $service->estado ?></td>
                                                 <td><?php echo $service->modelo ?></td>
-                                                <td>
+                                                <td> 
                                                     <div class="row clearfix">
                                                         <?php if ($service->estado == "Tramite" || $service->estado == "Sin revisar" || $service->estado == "En reparación") { ?>
                                                             <div class="col-sm-6">

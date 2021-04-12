@@ -34,7 +34,7 @@ $hora_actual = date("h:i a"); ?>
                                         <h5>Codigo del producto</h5>
                                         <p><?php echo $product->codigo_producto?></p>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <h5>modelo</h5>
                                         <p><?php echo $product->modelo?></p>
                                     </div>
@@ -49,6 +49,10 @@ $hora_actual = date("h:i a"); ?>
                                     <div class="col-sm-2">
                                         <h5>Marca</h5>
                                         <p><?php echo $product->marca?></p>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h5>Tipo del servicio</h5>
+                                        <p><?php echo $product->tipo_servicio?></p>
                                     </div>
                                 </div>
                             <?php } ?>

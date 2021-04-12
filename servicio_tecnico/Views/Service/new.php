@@ -341,7 +341,6 @@ $td = $total_data + 0001;
                 $("div[data-section="+parent+"] .modelo").val(data[0])
                 $("div[data-section="+parent+"] .tipo_equipo").val(data[1])
                 $("div[data-section="+parent+"] .marca").val(data[2])
-                $("div[data-section="+parent+"] .tipo_servicio").val('')
             }
         };
 

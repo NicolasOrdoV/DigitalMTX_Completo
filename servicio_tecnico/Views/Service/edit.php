@@ -116,7 +116,7 @@ $count = count($data);
                                                         <div class="form-line">
                                                             <label>Tipo de servicio<small class="text-danger">*</small></label>
                                                             <select name="tipo_servicio[]" id="tipo_servicio" class="form-control tipo_servicio" required>
-                                                                <option value="">Seleccione...</option>
+                                                                <option value="<?php echo $product->tipo_servicio?>"><?php echo $product->tipo_servicio?></option>
                                                                 <?php foreach($types as $type){ ?>
                                                                     <option value="<?php echo $type->tipo_servicio." - ". $type->precio?>"><?php echo $type->tipo_servicio." - $". $type->precio?></option>
                                                                 <?php } ?>

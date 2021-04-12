@@ -41,7 +41,7 @@ $hora_actual = date("h:i a"); ?>
                                     <p><?php echo $data[0]->marca?></p>
                                 </div>
                             </div>
-                            <div class="row clearfix">
+                            <div class="row clearfix"> 
                                 <div class="col-sm-4">
                                     <h5>Observaciones del cliente</h5>
                                     <p><?php echo $data[0]->observacion_cliente?></p>
@@ -58,7 +58,7 @@ $hora_actual = date("h:i a"); ?>
                             <div class="row clearfix">
                                 <div class="col-sm-12"> 
                                     <form action="?controller=service&method=saveThirdComing" method="POST" id="form_validation">
-                                        <input type="hidden" name="id_sv" value="<?php echo $data[0]->id?>">
+                                        <input type="hidden" name="id_sv" value="<?php echo $data[0]->idS?>">
                                          <div class="row clearfix">
                                             <div class="col-sm-6">
                                                 <label>Estado final del tercero<small class="text-danger">*</small></label>

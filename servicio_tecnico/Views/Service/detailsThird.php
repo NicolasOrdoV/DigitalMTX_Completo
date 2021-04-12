@@ -42,16 +42,20 @@ $hora_actual = date("h:i a"); ?>
                                 </div>
                             </div>
                             <div class="row clearfix">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <h5>Observaciones del cliente</h5>
                                     <p><?php echo $data[0]->observacion_cliente?></p>
                                 </div>
-                                <div  class="col-sm-6">
+                                <div  class="col-sm-4">
                                     <h5>Observacion del equipo:</h5>
                                     <p><?php echo $data[0]->observacion_equipo ?></p>
                                 </div>
-                            </div> 
-                            <div class="row clearfix">
+                                <div  class="col-sm-4">
+                                    <h5>Tipo de servicio:</h5>
+                                    <p><?php echo $data[0]->tipo_servicio ?></p>
+                                </div>
+                            </div>  
+                            <div class="row clearfix">  
                                 <div class="col-sm-12">  
                                     <form action="?controller=service&method=saveThird" method="POST" id="form_validation">
                                         <input type="hidden" name="id_sv" value="<?php echo $data[0]->idS?>">

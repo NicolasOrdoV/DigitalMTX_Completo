@@ -875,7 +875,8 @@ class ServiceController
 	                  </tr>';
 	                }  
 	                $html .= '</tbody>
-	            </table>';
+	            </table>
+	            <hr>';
 	        echo $html;    
 	        $isPrintHeader = true;
 	    }
