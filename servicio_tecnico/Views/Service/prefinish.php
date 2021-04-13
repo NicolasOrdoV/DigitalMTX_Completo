@@ -38,7 +38,8 @@
                                                 <td><?php echo $service->modelo ?></td>
                                                 <td>
                                                     <div class="row clearfix">
-                                                        <?php if ($service->estado == "Reparación terminada") { ?>
+                                                        <?php if ($service->estado == "Reparación terminada" ||
+                                                                  $service->estado == "Emitir nota crédito") { ?>
                                                             <div class="col-sm-6">
                                                                 <a href='?controller=service&method=detailsPreFinish&id=<?php echo $service->id ?>&name=<?php echo $service->modelo ?>' class="btn btn-warning"><i class="material-icons">add</i></a>
                                                             </div>

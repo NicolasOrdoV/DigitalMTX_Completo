@@ -40,7 +40,6 @@
                                                     <div class="col-xs-12">
                                                         <form action="?controller=revision&method=detailsStory" method="POST">
                                                             <input type="hidden" name="id" value="<?php echo $service->id_sv ?>">
-                                                            <input type="hidden" name="name" value="<?php echo $service->modelo ?>">
                                                             <button type="submit" class="btn btn-warning"><i class="material-icons">visibility</i></button>
                                                         </form>
                                                         <br>

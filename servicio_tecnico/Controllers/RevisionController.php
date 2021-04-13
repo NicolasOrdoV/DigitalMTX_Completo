@@ -302,10 +302,9 @@ class RevisionController
 	{
 		if (isset($_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997'])&&$_SESSION['d033e22ae348aeb5660fc2140aec35850c4da997']==TRUE ||isset($_SESSION['tecnico'])&&$_SESSION['tecnico']==TRUE) {
 			if ($_POST) {
-				$name = $_POST['name'];
 				$id = $_POST['id'];
 				require 'Views/Layout.php';
-				$data = $this->model->getByIdDetails($name,$id);
+				$data = $this->model->getByIdDetails($id);
 				require 'Views/RevisionTechnique/detailsStory.php';
 				require 'Views/Scripts.php';
 			}

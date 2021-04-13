@@ -150,7 +150,7 @@ class Service
 		try {
 			$strSql = "SELECT sv.*,dsv.* FROM dtm_sv sv
 			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv 
-			           WHERE dsv.estado = 'Reparación terminada' OR dsv.estado = 'En reparación'";
+			           WHERE dsv.estado = 'Reparación terminada' OR dsv.estado = 'En reparación' OR dsv.estado = 'Emitir nota crédito'";
 			$query = $this->pdo->select($strSql);
 			return $query;    
 		} catch (PDOException $e) {

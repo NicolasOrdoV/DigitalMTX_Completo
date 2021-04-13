@@ -84,13 +84,13 @@ class Technical
 		}
 	}
 
-	public function getByIdDetails($name,$id)
+	public function getByIdDetails($id)
 	{
 		try {
-			$strSql = "SELECT t.*,dsv.*,sv.* FROM dtm_tecnico_sv t
-			INNER JOIN dtm_detalle_sv dsv ON dsv.id = t.id_sv
-            INNER JOIN dtm_sv sv ON sv.id = dsv.id_sv
-            WHERE dsv.modelo = '$name' AND sv.id = $id";
+			$strSql = "SELECT sv.*,dsv.*,t.* FROM dtm_sv sv
+			INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
+			INNER JOIN dtm_tecnico_sv t ON dsv.id = t.id_sv
+            WHERE sv.id = $id";
 		    $query = $this->pdo->select($strSql);
 		    return $query;	
 		} catch (PDOException $e) {
