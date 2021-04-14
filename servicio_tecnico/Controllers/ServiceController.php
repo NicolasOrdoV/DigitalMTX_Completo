@@ -602,32 +602,36 @@ class ServiceController
 				$this->technical->editStatusServices($dates);
 				$datesForAudit = $this->model->getAllDetailsThird($_POST['id']);
 				$auditArray = [
-					'fecha'                  => date('d-m-Y'),
-					'hora'                   => $hora_actual,
-					'nombre_cliente'         => $datesForAudit[0]->nombre_cliente,
-					'identificacion_cliente' => $datesForAudit[0]->identificacion_cliente,
-					'telefono_cliente'       => $datesForAudit[0]->telefono_cliente,
-					'consecutivo'            => $datesForAudit[0]->consecutivo,
-					'direccion_cliente'      => $datesForAudit[0]->direccion_cliente,
-					'correo_cliente'         => $datesForAudit[0]->correo_cliente,
-					'observacion_cliente'    => $datesForAudit[0]->observacion_cliente,
-					'observacion_equipo'     => $datesForAudit[0]->observacion_equipo,
-					'fecha_pactada'          => $datesForAudit[0]->fecha_pactada,
-					'tecnico_asignado'       => $datesForAudit[0]->tecnico_asignado,
-					'monto'                  => $datesForAudit[0]->monto,
-					'monto_final'            => $dates['monto_final'],
-					'codigo_producto'        => $datesForAudit[0]->codigo_producto,
-					'tipo_servicio'          => $datesForAudit[0]->tipo_servicio,
-					'serie'                  => $datesForAudit[0]->serie,
-					'tipo_equipo'            => $datesForAudit[0]->tipo_equipo,
-					'marca'                  => $datesForAudit[0]->marca,
-					'modelo'                 => $datesForAudit[0]->modelo,
-					'estado'                 => $dates['estado'],
-					'fecha_tec'              => $datesForAudit[0]->fecha_tec,
-		            'hora_tec'               => $datesForAudit[0]->hora_tec,
-		            'informe_tecnico'        => $datesForAudit[0]->informe_tecnico,
-		            'id_empleado_fk'         => $datesForAudit[0]->Id_Empleado,
-		            'observacion_final'      => $dates['observacion_final']
+					'fecha'                     => date('d-m-Y'),
+					'hora'                      => $hora_actual,
+					'nombre_cliente'            => $datesForAudit[0]->nombre_cliente,
+					'identificacion_cliente'    => $datesForAudit[0]->identificacion_cliente,
+					'telefono_cliente'          => $datesForAudit[0]->telefono_cliente,
+					'consecutivo'               => $datesForAudit[0]->consecutivo,
+					'direccion_cliente'         => $datesForAudit[0]->direccion_cliente,
+					'correo_cliente'            => $datesForAudit[0]->correo_cliente,
+					'observacion_cliente'       => $datesForAudit[0]->observacion_cliente,
+					'observacion_equipo'        => $datesForAudit[0]->observacion_equipo,
+					'fecha_pactada'             => $datesForAudit[0]->fecha_pactada,
+					'tecnico_asignado'          => $datesForAudit[0]->tecnico_asignado,
+					'monto'                     => $datesForAudit[0]->monto,
+					'monto_final'               => $dates['monto_final'],
+					'codigo_producto'           => $datesForAudit[0]->codigo_producto,
+					'tipo_servicio'             => $datesForAudit[0]->tipo_servicio,
+					'serie'                     => $datesForAudit[0]->serie,
+					'tipo_equipo'               => $datesForAudit[0]->tipo_equipo,
+					'marca'                     => $datesForAudit[0]->marca,
+					'modelo'                    => $datesForAudit[0]->modelo,
+					'estado'                    => $dates['estado'],
+					'fecha_tec'                 => $datesForAudit[0]->fecha_tec,
+		            'hora_tec'                  => $datesForAudit[0]->hora_tec,
+		            'informe_tecnico'           => $datesForAudit[0]->informe_tecnico,
+		            'nombre_tercero'            => $datesForAudit[0]->nombre_tercero,
+					'orden_tercero'             => $datesForAudit[0]->orden_tercero,
+					'monto_tercero'             => $datesForAudit[0]->monto_tercero,
+					'observacion_razon_tercero' => $datesForAudit[0]->observacion_razon_tercero,
+		            'id_empleado_fk'            => $datesForAudit[0]->Id_Empleado,
+		            'observacion_final'         => $dates['observacion_final']
 				];
 				$this->audit->newAudit($auditArray);
 				$data = $this->model->getByIdSV($_POST['id']);
@@ -783,18 +787,14 @@ class ServiceController
 			if (isset($_POST['nombre_tercero'])) {
 				$data = [
 					'id'                        => $_POST['id_sv'],
+					'estado'                    => 'Tercero remitido',
 					'nombre_tercero'            => $_POST['nombre_tercero'],
 					'orden_tercero'             => $_POST['orden_tercero'],
 				    'monto_tercero'             => $_POST['monto_tercero'],
 				    'observacion_razon_tercero' => $_POST['observacion_razon_tercero']
 				];
 			}
-			$data1 = [
-				'id'                        => $_POST['id_sv'],
-				'estado'                    => 'Tercero remitido'
-			];
 			$this->technical->editStatusServicesThird($data);
-			$this->technical->editStatusServices($data1);
 			$datesForAudit = $this->model->getAllDetailsThird($_POST['id_sv']);
 			$auditArray = [
 				'fecha'                     => date('d-m-Y'),
@@ -816,7 +816,7 @@ class ServiceController
 				'tipo_equipo'               => $datesForAudit[0]->tipo_equipo,
 				'marca'                     => $datesForAudit[0]->marca,
 				'modelo'                    => $datesForAudit[0]->modelo,
-				'estado'                    => $data1['estado'],
+				'estado'                    => $data['estado'],
 				'fecha_tec'                 => $datesForAudit[0]->fecha_tec,
 	            'hora_tec'                  => $datesForAudit[0]->hora_tec,
 	            'informe_tecnico'           => $datesForAudit[0]->informe_tecnico,
@@ -1110,31 +1110,36 @@ class ServiceController
 					$respChangeStatus = $this->technical->editStatusServices1($data);
 					$datesForAudit = $this->model->getAllDetailsThird($cp);
 					$auditArray = [
-						'fecha'                  => date('d-m-Y'),
-						'hora'                   => $hora_actual,
-						'nombre_cliente'         => $datesForAudit[0]->nombre_cliente,
-						'identificacion_cliente' => $datesForAudit[0]->identificacion_cliente,
-						'telefono_cliente'       => $datesForAudit[0]->telefono_cliente,
-						'consecutivo'            => $datesForAudit[0]->consecutivo,
-						'direccion_cliente'      => $datesForAudit[0]->direccion_cliente,
-						'correo_cliente'         => $datesForAudit[0]->correo_cliente,
-						'observacion_cliente'    => $datesForAudit[0]->observacion_cliente,
-						'observacion_equipo'     => $datesForAudit[0]->observacion_equipo,
-						'fecha_pactada'          => $datesForAudit[0]->fecha_pactada,
-						'tecnico_asignado'       => $datesForAudit[0]->tecnico_asignado,
-						'monto'                  => $datesForAudit[0]->monto,
-						'monto_final'            => $datesForAudit[0]->monto_final,
-						'codigo_producto'        => $datesForAudit[0]->codigo_producto,
-						'tipo_servicio'          => $datesForAudit[0]->tipo_servicio,
-						'serie'                  => $datesForAudit[0]->serie,
-						'tipo_equipo'            => $datesForAudit[0]->tipo_equipo,
-						'marca'                  => $datesForAudit[0]->marca,
-						'modelo'                 => $datesForAudit[0]->modelo,
-						'estado'                 => $data['estado'],
-						'fecha_tec'              => $datesForAudit[0]->fecha_tec,
-			            'hora_tec'               => $datesForAudit[0]->hora_tec,
-			            'informe_tecnico'        => $datesForAudit[0]->informe_tecnico,
-			            'id_empleado_fk'         => $datesForAudit[0]->Id_Empleado
+						'fecha'                        => date('d-m-Y'),
+						'hora'                         => $hora_actual,
+						'nombre_cliente'               => $datesForAudit[0]->nombre_cliente,
+						'identificacion_cliente'       => $datesForAudit[0]->identificacion_cliente,
+						'telefono_cliente'             => $datesForAudit[0]->telefono_cliente,
+						'consecutivo'                  => $datesForAudit[0]->consecutivo,
+						'direccion_cliente'            => $datesForAudit[0]->direccion_cliente,
+						'correo_cliente'               => $datesForAudit[0]->correo_cliente,
+						'observacion_cliente'          => $datesForAudit[0]->observacion_cliente,
+						'observacion_equipo'           => $datesForAudit[0]->observacion_equipo,
+						'fecha_pactada'                => $datesForAudit[0]->fecha_pactada,
+						'tecnico_asignado'             => $datesForAudit[0]->tecnico_asignado,
+						'monto'                        => $datesForAudit[0]->monto,
+						'monto_final'                  => $datesForAudit[0]->monto_final,
+						'codigo_producto'              => $datesForAudit[0]->codigo_producto,
+						'tipo_servicio'                => $datesForAudit[0]->tipo_servicio,
+						'serie'                        => $datesForAudit[0]->serie,
+						'tipo_equipo'                  => $datesForAudit[0]->tipo_equipo,
+						'marca'                        => $datesForAudit[0]->marca,
+						'modelo'                       => $datesForAudit[0]->modelo,
+						'estado'                       => $data['estado'],
+						'fecha_tec'                    => $datesForAudit[0]->fecha_tec,
+			            'hora_tec'                     => $datesForAudit[0]->hora_tec,
+			            'informe_tecnico'              => $datesForAudit[0]->informe_tecnico,
+			            'nombre_tercero'               => $datesForAudit[0]->nombre_tercero,
+					    'orden_tercero'                => $datesForAudit[0]->orden_tercero,
+					    'monto_tercero'                => $datesForAudit[0]->monto_tercero,
+					    'observacion_razon_tercero'    => $datesForAudit[0]->observacion_razon_tercero,
+			            'id_empleado_fk'               => $datesForAudit[0]->Id_Empleado,
+			            'observacion_final'            => $datesForAudit[0]->observacion_final
 					];
 					$this->audit->newAudit($auditArray);
 					$item1 = next($id);

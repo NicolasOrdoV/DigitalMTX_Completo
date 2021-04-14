@@ -42,17 +42,21 @@ $hora_actual = date("h:i a"); ?>
                                 </div>
                             </div>
                             <div class="row clearfix"> 
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <h5>Observaciones del cliente</h5>
                                     <p><?php echo $data[0]->observacion_cliente?></p>
                                 </div>
-                                <div  class="col-sm-4">
+                                <div  class="col-sm-3">
                                     <h5>Observacion del equipo:</h5>
                                     <p><?php echo $data[0]->observacion_equipo ?></p>
                                 </div>
-                                <div  class="col-sm-4">
+                                <div  class="col-sm-3">
                                     <h5>Monto del tercero:</h5>
                                     <p><?php echo $data[0]->monto_tercero ?></p>
+                                </div>
+                                <div  class="col-sm-3">
+                                    <h5>Tipo del servicio:</h5>
+                                    <p><?php echo $data[0]->tipo_servicio ?></p>
                                 </div>
                             </div> 
                             <div class="row clearfix">

@@ -64,7 +64,7 @@ class Technical
 	{
 		try {
 			$strWhere = "id=". $data['id'];
-			$this->pdo->update('dtm_tecnico_sv' , $data , $strWhere);
+			$this->pdo->update('dtm_detalle_sv' , $data , $strWhere);
 		} catch (PDOException $e) {
 			die($e->getMessage());
 		}
