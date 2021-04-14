@@ -66,6 +66,7 @@ $hora_actual = date("h:i a"); ?>
                                                 <th>Fecha tecnico</th>
                                                 <th>Hora tecnico</th>
                                                 <th><h5>Observaciones del tecnico</h5></th>
+                                                <th>Tercero</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -74,6 +75,7 @@ $hora_actual = date("h:i a"); ?>
                                                     <td><?php echo $observation->fecha_tec?></td>
                                                     <td><?php echo $observation->hora_tec?></td>
                                                     <td><?php echo $observation->informe_tecnico ?></td>
+                                                    <td><?php echo $observation->observacion_razon_tercero ?></td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
@@ -98,6 +100,12 @@ $hora_actual = date("h:i a"); ?>
                                             <div class="col-sm-6">
                                                 <label>Monto final para cobrar<small class="text-danger">*</small></label>
                                                 <input type="number" name="monto_final" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-sm-12">
+                                                <label>Observación final:<small class="text-danger">*</small></label>
+                                                <textarea rows="4" class="form-control" name="observacion_final"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group form-float">

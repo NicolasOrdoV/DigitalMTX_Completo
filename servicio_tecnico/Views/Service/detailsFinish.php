@@ -19,13 +19,17 @@ $hora_actual = date("h:i a"); ?>
                         </div>
                         <div class="body">
                             <div class="row clearfix">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <h5>Consecutivo servicio</h5>
                                     <h1><?php echo $data[0]->consecutivo?></h1>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <h5>Estado del servicio</h5>
                                     <p><?php echo $data[0]->estado?></p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5>Observacion final</h5>
+                                    <p><?php echo $data[0]->observacion_final?></p>
                                 </div>
                             </div>
                             <?php foreach($data as $product){ ?>
@@ -85,7 +89,7 @@ $hora_actual = date("h:i a"); ?>
                                         }
                                         //echo $num;
                                         echo '<h2>Monto: $'.$data[0]->monto.'</h2>
-                                              <h2>Monto final: $'.$suma.'</h2>';     
+                                              <h2 style="color: red;">Monto final: $'.$suma.'</h2>';     
                                     ?>                                    
                                 </div>
                             </div>

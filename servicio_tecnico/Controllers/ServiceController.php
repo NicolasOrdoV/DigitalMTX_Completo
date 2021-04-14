@@ -427,6 +427,7 @@ class ServiceController
 		                <th>Modelo</th>
 		                <th>Tipo de equipo</th>
 		                <th>Marca</th>
+		                <th>Tipo servicio</th>
 	                </tr>';
 	                foreach ($dates as $producte){ 
 	               $html .= '<tr style="text-align:center">
@@ -434,6 +435,7 @@ class ServiceController
 	                          <th>'.$producte->modelo.'</th><br>
 	                          <th>'.$producte->tipo_equipo.'</th><br> 
 	                          <th>'.$producte->marca.'</th><br>
+	                          <th>'.$producte->tipo_servicio.'</th><br>
 	                        </tr>';
 	                }
 	              $html .= '</table><br>
@@ -441,7 +443,7 @@ class ServiceController
 	              <div style="display: flex; justify-content: space-between; text-align: left; font-size: 10px;">
 	                <div>
 	                  <div style="display:table; margin:auto; text-align:left;">
-	                    <p><b>Observacion Equipo:</b> '.$dates[0]->observacion_equipo.'</p><br>
+	                    <p style="text-align: right; font-size: 10px;"><b>Monto estimado:</b> '.$dates[0]->monto.'</p><p><b>Observacion Equipo:</b> '.$dates[0]->observacion_equipo.'</p>
 	                  </div>
 	               <small style="font-size: 6px; justify-content: center;">"Servicio tecnico: El horario de atención es de lunes a viernes de 09:00 a 13:00 en la calle 77 # 16A – 38 Oficina 303¤2)Para el ingreso del producto a garantía el cliente deberá entregar el documento de compra y el producto completo con sus empaques, accesorios, manuales, sin daños físicos que invaliden la garantía. 3)El periodo para dar solución a la garantía es de (8) ocho días hábiles, a partir de la fecha de radicado. 4)La Garantía no cubre en los siguientes casos: • Cuando el producto presenta daño físico, por mal uso, mala manipulación, transporte o descuido. • Cuando los sellos de garantía se encuentren removidos o sobre etiquetados remarcados. • Daños causados por descargas eléctricas o uso de voltaje incorrecto. • Daños generados por presencia de elementos nocivos que no forman parte del producto. • Si el cliente ha cambiado el software original de fábrica. 5)Toda garantía que no se reclame en (1) mes a partir de la fecha de ingreso, se hará un cobro de bodegaje, transcurrido los (6) meses será declarada en abandono y se procederá a su destrucción. 6)Si el cliente no presenta el documento de compra del¤producto, deberá presentar un documento relacionando el producto, NIT, fecha de compra, la copia del documento de compra se entregara en un plazo de (5) días hábiles. 7)Para la entrega de la garantía, el cliente presentara el¤formato de garantía original, no se entregara el producto con fotocopia del formato o sin el formato de garantía. 8)El periodo de garantía que cubre Digital MTX a los clientes en los productos son: cargadores de caja roja (2)años, cargadores para Mac y universal (1)año, baterías para portátil (1)año, pantallas para computador (6)meses, teclados (6)meses, baterías para celular (3)meses, pantallas para celular (3)meses. Importante: Al firmar y/o recibir el documento de compra que certifique el despacho correspondiente queda entendido que el cliente acepta incondicionalmente la presente política y condiciones de garantía, renuncia a cualquier tipo de reclamo que no esté considerado en el presente documento. Más información de políticas de garantías en nuestro sitio web https://www.digitalmtx.com o realice sus consultas y/o reclamos en el correo electrónico centrodeservicio@digitalmtx.com"</small> <br><br><br><br>
 	               <p style="text-align:center;">Original</p>  
@@ -477,6 +479,7 @@ class ServiceController
 		                <th>Modelo</th>
 		                <th>Tipo de equipo</th>
 		                <th>Marca</th>
+		                <th>Tipo servicio</th>
 	                </tr>';
 	                foreach ($dates as $producte){ 
 	               $html .= '<tr style="text-align:center">
@@ -484,6 +487,7 @@ class ServiceController
 	                          <th>'.$producte->modelo.'</th><br>
 	                          <th>'.$producte->tipo_equipo.'</th><br>
 	                          <th>'.$producte->marca.'</th><br>
+	                          <th>'.$producte->tipo_servicio.'</th><br>
 	                        </tr>';
 	                }
 	              $html .= '</table><br>
@@ -491,7 +495,7 @@ class ServiceController
 	              <div style="display: flex; justify-content: space-between; text-align: left; font-size: 10px;">
 	                <div>
 	                  <div style="display:table; margin:auto; text-align:left;">
-	                    <p><b>Observacion Garantia:</b> '.$dates[0]->observacion_equipo.'</p><br>
+	                    <p style="text-align: right; font-size: 10px;"><b>Monto estimado:</b> '.$dates[0]->monto.'</p><p><b>Observacion Equipo:</b> '.$dates[0]->observacion_equipo.'</p>
 	                  </div>
 	               <small style="font-size: 6px; justify-content: center;">"Servicio tecnico: El horario de atención es de lunes a viernes de 09:00 a 13:00 en la calle 77 # 16A – 38 Oficina 303¤2)Para el ingreso del producto a garantía el cliente deberá entregar el documento de compra y el producto completo con sus empaques, accesorios, manuales, sin daños físicos que invaliden la garantía. 3)El periodo para dar solución a la garantía es de (8) ocho días hábiles, a partir de la fecha de radicado. 4)La Garantía no cubre en los siguientes casos: • Cuando el producto presenta daño físico, por mal uso, mala manipulación, transporte o descuido. • Cuando los sellos de garantía se encuentren removidos o sobre etiquetados remarcados. • Daños causados por descargas eléctricas o uso de voltaje incorrecto. • Daños generados por presencia de elementos nocivos que no forman parte del producto. • Si el cliente ha cambiado el software original de fábrica. 5)Toda garantía que no se reclame en (1) mes a partir de la fecha de ingreso, se hará un cobro de bodegaje, transcurrido los (6) meses será declarada en abandono y se procederá a su destrucción. 6)Si el cliente no presenta el documento de compra del¤producto, deberá presentar un documento relacionando el producto, NIT, fecha de compra, la copia del documento de compra se entregara en un plazo de (5) días hábiles. 7)Para la entrega de la garantía, el cliente presentara el¤formato de garantía original, no se entregara el producto con fotocopia del formato o sin el formato de garantía. 8)El periodo de garantía que cubre Digital MTX a los clientes en los productos son: cargadores de caja roja (2)años, cargadores para Mac y universal (1)año, baterías para portátil (1)año, pantallas para computador (6)meses, teclados (6)meses, baterías para celular (3)meses, pantallas para celular (3)meses. Importante: Al firmar y/o recibir el documento de compra que certifique el despacho correspondiente queda entendido que el cliente acepta incondicionalmente la presente política y condiciones de garantía, renuncia a cualquier tipo de reclamo que no esté considerado en el presente documento. Más información de políticas de garantías en nuestro sitio web https://www.digitalmtx.com o realice sus consultas y/o reclamos en el correo electrónico centrodeservicio@digitalmtx.com"</small> <br><br><br><br>
 	               <p style="text-align:center;">Copia</p>
@@ -524,7 +528,7 @@ class ServiceController
 	                              <P><b>Consecutivo: </b>'.$product->consecutivo.'</p><br>
 	                              <P><b>Fecha de ingreso: </b>'.$product->fecha.'</p><br>
 	                              <P><b>Referencia: </b>'.$product->serie.'</p><br>
-	                              <P><b>Numero Factura: </b>'.$product->marca.'</p><br>
+	                              <P><b>Marca: </b>'.$product->marca.'</p><br>
 	                            </td>
 	                          </tr>
 	                        </table>
@@ -590,9 +594,10 @@ class ServiceController
 				date_default_timezone_set('America/Bogota');
                 $hora_actual = date("h:i a");
 				$dates = [
-					'id' => $_POST['id'],
-					'estado' => $_POST['estado'],
-					'monto_final' => $_POST['monto_final'] 
+					'id'                => $_POST['id'],
+					'estado'            => $_POST['estado'],
+					'monto_final'       => $_POST['monto_final'],
+					'observacion_final' => $_POST['observacion_final']
 				];
 				$this->technical->editStatusServices($dates);
 				$datesForAudit = $this->model->getAllDetailsThird($_POST['id']);
@@ -621,7 +626,8 @@ class ServiceController
 					'fecha_tec'              => $datesForAudit[0]->fecha_tec,
 		            'hora_tec'               => $datesForAudit[0]->hora_tec,
 		            'informe_tecnico'        => $datesForAudit[0]->informe_tecnico,
-		            'id_empleado_fk'         => $datesForAudit[0]->Id_Empleado
+		            'id_empleado_fk'         => $datesForAudit[0]->Id_Empleado,
+		            'observacion_final'      => $dates['observacion_final']
 				];
 				$this->audit->newAudit($auditArray);
 				$data = $this->model->getByIdSV($_POST['id']);

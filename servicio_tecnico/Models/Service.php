@@ -201,7 +201,7 @@ class Service
 	public function getByIdDetails($name,$id)
 	{
 		try {
-			$strSql = "SELECT sv.*,dsv.*,t.* FROM dtm_sv sv INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv INNER JOIN dtm_tecnico_sv t ON sv.id = t.id_sv WHERE dsv.id_sv = $id";
+			$strSql = "SELECT sv.*,dsv.*,t.* FROM dtm_sv sv INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv INNER JOIN dtm_tecnico_sv t ON dsv.id = t.id_sv WHERE dsv.id_sv = $id";
 			$query = $this->pdo->select($strSql);
 			return $query;
 		} catch (PDOException $e) {
