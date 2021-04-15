@@ -37,27 +37,31 @@ $hora_actual = date("h:i a"); ?>
                                 </div>
                             </div>
                             <div class="row clearfix">
-                                    <div class="col-sm-2">
-                                        <h5>Codigo del producto</h5>
-                                        <p><?php echo $data[0]->codigo_producto?></p>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>modelo</h5>
-                                        <p><?php echo $data[0]->modelo?></p>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <h5>Serie</h5>
-                                        <p><?php echo $data[0]->serie?></p>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <h5>Tipo de equipo</h5>
-                                        <p><?php echo $data[0]->tipo_equipo?></p>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <h5>Marca</h5>
-                                        <p><?php echo $data[0]->marca?></p>
-                                    </div>
+                                <div class="col-sm-2">
+                                    <h5>Codigo del producto</h5>
+                                    <p><?php echo $data[0]->codigo_producto?></p>
                                 </div>
+                                <div class="col-sm-2">
+                                    <h5>modelo</h5>
+                                    <p><?php echo $data[0]->modelo?></p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <h5>Serie</h5>
+                                    <p><?php echo $data[0]->serie?></p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <h5>Tipo de equipo</h5>
+                                    <p><?php echo $data[0]->tipo_equipo?></p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <h5>Marca</h5>
+                                    <p><?php echo $data[0]->marca?></p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <h5>Tipo de servicio</h5>
+                                    <p><?php echo $data[0]->tipo_servicio ?></p>
+                                </div>
+                            </div>
                             <div class="row clearfix">
                                 <div class="col-sm-12">
                                     <table class="table table-striped">

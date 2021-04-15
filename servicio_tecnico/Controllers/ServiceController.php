@@ -577,7 +577,7 @@ class ServiceController
 			if ($_GET['name']) {
 				$name = $_GET['name'];
 				$id = $_GET['id'];
-				require 'Views/Layout.php';
+				require 'Views/Layout.php'; 
 				$data = $this->model->getByIdTecRevision($name,$id);
 				require 'Views/Service/detailsPreFinish.php';
 				require 'Views/Scripts.php';
@@ -671,7 +671,9 @@ class ServiceController
 	}
 
 	public function excelComplete()
-	{          
+	{
+		// $productResult = $this->model->getComplete();
+		// var_dump($productResult);          
 	    $timestamp = time();
 	    $filename = 'Servicios_tecnicos_' . $timestamp . '.xls';
 	    
@@ -687,6 +689,7 @@ class ServiceController
 	    $productResult = $this->model->getComplete();
 	    
 	    if ( !$isPrintHeader ) {
+	    	$html = null;
 	        $html = '<table>
 	                <thead>
 	                    <tr>
@@ -715,7 +718,10 @@ class ServiceController
 	                    </tr>
 	                </thead>
 	                <tbody>';
-	                foreach ($productResult as $garanty) {
+	                foreach ($productResult as $key => $garanty) {
+	                	// echo '<pre>';
+	                	// var_dump($garanty);
+	                	// echo '</pre>';
 	                  $html .= '<tr>
 	                    <td>'.$garanty->consecutivo.'</td>
 	                    <td>'.$garanty->tecnico_asignado.'</td>
@@ -739,11 +745,10 @@ class ServiceController
 	                    <td>'.$garanty->orden_tercero.'</td>
 	                    <td>'.$garanty->monto_tercero.'</td>
 	                    <td>'.$garanty->observacion_razon_tercero.'</td>
-	                  </tr>';
+	                  </tr>';    
 	                }  
 	                $html .= '</tbody>
-	            </table>
-	            <hr>';
+	            </table>';
 	        echo $html;    
 	        $isPrintHeader = true;
 	    }
