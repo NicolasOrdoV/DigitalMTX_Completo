@@ -671,9 +671,7 @@ class ServiceController
 	}
 
 	public function excelComplete()
-	{
-		// $productResult = $this->model->getComplete();
-		// var_dump($productResult);          
+	{          
 	    $timestamp = time();
 	    $filename = 'Servicios_tecnicos_' . $timestamp . '.xls';
 	    
@@ -689,7 +687,6 @@ class ServiceController
 	    $productResult = $this->model->getComplete();
 	    
 	    if ( !$isPrintHeader ) {
-	    	$html = null;
 	        $html = '<table>
 	                <thead>
 	                    <tr>
@@ -718,37 +715,73 @@ class ServiceController
 	                    </tr>
 	                </thead>
 	                <tbody>';
-	                foreach ($productResult as $key => $garanty) {
-	                	// echo '<pre>';
-	                	// var_dump($garanty);
-	                	// echo '</pre>';
-	                  $html .= '<tr>
-	                    <td>'.$garanty->consecutivo.'</td>
-	                    <td>'.$garanty->tecnico_asignado.'</td>
-	                    <td>'.$garanty->fecha.'</td>
-	                    <td>'.$garanty->hora.'</td>
-	                    <td>'.$garanty->nombre_cliente.'</td>
-	                    <td>'.$garanty->identificacion_cliente.'</td>
-	                    <td>'.$garanty->correo_cliente.'</td>
-	                    <td>'.$garanty->telefono_cliente.'</td>
-	                    <td>'.$garanty->informe_tecnico.'</td>
-	                    <td>'.$garanty->codigo_producto.'</td>
-	                    <td>'.$garanty->tipo_equipo.'</td>
-	                    <td>'.$garanty->marca.'</td>
-	                    <td>'.$garanty->serie.'</td>
-	                    <td>'.$garanty->observacion_cliente.'</td>
-	                    <td>'.$garanty->estado.'</td>
-	                    <td>'.$garanty->fecha_tec.'</td>
-	                    <td>'.$garanty->hora_tec.'</td>
-	                    <td>'.$garanty->informe_tecnico.'</td>
-	                    <td>'.$garanty->nombre_tercero.'</td>
-	                    <td>'.$garanty->orden_tercero.'</td>
-	                    <td>'.$garanty->monto_tercero.'</td>
-	                    <td>'.$garanty->observacion_razon_tercero.'</td>
-	                  </tr>';    
-	                }  
+
+	                $garantyold=0;
+	                foreach ($productResult as $garanty) {
+	                  if($garantyold == $garanty->consecutivo){
+			                  $html .= '<tr>
+			                    <td >'.$garanty->consecutivo.'</td>
+			                    <td>'.$garanty->tecnico_asignado.'</td>
+			                    <td>'.$garanty->fecha.'</td>
+			                    <td>'.$garanty->hora.'</td>
+			                    <td>'.$garanty->nombre_cliente.'</td>
+			                    <td>'.$garanty->identificacion_cliente.'</td>
+			                    <td>'.$garanty->correo_cliente.'</td>
+			                    <td>'.$garanty->telefono_cliente.'</td>
+			                    <td>'.$garanty->informe_tecnico.'</td>
+			                    <td>'.$garanty->codigo_producto.'</td>
+			                    <td>'.$garanty->tipo_equipo.'</td>
+			                    <td>'.$garanty->marca.'</td>
+			                    <td>'.$garanty->serie.'</td>
+			                    <td>'.$garanty->observacion_cliente.'</td>
+			                    <td>'.$garanty->estado.'</td>
+			                    <td>'.$garanty->fecha_tec.'</td>
+			                    <td>'.$garanty->hora_tec.'</td>
+			                    <td>'.$garanty->informe_tecnico.'</td>
+			                    <td>'.$garanty->nombre_tercero.'</td>
+			                    <td>'.$garanty->orden_tercero.'</td>
+			                    <td>'.$garanty->monto_tercero.'</td>
+			                    <td>'.$garanty->observacion_razon_tercero.'</td>
+			                  </tr>';
+	                 	} 	
+	                  	else{
+	                  		//echo "Cambié de id";
+			                $html .='<tr>
+			                    <td style="border-top: 1px solid black;">'.$garanty->consecutivo.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->tecnico_asignado.'</td>
+			                    <td  style="border-top: 1px solid black;">;'.$garanty->fecha.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->hora.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->nombre_cliente.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->identificacion_cliente.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->correo_cliente.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->telefono_cliente.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->informe_tecnico.'</td>
+			                    <td  style="border-top: 1px solid black;" >'.$garanty->codigo_producto.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->tipo_equipo.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->marca.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->serie.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->observacion_cliente.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->estado.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->fecha_tec.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->hora_tec.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->informe_tecnico.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->nombre_tercero.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->orden_tercero.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->monto_tercero.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->observacion_razon_tercero.'</td>
+			                  </tr>';
+	                  	}
+	                  		$garantyold=$garanty->consecutivo;		
+	                  } 
+	                  /*if($garantyold != $garanty->consecutivo){
+	                  	echo "Cambié de id";
+	                  
+	                } else{
+	                }*/
+
 	                $html .= '</tbody>
 	            </table>';
+
 	        echo $html;    
 	        $isPrintHeader = true;
 	    }
