@@ -19,7 +19,7 @@ class Product
 	public function getAll()
 	{
 		try {
-			$strSql = "SELECT * FROM dtm_productos";
+			$strSql = "SELECT DISTINCT(categoria) FROM dtm_productos";
 			$query = $this->pdo->select($strSql);
 			return $query;
 		} catch (PDOException $e) {

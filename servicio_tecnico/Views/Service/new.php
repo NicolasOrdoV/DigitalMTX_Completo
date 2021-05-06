@@ -142,15 +142,7 @@ $td = $total_data + 0001;
                                                     <input type="text" class="form-control" value="" name="serie[]" id="serie" required>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <label>Tipo de equipo<small class="text-danger">*</small></label>
-                                                    <input type="text" class="form-control tipo_equipo" value="" name="tipo_equipo[]" id="tipo_equipo" required>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </div>                                       
                                         <div class="col-sm-6">
                                             <div class="form-group form-float">
                                                 <div class="form-line">
@@ -172,6 +164,58 @@ $td = $total_data + 0001;
                                                     <input type="text" class="form-control modelo" value="" name="modelo[]" id="modelo" required>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group form-float">
+                                                <div class="form-line">
+                                                    <label>Tipo de equipo<small class="text-danger">*</small></label>
+                                                    <select class="form-control tipo_equipo" name="tipo_equipo[]" id="tipo_equipo" required>
+                                                        <option value="">Seleccione...</option>
+                                                        <?php foreach($products as $p){ ?>
+                                                            <option value="<?php echo $p->categoria?>"><?php echo $p->categoria?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 especificaciones" style="display: none;">
+                                            <h3>Especificaciones del servicio</h3>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>SI</th>
+                                                        <th>NO</th>
+                                                        <th>Observaciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Memoria RAM</td>
+                                                        <td><input type="radio" name="ram[]" value="SI"></td>
+                                                        <td><input type="radio" name="ram[]" value="NO"></td>
+                                                        <td><textarea rows="1" name="obRam[]" class="form-control"></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Disco duro</td>
+                                                        <td><input type="radio" name="disco[]" value="SI"></td>
+                                                        <td><input type="radio" name="disco[]" value="NO"></td>
+                                                        <td><textarea rows="1" name="obDisco[]" class="form-control"></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Daño fisico</td>
+                                                        <td><input type="radio" name="dañoFisico[]" value="SI"></td>
+                                                        <td><input type="radio" name="dañoFisico[]" value="NO"></td>
+                                                        <td><textarea rows="1" name="obDañoFisico[]" class="form-control"></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Procesador</td>
+                                                        <td><input type="radio" name="procesador[]" value="SI"></td>
+                                                        <td><input type="radio" name="procesador[]" value="NO"></td>
+                                                        <td><textarea rows="1" name="obProcesador[]" class="form-control"></textarea></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div> 
                                </div>
@@ -248,8 +292,14 @@ $td = $total_data + 0001;
         // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
         $("#adicional").on('click', function(){
             var i = $("#contador").val();
+            var select = $('#tipo_equipo').val();
             i++;
             $("#table div:eq(0)").clone().attr("data-section", 'section'+i).appendTo("#table").find('input').val('');
+            if (select == 'PANTALLAS') {
+                $('.especificaciones').css("display","block");
+            }else{
+                $('.especificaciones').css("display","none");
+            }
             $("#contador").val(i);
         });
 
@@ -351,12 +401,4 @@ $td = $total_data + 0001;
         // Enviando la data al PHP
         request.send(formData);
     }    
-</script>
-<script type="text/javascript">
-    // var i = 0;
-    // var m = document.getElementById('tipo_servicio').value;
-    // var monto = m.split(' - ');
-    // console.log(monto);
-    // var i = i+monto;
-    // document.getElementById('monto').value = i;
 </script>
