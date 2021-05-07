@@ -289,17 +289,24 @@ $td = $total_data + 0001;
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
 <script type="text/javascript">        
     $(function(){
+        
+        
+        $('select.tipo_equipo').on('change',function(){
+            var select = $(this).val();
+            var especificaciones = $(".especificaciones");
+            if (select == 'PANTALLAS') {
+                especificaciones.css('display',"block");
+            }else{
+                especificaciones.css('display',"none");
+            }
+        });
+        
         // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
         $("#adicional").on('click', function(){
             var i = $("#contador").val();
-            var select = $('#tipo_equipo').val();
+            var especificaciones = $(".especificaciones");
             i++;
             $("#table div:eq(0)").clone().attr("data-section", 'section'+i).appendTo("#table").find('input').val('');
-            if (select == 'PANTALLAS') {
-                $('.especificaciones').css("display","block");
-            }else{
-                $('.especificaciones').css("display","none");
-            }
             $("#contador").val(i);
         });
 
