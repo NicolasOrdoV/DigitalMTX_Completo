@@ -160,34 +160,6 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">backup_table</i>
-                            <span>Tipo de equipo</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#" class="menu-toggle">
-                                    <span>Registro tipo de equipo</span>
-                                </a>
-                                
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">content_paste</i>
-                            <span>Repuestos</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#" class="menu-toggle">
-                                    <span>Registro repuestos</span>
-                                </a>
-                                
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">build</i>
                             <span>Revision de productos SV</span>
                         </a>
@@ -256,34 +228,6 @@
                                 <a href="?controller=service&method=story" class="menu-toggle">
                                     <span>Historico de garantias finalizadas</span>
                                 </a> 
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">backup_table</i>
-                            <span>Tipo de equipo</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#" class="menu-toggle">
-                                    <span>Registro tipo de equipo</span>
-                                </a>
-                                
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">build</i>
-                            <span>Repuestos</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#" class="menu-toggle">
-                                    <span>Registro repuestos</span>
-                                </a>
-                                
                             </li>
                         </ul>
                     </li>

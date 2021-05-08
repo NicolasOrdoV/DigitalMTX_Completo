@@ -178,7 +178,7 @@ $td = $total_data + 0001;
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 especificaciones" style="display: none;">
+                                        <div class="col-sm-12 especificaciones">
                                             <h3>Especificaciones del servicio</h3>
                                             <table class="table">
                                                 <thead>
@@ -204,9 +204,9 @@ $td = $total_data + 0001;
                                                     </tr>
                                                     <tr>
                                                         <td>Daño fisico</td>
-                                                        <td><input type="radio" name="dañoFisico[]" value="SI"></td>
-                                                        <td><input type="radio" name="dañoFisico[]" value="NO"></td>
-                                                        <td><textarea rows="1" name="obDañoFisico[]" class="form-control"></textarea></td>
+                                                        <td><input type="radio" name="danoFisico[]" value="SI"></td>
+                                                        <td><input type="radio" name="danoFisico[]" value="NO"></td>
+                                                        <td><textarea rows="1" name="obDanoFisico[]" class="form-control"></textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Procesador</td>
@@ -289,24 +289,23 @@ $td = $total_data + 0001;
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
 <script type="text/javascript">        
     $(function(){
-        
-        
+        var especificaciones = $(".especificaciones").css('display',"none");
+
         $('select.tipo_equipo').on('change',function(){
             var select = $(this).val();
-            var especificaciones = $(".especificaciones");
-            if (select == 'PANTALLAS') {
+            if (select == 'PANTALLAS' || select == 'CELULARES') {
                 especificaciones.css('display',"block");
             }else{
                 especificaciones.css('display',"none");
-            }
+            }    
         });
-        
+
         // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
         $("#adicional").on('click', function(){
             var i = $("#contador").val();
-            var especificaciones = $(".especificaciones");
             i++;
             $("#table div:eq(0)").clone().attr("data-section", 'section'+i).appendTo("#table").find('input').val('');
+            especificaciones.css('display',"none");
             $("#contador").val(i);
         });
 
