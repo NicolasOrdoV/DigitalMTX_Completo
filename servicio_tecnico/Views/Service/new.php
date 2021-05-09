@@ -178,7 +178,9 @@ $td = $total_data + 0001;
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 especificaciones">
+                                        <div id="prueba">nose</div>
+
+                                        <div class="col-sm-12 especificaciones " style="display:none;">
                                             <h3>Especificaciones del servicio</h3>
                                             <table class="table">
                                                 <thead>
@@ -289,23 +291,31 @@ $td = $total_data + 0001;
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
 <script type="text/javascript">        
     $(function(){
-        var especificaciones = $(".especificaciones").css('display',"none");
-
-        $('select.tipo_equipo').on('change',function(){
+      
+       $('#tipo_equipo').on('change',function(){
             var select = $(this).val();
             if (select == 'PANTALLAS' || select == 'CELULARES') {
-                especificaciones.css('display',"block");
+                $(this).closest('').find('#prueba').html('');
+                 var seccion = $(this).closest('.tde').find('.especificaciones').clone().attr("class", 'pruebasecionclone').appendTo($(this).closest('.tde').find('#prueba'));
+                 var pruebasecionclone = $(".pruebasecionclone").css('display',"none");
+                 pruebasecionclone.css('display',"block");
+                 console.log(seccion);
             }else{
-                especificaciones.css('display',"none");
+                 $(this).closest('.tde').find('#prueba').html('');
+               
             }    
         });
 
         // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
         $("#adicional").on('click', function(){
+
             var i = $("#contador").val();
             i++;
-            $("#table div:eq(0)").clone().attr("data-section", 'section'+i).appendTo("#table").find('input').val('');
-            especificaciones.css('display',"none");
+             var seccion = $("#table div:eq(0)").clone().attr("data-section", 'section'+i);
+             seccion.appendTo("#table").find('input').val('');
+             seccion.find('.pruebasecionclone').css('display',"none");
+
+
             $("#contador").val(i);
         });
 
