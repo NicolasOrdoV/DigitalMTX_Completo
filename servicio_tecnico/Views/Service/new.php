@@ -169,7 +169,7 @@ $td = $total_data + 0001;
                                             <div class="form-group form-float">
                                                 <div class="form-line">
                                                     <label>Tipo de equipo<small class="text-danger">*</small></label>
-                                                    <select class="form-control tipo_equipo" name="tipo_equipo[]" id="tipo_equipo" required>
+                                                    <select class="form-control tipo_equipo" name="tipo_equipo[]" id="tipo_equipo0" required>
                                                         <option value="">Seleccione...</option>
                                                         <?php foreach($products as $p){ ?>
                                                             <option value="<?php echo $p->categoria?>"><?php echo $p->categoria?></option>
@@ -178,43 +178,41 @@ $td = $total_data + 0001;
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="prueba">nose</div>
-
-                                        <div class="col-sm-12 especificaciones " style="display:none;">
+                                        <div class="especificaciones" id="especificaciones0" style="visibility: collapse;">
                                             <h3>Especificaciones del servicio</h3>
                                             <table class="table">
                                                 <thead>
                                                     <tr>
                                                         <th></th>
-                                                        <th>SI</th>
-                                                        <th>NO</th>
+                                                        <th><label>SI</label></th>
+                                                        <th><label>NO</label></th>
                                                         <th>Observaciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <td>Memoria RAM</td>
-                                                        <td><input type="radio" name="ram[]" value="SI"></td>
-                                                        <td><input type="radio" name="ram[]" value="NO"></td>
-                                                        <td><textarea rows="1" name="obRam[]" class="form-control"></textarea></td>
+                                                        <td><input type="checkbox" name="ram[]" class="ramSI" id="ram0" value="SI"></td>
+                                                        <td><input type="checkbox" name="ram[]" class="ramNO" id="ram0" value="NO"></td>
+                                                        <td><textarea rows="2" name="obRam[]" class="form-control no-resize"></textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Disco duro</td>
-                                                        <td><input type="radio" name="disco[]" value="SI"></td>
-                                                        <td><input type="radio" name="disco[]" value="NO"></td>
-                                                        <td><textarea rows="1" name="obDisco[]" class="form-control"></textarea></td>
+                                                        <td><input type="checkbox" name="disco[]" class="discoSI" id="disco0" value="SI"></td>
+                                                        <td><input type="checkbox" name="disco[]" class="discoNO" id="disco0" value="NO"></td>
+                                                        <td><textarea rows="2" name="obDisco[]" class="form-control"></textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Daño fisico</td>
-                                                        <td><input type="radio" name="danoFisico[]" value="SI"></td>
-                                                        <td><input type="radio" name="danoFisico[]" value="NO"></td>
-                                                        <td><textarea rows="1" name="obDanoFisico[]" class="form-control"></textarea></td>
+                                                        <td><input type="checkbox" name="danoFisico[]" class="danoSI" id="dano0" value="SI"></td>
+                                                        <td><input type="checkbox" name="danoFisico[]" class="danoNO" id="dano0" value="NO"></td>
+                                                        <td><textarea rows="2" name="obDanoFisico[]" class="form-control"></textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Procesador</td>
-                                                        <td><input type="radio" name="procesador[]" value="SI"></td>
-                                                        <td><input type="radio" name="procesador[]" value="NO"></td>
-                                                        <td><textarea rows="1" name="obProcesador[]" class="form-control"></textarea></td>
+                                                        <td><input type="checkbox" name="procesador[]" class="procesadorSI" id="procesador0" value="SI"></td>
+                                                        <td><input type="checkbox" name="procesador[]" class="procesadorNO" id="procesador0" value="NO"></td>
+                                                        <td><textarea rows="2" name="obProcesador[]" class="form-control"></textarea></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -291,31 +289,40 @@ $td = $total_data + 0001;
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
 <script type="text/javascript">        
     $(function(){
-      
-       $('#tipo_equipo').on('change',function(){
-            var select = $(this).val();
-            if (select == 'PANTALLAS' || select == 'CELULARES') {
-                $(this).closest('').find('#prueba').html('');
-                 var seccion = $(this).closest('.tde').find('.especificaciones').clone().attr("class", 'pruebasecionclone').appendTo($(this).closest('.tde').find('#prueba'));
-                 var pruebasecionclone = $(".pruebasecionclone").css('display',"none");
-                 pruebasecionclone.css('display',"block");
-                 console.log(seccion);
+        $('#table').on('change','.tipo_equipo',function(){
+            var select = $('#tipo_equipo0').val();
+            if (select == 'PANTALLAS' || select == 'CELULARES' || select == 'TORRE' || select == 'COMPUTADOR' || select == 'TABLET') {
+                $("#especificaciones0").css("visibility" , "visible");
             }else{
-                 $(this).closest('.tde').find('#prueba').html('');
-               
-            }    
+                $("#especificaciones0").css("visibility" , "collapse");
+            }   
         });
 
         // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
         $("#adicional").on('click', function(){
-
             var i = $("#contador").val();
             i++;
-             var seccion = $("#table div:eq(0)").clone().attr("data-section", 'section'+i);
-             seccion.appendTo("#table").find('input').val('');
-             seccion.find('.pruebasecionclone').css('display',"none");
-
-
+            var seccion = $("#table div:eq(0)").clone().attr("data-section", 'section'+i);
+            seccion.appendTo("#table").find('input').val('');
+            seccion.closest('.tde').find(".tipo_equipo").attr('id','tipo_equipo'+i);
+            seccion.closest('.tde').find(".ramSI").attr('id','ram'+i).val('SI');
+            seccion.closest('.tde').find(".ramNO").attr('id','ram'+i).val('NO');
+            seccion.closest('.tde').find(".discoSI").attr('id','disco'+i).val('SI');
+            seccion.closest('.tde').find(".discoNO").attr('id','disco'+i).val('NO');
+            seccion.closest('.tde').find(".danoSI").attr('id','dano'+i).val('SI');
+            seccion.closest('.tde').find(".danoNO").attr('id','dano'+i).val('NO');
+            seccion.closest('.tde').find(".procesadorSI").attr('id','procesador'+i).val('SI');
+            seccion.closest('.tde').find(".procesadorNO").attr('id','procesador'+i).val('NO');
+            //-------------------------------------------------------------------------------
+            seccion.closest('.tde').find('.especificaciones').attr('id','especificaciones'+i).css("visibility" , "collapse");
+            $('#table').on('change','#tipo_equipo'+i,function(){
+                var select = $("#tipo_equipo"+i).val();
+                if (select == 'PANTALLAS' || select == 'CELULARES' || select == 'TORRE' || select == 'COMPUTADOR' || select == 'TABLET') {
+                    $("#especificaciones"+i).css("visibility" , "visible");
+                }else{
+                    $("#especificaciones"+i).css("visibility" , "collapse");
+                }   
+            });
             $("#contador").val(i);
         });
 
