@@ -218,7 +218,7 @@ class ServiceController
 					$item13 = next($product['procesador']);
 					$item14 = next($product['obProcesador']);
 
-					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false && $item8 === false) break;
+					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false && $item8 === false && $item9 === false && $item10 === false && $item11 === false && $item12 === false && $item13 === false && $item14 === false) break;
 				}
 
 				$dates = $this->model->getAllDetails($lastId[0]->id);
@@ -362,6 +362,14 @@ class ServiceController
 				$tipo_equipo = $_POST['tipo_equipo'];
 				$marca = $_POST['marca'];
 				$modelo = $_POST['modelo'];
+				$ram = ((isset($_POST['ram'])) ? $_POST['ram'] : ['0' => 'null']);
+				$obRam = $_POST['obRam'];
+				$disco = ((isset($_POST['disco'])) ? $_POST['disco'] : ['0' => 'null']);
+				$obDisco = $_POST['obDisco'];
+				$danoFisico = ((isset($_POST['danoFisico'])) ? $_POST['danoFisico'] : ['0' => 'null']);
+				$obDanoFisico = $_POST['obDanoFisico'];
+				$procesador = ((isset($_POST['procesador'])) ? $_POST['procesador'] : ['0' => 'null']);
+				$obProcesador = $_POST['obProcesador'];
 
 				while (true) {
 					$item1 = current($codigo_producto);
@@ -371,6 +379,14 @@ class ServiceController
 					$item5 = current($marca);
 					$item6 = current($modelo);
 					$item7 = current($idDetail);
+					$item8 = current($ram);
+					$item9 = current($obRam);
+					$item10 = current($disco);
+					$item11 = current($obDisco);
+					$item12 = current($danoFisico);
+					$item13 = current($obDanoFisico);
+					$item14 = current($procesador);
+					$item15 = current($obProcesador);
 
 					$cp = (($item1 !== false) ? $item1 : '');
 					$ts = (($item2 !== false) ? $item2 : '');
@@ -379,6 +395,14 @@ class ServiceController
 					$mc = (($item5 !== false) ? $item5 : '');
 					$md = (($item6 !== false) ? $item6 : '');
 					$id = (($item7 !== false) ? $item7 : '');
+					$r  = (($item8 !== false) ? $item8 : '');
+                    $or = (($item9 !== false) ? $item9 : '');
+					$d  = (($item10 !== false) ? $item10 : '');
+					$od = (($item11 !== false) ? $item11 : '');
+					$df = (($item12 !== false) ? $item12 : '');
+					$odf = (($item13 !== false) ? $item13 : '');
+					$p  = (($item14 !== false) ? $item14 : '');
+					$op = (($item15 !== false) ? $item15 : '');
 
 					$details = [
 						'id'              => $id,
@@ -388,7 +412,15 @@ class ServiceController
 						'serie'           => $s,
 						'tipo_equipo'     => $tp,
 						'marca'           => $mc,
-						'modelo'          => $md
+						'modelo'          => $md,
+						'ram'             => $r,
+						'obRam'           => $or,
+						'disco'           => $d,
+						'obDisco'         => $od,
+						'danoFisico'      => $df,
+						'obDanoFisico'    => $odf,
+						'procesador'      => $p,
+						'obProcesador'    => $op
 					];
 
 					if ($answerEditService == true && $id != null) {
@@ -406,8 +438,16 @@ class ServiceController
 					$item5 = next($marca);
 					$item6 = next($modelo);
 					$item7 = next($idDetail);
+					$item8 = next($ram);
+					$item9 = next($obRam);
+					$item10 = next($disco);
+					$item11 = next($obDisco);
+					$item12 = next($danoFisico);
+					$item13 = next($obDanoFisico);
+					$item14 = next($procesador);
+					$item15 = next($obProcesador);
 
-					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false) break;
+					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false && $item8 === false && $item9 === false && $item10 === false && $item11 === false && $item12 === false && $item13 === false && $item14 === false && $item15 === false) break;
 				}
             	header('Location: ?controller=service&method=sucessfull');
 			}
