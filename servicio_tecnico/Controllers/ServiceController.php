@@ -104,18 +104,22 @@ class ServiceController
 					'tipo_equipo' => $_POST['tipo_equipo'],
 					'marca' => $_POST['marca'],
 					'modelo' => $_POST['modelo'],
-					'ram' => ((isset($_POST['ram'])) ? $_POST['ram'] : ['0' => 'null']),
+					'ram' => ((isset($_POST['ram'])) ? $_POST['ram'] : []),
 					'obRam' => $_POST['obRam'],
-					'disco' => ((isset($_POST['disco'])) ? $_POST['disco'] : ['0' => 'null']),
+					'disco' => ((isset($_POST['disco'])) ? $_POST['disco'] : []),
 					'obDisco' => $_POST['obDisco'],
-					'danoFisico' => ((isset($_POST['danoFisico'])) ? $_POST['danoFisico'] : ['0' => 'null']),
+					'danoFisico' => ((isset($_POST['danoFisico'])) ? $_POST['danoFisico'] : []),
 					'obDanoFisico' => $_POST['obDanoFisico'],
-					'procesador' => ((isset($_POST['procesador'])) ? $_POST['procesador'] : ['0' => 'null']),
+					'procesador' => ((isset($_POST['procesador'])) ? $_POST['procesador'] : []),
 					'obProcesador' => $_POST['obProcesador']
 				];
 				
+
 				while (true) {
 
+					echo "<pre>";
+					var_dump($product['ram']);
+					echo "</pre>";
 
 					$item1 = current($product['codigo_producto']);
 					$item2 = current($product['tipo_servicio']);
@@ -147,6 +151,10 @@ class ServiceController
 					$odf = (($item12 !== false) ? $item12 : '');
 					$p  = (($item13 !== false) ? $item13 : '');
 					$op = (($item14 !== false) ? $item14 : '');
+
+					echo "<pre>";
+					var_dump($r);
+					echo "</pre>";
 						
 					$details = [
 						'id_sv'           => $lastId[0]->id,
