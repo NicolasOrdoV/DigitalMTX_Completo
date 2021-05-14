@@ -98,28 +98,27 @@ class ServiceController
 				$lastId = $this->model->getLastId();
 
 				$product = [
-					'codigo_producto' => $_POST['codigo_producto'],
-					'tipo_servicio' => $_POST['tipo_servicio'],
-					'serie' => $_POST['serie'],
-					'tipo_equipo' => $_POST['tipo_equipo'],
-					'marca' => $_POST['marca'],
-					'modelo' => $_POST['modelo'],
-					'ram' => ((isset($_POST['ram'])) ? $_POST['ram'] : []),
-					'obRam' => $_POST['obRam'],
-					'disco' => ((isset($_POST['disco'])) ? $_POST['disco'] : []),
-					'obDisco' => $_POST['obDisco'],
-					'danoFisico' => ((isset($_POST['danoFisico'])) ? $_POST['danoFisico'] : []),
-					'obDanoFisico' => $_POST['obDanoFisico'],
-					'procesador' => ((isset($_POST['procesador'])) ? $_POST['procesador'] : []),
-					'obProcesador' => $_POST['obProcesador']
+					'codigo_producto'   => $_POST['codigo_producto'],
+					'tipo_servicio'     => $_POST['tipo_servicio'],
+					'serie'             => $_POST['serie'],
+					'tipo_equipo'       => $_POST['tipo_equipo'],
+					'marca'             => $_POST['marca'],
+					'modelo'            => $_POST['modelo'],
+					'ramSI'             => ((isset($_POST['ramSI'])) ? $_POST['ramSI'] : []),
+					'ramNO'             => ((isset($_POST['ramNO'])) ? $_POST['ramNO'] : []),
+					'obRam'             => $_POST['obRam'],
+					'discoSI'           => ((isset($_POST['discoSI'])) ? $_POST['discoSI'] : []),
+					'discoNO'           => ((isset($_POST['discoNO'])) ? $_POST['discoNO'] : []),
+					'obDisco'           => $_POST['obDisco'],
+					'danoFisicoSI'      => ((isset($_POST['danoFisicoSI'])) ? $_POST['danoFisicoSI'] : []),
+					'danoFisicoNO'      => ((isset($_POST['danoFisicoNO'])) ? $_POST['danoFisicoNO'] : []),
+					'obDanoFisico'      => $_POST['obDanoFisico'],
+					'procesadorSI'      => ((isset($_POST['procesadorSI'])) ? $_POST['procesadorSI'] : []),
+					'procesadorNO'      => ((isset($_POST['procesadorNO'])) ? $_POST['procesadorNO'] : []),
+					'obProcesador'      => $_POST['obProcesador']
 				];
-				
 
 				while (true) {
-
-					echo "<pre>";
-					var_dump($product['ram']);
-					echo "</pre>";
 
 					$item1 = current($product['codigo_producto']);
 					$item2 = current($product['tipo_servicio']);
@@ -127,14 +126,22 @@ class ServiceController
 					$item4 = current($product['tipo_equipo']);
 					$item5 = current($product['marca']);
 					$item6 = current($product['modelo']);
-					$item7 = current($product['ram']);
-					$item8 = current($product['obRam']);
-					$item9 = current($product['disco']);
-					$item10 = current($product['obDisco']);
-					$item11 = current($product['danoFisico']);
-					$item12 = current($product['obDanoFisico']);
-					$item13 = current($product['procesador']);
-					$item14 = current($product['obProcesador']);
+					$item7 = current($product['ramSI']);
+					$item8 = current($product['ramNO']);
+					$item9 = current($product['obRam']);
+					$item10 = current($product['discoSI']);
+					$item11 = current($product['discoNO']);
+					$item12 = current($product['obDisco']);
+					$item13 = current($product['danoFisicoSI']);
+					$item14 = current($product['danoFisicoNO']);
+					$item15 = current($product['obDanoFisico']);
+					$item16 = current($product['procesadorSI']);
+					$item17 = current($product['procesadorNO']);
+					$item18 = current($product['obProcesador']);
+
+					// echo "<pre>";
+					// var_dump($item7);
+					// echo "</pre>";
 
 
 					$cp = (($item1 !== false) ? $item1 : '');
@@ -143,18 +150,22 @@ class ServiceController
 					$tp = (($item4 !== false) ? $item4 : '');
 					$mc = (($item5 !== false) ? $item5 : '');
 					$md = (($item6 !== false) ? $item6 : '');
-					$r  = (($item7 !== false) ? $item7 : '');
-                    $or = (($item8 !== false) ? $item8 : '');
-					$d  = (($item9 !== false) ? $item9 : '');
-					$od = (($item10 !== false) ? $item10 : '');
-					$df = (($item11 !== false) ? $item11 : '');
-					$odf = (($item12 !== false) ? $item12 : '');
-					$p  = (($item13 !== false) ? $item13 : '');
-					$op = (($item14 !== false) ? $item14 : '');
+					$rSI  = (($item7 !== false) ? $item7 : '');
+					$rNO  = (($item8 !== false) ? $item8 : '');
+                    $or = (($item9 !== false) ? $item9 : '');
+					$dSI  = (($item10 !== false) ? $item10 : '');
+					$dNO  = (($item11 !== false) ? $item11 : '');
+					$od = (($item12 !== false) ? $item12 : '');
+					$dfSI = (($item13 !== false) ? $item13 : '');
+					$dfNO = (($item14 !== false) ? $item14 : '');
+					$odf = (($item15 !== false) ? $item15 : '');
+					$pSI  = (($item16 !== false) ? $item16 : '');
+					$pNO  = (($item17 !== false) ? $item17 : '');
+					$op = (($item18 !== false) ? $item18 : '');
 
-					echo "<pre>";
-					var_dump($r);
-					echo "</pre>";
+					// echo "<pre>";
+					// var_dump($r);
+					// echo "</pre>";
 						
 					$details = [
 						'id_sv'           => $lastId[0]->id,
@@ -165,13 +176,17 @@ class ServiceController
 						'marca'           => $mc,
 						'modelo'          => $md,
 						'estado'          => 'Tramite',
-						'ram'             => $r,
+						'ramSI'           => $rSI,
+						'ramNO'           => $rNO,
 						'obRam'           => $or,
-						'disco'           => $d,
+						'discoSI'         => $dSI,
+						'discoNO'         => $dNO,
 						'obDisco'         => $od,
-						'danoFisico'      => $df,
+						'danoFisicoSI'    => $dfSI,
+						'danoFisicoNO'    => $dfNO,
 						'obDanoFisico'    => $odf,
-						'procesador'      => $p,
+						'procesadorSI'    => $pSI,
+						'procesadorNO'    => $pNO,
 						'obProcesador'    => $op
 					];
 					
@@ -196,13 +211,17 @@ class ServiceController
 						'marca'                  => $mc,
 						'modelo'                 => $md,
 						'estado'                 => 'Tramite',
-						'ram'                    => $r,
+						'ramSI'                  => $rSI,
+						'ramNO'                  => $rNO,
 						'obRam'                  => $or,
-						'disco'                  => $d,
+						'discoSI'                => $dSI,
+						'discoNO'                => $dNO,
 						'obDisco'                => $od,
-						'danoFisico'             => $df,
+						'danoFisicoSI'           => $dfSI,
+						'danoFisicoNO'           => $dfNO,
 						'obDanoFisico'           => $odf,
-						'procesador'             => $p,
+						'procesadorSI'           => $pSI,
+						'procesadorNO'           => $pNO,
 						'obProcesador'           => $op
 					];
 
@@ -217,16 +236,20 @@ class ServiceController
 					$item4 = next($product['tipo_equipo']);
 					$item5 = next($product['marca']);
 					$item6 = next($product['modelo']);
-					$item7 = next($product['ram']);
-					$item8 = next($product['obRam']);
-					$item9 = next($product['disco']);
-					$item10 = next($product['obDisco']);
-					$item11 = next($product['danoFisico']);
-					$item12 = next($product['obDanoFisico']);
-					$item13 = next($product['procesador']);
-					$item14 = next($product['obProcesador']);
+					$item7 = next($product['ramSI']);
+					$item8 = next($product['ramNO']);
+					$item9 = next($product['obRam']);
+					$item10 = next($product['discoSI']);
+					$item11 = next($product['discoNO']);
+					$item12 = next($product['obDisco']);
+					$item13 = next($product['danoFisicoSI']);
+					$item14 = next($product['danoFisicoNO']);
+					$item15 = next($product['obDanoFisico']);
+					$item16 = next($product['procesadorSI']);
+					$item17 = next($product['procesadorNO']);
+					$item18 = next($product['obProcesador']);
 
-					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false && $item8 === false && $item9 === false && $item10 === false && $item11 === false && $item12 === false && $item13 === false && $item14 === false) break;
+					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false && $item8 === false && $item9 === false && $item10 === false && $item11 === false && $item12 === false && $item13 === false && $item14 === false && $item15 === false && $item16 === false && $item17 === false && $item18 === false) break;
 				}
 
 				$dates = $this->model->getAllDetails($lastId[0]->id);
@@ -365,18 +388,22 @@ class ServiceController
 
 				$idDetail = $_POST['idDetail'];
 				$codigo_producto = $_POST['codigo_producto'];
-				$tipo_servicio = $_POST['tipo_servicio'];
+				$tipo_servicio   = $_POST['tipo_servicio'];
 				$serie = $_POST['serie'];
 				$tipo_equipo = $_POST['tipo_equipo'];
 				$marca = $_POST['marca'];
 				$modelo = $_POST['modelo'];
-				$ram = ((isset($_POST['ram'])) ? $_POST['ram'] : ['0' => 'null']);
+				$ramSI  = ((isset($_POST['ramSI'])) ? $_POST['ramSI'] : []);
+				$ramNO = ((isset($_POST['ramNO'])) ? $_POST['ramNO'] : []);
 				$obRam = $_POST['obRam'];
-				$disco = ((isset($_POST['disco'])) ? $_POST['disco'] : ['0' => 'null']);
+				$discoSI = ((isset($_POST['discoSI'])) ? $_POST['discoSI'] : []);
+				$discoNO = ((isset($_POST['discoNO'])) ? $_POST['discoNO'] : []);
 				$obDisco = $_POST['obDisco'];
-				$danoFisico = ((isset($_POST['danoFisico'])) ? $_POST['danoFisico'] : ['0' => 'null']);
+				$danoFisicoSI = ((isset($_POST['danoFisicoSI'])) ? $_POST['danoFisicoSI'] : []);
+				$danoFisicoNO = ((isset($_POST['danoFisicoNO'])) ? $_POST['danoFisicoNO'] : []);
 				$obDanoFisico = $_POST['obDanoFisico'];
-				$procesador = ((isset($_POST['procesador'])) ? $_POST['procesador'] : ['0' => 'null']);
+				$procesadorSI = ((isset($_POST['procesadorSI'])) ? $_POST['procesadorSI'] : []);
+				$procesadorNO = ((isset($_POST['procesadorNO'])) ? $_POST['procesadorNO'] : []);
 				$obProcesador = $_POST['obProcesador'];
 
 				while (true) {
@@ -387,14 +414,18 @@ class ServiceController
 					$item5 = current($marca);
 					$item6 = current($modelo);
 					$item7 = current($idDetail);
-					$item8 = current($ram);
-					$item9 = current($obRam);
-					$item10 = current($disco);
-					$item11 = current($obDisco);
-					$item12 = current($danoFisico);
-					$item13 = current($obDanoFisico);
-					$item14 = current($procesador);
-					$item15 = current($obProcesador);
+					$item8 = current($ramSI);
+					$item9 = current($ramNO);
+					$item10 = current($obRam);
+					$item11 = current($discoSI);
+					$item12 = current($discoNO);
+					$item13 = current($obDisco);
+					$item14 = current($danoFisicoSI);
+					$item15 = current($danoFisicoNO);
+					$item16 = current($obDanoFisico);
+					$item17 = current($procesadorSI);
+					$item18 = current($procesadorNO);
+					$item19 = current($obProcesador);
 
 					$cp = (($item1 !== false) ? $item1 : '');
 					$ts = (($item2 !== false) ? $item2 : '');
@@ -403,14 +434,18 @@ class ServiceController
 					$mc = (($item5 !== false) ? $item5 : '');
 					$md = (($item6 !== false) ? $item6 : '');
 					$id = (($item7 !== false) ? $item7 : '');
-					$r  = (($item8 !== false) ? $item8 : '');
-                    $or = (($item9 !== false) ? $item9 : '');
-					$d  = (($item10 !== false) ? $item10 : '');
-					$od = (($item11 !== false) ? $item11 : '');
-					$df = (($item12 !== false) ? $item12 : '');
-					$odf = (($item13 !== false) ? $item13 : '');
-					$p  = (($item14 !== false) ? $item14 : '');
-					$op = (($item15 !== false) ? $item15 : '');
+					$rSI  = (($item8 !== false) ? $item8 : '');
+					$rNO  = (($item9 !== false) ? $item9 : '');
+                    $or = (($item10 !== false) ? $item10 : '');
+					$dSI  = (($item11 !== false) ? $item11 : '');
+					$dNO  = (($item12 !== false) ? $item12 : '');
+					$od = (($item13 !== false) ? $item13 : '');
+					$dfSI = (($item14 !== false) ? $item14 : '');
+					$dfNO = (($item15 !== false) ? $item15 : '');
+					$odf = (($item16 !== false) ? $item16 : '');
+					$pSI  = (($item17 !== false) ? $item17 : '');
+					$pNO  = (($item18 !== false) ? $item18 : '');
+					$op = (($item19 !== false) ? $item19 : '');
 
 					$details = [
 						'id'              => $id,
@@ -421,13 +456,17 @@ class ServiceController
 						'tipo_equipo'     => $tp,
 						'marca'           => $mc,
 						'modelo'          => $md,
-						'ram'             => $r,
+						'ramSI'           => $rSI,
+						'ramNO'           => $rNO,
 						'obRam'           => $or,
-						'disco'           => $d,
+						'discoSI'         => $dSI,
+						'discoNO'         => $dNO,
 						'obDisco'         => $od,
-						'danoFisico'      => $df,
+						'danoFisicoSI'    => $dfSI,
+						'danoFisicoNO'    => $dfNO,
 						'obDanoFisico'    => $odf,
-						'procesador'      => $p,
+						'procesadorSI'    => $pSI,
+						'procesadorNO'    => $pNO,
 						'obProcesador'    => $op
 					];
 
@@ -446,16 +485,20 @@ class ServiceController
 					$item5 = next($marca);
 					$item6 = next($modelo);
 					$item7 = next($idDetail);
-					$item8 = next($ram);
-					$item9 = next($obRam);
-					$item10 = next($disco);
-					$item11 = next($obDisco);
-					$item12 = next($danoFisico);
-					$item13 = next($obDanoFisico);
-					$item14 = next($procesador);
-					$item15 = next($obProcesador);
+					$item8 = next($ramSI);
+					$item9 = next($ramNO);
+					$item10 = next($obRam);
+					$item11 = next($discoSI);
+					$item12 = next($discoNO);
+					$item13 = next($obDisco);
+					$item14 = next($danoFisicoSI);
+					$item15 = next($danoFisicoNO);
+					$item16 = next($obDanoFisico);
+					$item17 = next($procesadorSI);
+					$item18 = next($procesadorNO);
+					$item19 = next($obProcesador);
 
-					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false && $item8 === false && $item9 === false && $item10 === false && $item11 === false && $item12 === false && $item13 === false && $item14 === false && $item15 === false) break;
+					if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false && $item8 === false && $item9 === false && $item10 === false && $item11 === false && $item12 === false && $item13 === false && $item14 === false && $item15 === false && $item16 === false && $item17 === false && $item18 === false && $item19 === false) break;
 				}
             	header('Location: ?controller=service&method=sucessfull');
 			}
@@ -725,13 +768,17 @@ class ServiceController
 					'marca'                     => $datesForAudit[0]->marca,
 					'modelo'                    => $datesForAudit[0]->modelo,
 					'estado'                    => $dates['estado'],
-					'ram'                       => $datesForAudit[0]->ram,
+					'ramSI'                     => $datesForAudit[0]->ramSI,
+					'ramNO'                     => $datesForAudit[0]->ramNO,
 					'obRam'                     => $datesForAudit[0]->obRam,
-					'disco'                     => $datesForAudit[0]->disco,
+					'discoSI'                   => $datesForAudit[0]->discoSI,
+					'discoNO'                   => $datesForAudit[0]->discoNO,
 					'obDisco'                   => $datesForAudit[0]->obDisco,
-					'danoFisico'                => $datesForAudit[0]->danoFisico,
+					'danoFisicoSI'              => $datesForAudit[0]->danoFisicoSI,
+					'danoFisicoNO'              => $datesForAudit[0]->danoFisicoNO,
 					'obDanoFisico'              => $datesForAudit[0]->obDanoFisico,
-					'procesador'                => $datesForAudit[0]->procesador,
+					'procesadorSI'              => $datesForAudit[0]->procesadorSI,
+					'procesadorNO'              => $datesForAudit[0]->procesadorNO,
 					'obProcesador'              => $datesForAudit[0]->obProcesador,
 					'fecha_tec'                 => $datesForAudit[0]->fecha_tec,
 		            'hora_tec'                  => $datesForAudit[0]->hora_tec,
@@ -815,13 +862,17 @@ class ServiceController
 	                        <th>Serie Producto</th>
 	                        <th>Observacion Cliente</th>
 	                        <th>Estado</th>
-	                        <th>Ram</th>
+	                        <th>Ram SI</th>
+	                        <th>Ram NO</th>
 	                        <th>Observacion Ram</th>
-	                        <th>Disco</th>
+	                        <th>Disco SI</th>
+	                        <th>Disco NO</th>
 	                        <th>Observacion disco</th>
-	                        <th>Daño fisico</th>
+	                        <th>Daño fisico SI</th>
+	                        <th>Daño fisico NO</th>
 	                        <th>Observacion daño fisico</th>
-	                        <th>Procesador</th>
+	                        <th>Procesador SI</th>
+	                        <th>Procesador NO</th>
 	                        <th>Observacion procesador</th>
 	                        <th>Fecha anexo Tecnico</th>
 	                        <th>Hora Anexo Tecnico</th>
@@ -853,13 +904,17 @@ class ServiceController
 			                    <td>'.$garanty->serie.'</td>
 			                    <td>'.$garanty->observacion_cliente.'</td>
 			                    <td>'.$garanty->estado.'</td>
-			                    <td>'.$garanty->ram.'</td>
+			                    <td>'.$garanty->ramSI.'</td>
+			                    <td>'.$garanty->ramNO.'</td>
 			                    <td>'.$garanty->obRam.'</td>
-			                    <td>'.$garanty->disco.'</td>
+			                    <td>'.$garanty->discoSI.'</td>
+			                    <td>'.$garanty->discoNO.'</td>
 			                    <td>'.$garanty->obDisco.'</td>
-			                    <td>'.$garanty->danoFisico.'</td>
+			                    <td>'.$garanty->danoFisicoSI.'</td>
+			                    <td>'.$garanty->danoFisicoNO.'</td>
 			                    <td>'.$garanty->obDanoFisico.'</td>
-			                    <td>'.$garanty->procesador.'</td>
+			                    <td>'.$garanty->procesadorSI.'</td>
+			                    <td>'.$garanty->procesadorNO.'</td>
 			                    <td>'.$garanty->obProcesador.'</td>
 			                    <td>'.$garanty->fecha_tec.'</td>
 			                    <td>'.$garanty->hora_tec.'</td>
@@ -888,13 +943,17 @@ class ServiceController
 			                    <td  style="border-top: 1px solid black;">'.$garanty->serie.'</td>
 			                    <td  style="border-top: 1px solid black;">'.$garanty->observacion_cliente.'</td>
 			                    <td  style="border-top: 1px solid black;">'.$garanty->estado.'</td>
-			                    <td  style="border-top: 1px solid black;">'.$garanty->ram.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->ramSI.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->ramNO.'</td>
 			                    <td  style="border-top: 1px solid black;">'.$garanty->obRam.'</td>
-			                    <td  style="border-top: 1px solid black;">'.$garanty->disco.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->discoSI.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->discoNO.'</td>
 			                    <td  style="border-top: 1px solid black;">'.$garanty->obDisco.'</td>
-			                    <td  style="border-top: 1px solid black;">'.$garanty->danoFisico.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->danoFisicoSI.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->danoFisicoNO.'</td>
 			                    <td  style="border-top: 1px solid black;">'.$garanty->obDanoFisico.'</td>
-			                    <td  style="border-top: 1px solid black;">'.$garanty->procesador.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->procesadorSI.'</td>
+			                    <td  style="border-top: 1px solid black;">'.$garanty->procesadorNO.'</td>
 			                    <td  style="border-top: 1px solid black;">'.$garanty->obProcesador.'</td>
 			                    <td  style="border-top: 1px solid black;">'.$garanty->fecha_tec.'</td>
 			                    <td  style="border-top: 1px solid black;">'.$garanty->hora_tec.'</td>
@@ -989,13 +1048,17 @@ class ServiceController
 				'marca'                     => $datesForAudit[0]->marca,
 				'modelo'                    => $datesForAudit[0]->modelo,
 				'estado'                    => $data['estado'],
-				'ram'                       => $datesForAudit[0]->ram,
+				'ramSI'                     => $datesForAudit[0]->ramSI,
+				'ramNO'                     => $datesForAudit[0]->ramNO,
 				'obRam'                     => $datesForAudit[0]->obRam,
-				'disco'                     => $datesForAudit[0]->disco,
+				'discoSI'                   => $datesForAudit[0]->discoSI,
+				'discoNO'                   => $datesForAudit[0]->discoNO,
 				'obDisco'                   => $datesForAudit[0]->obDisco,
-				'danoFisico'                => $datesForAudit[0]->danoFisico,
+				'danoFisicoSI'              => $datesForAudit[0]->danoFisicoSI,
+				'danoFisicoNO'              => $datesForAudit[0]->danoFisicoNO,
 				'obDanoFisico'              => $datesForAudit[0]->obDanoFisico,
-				'procesador'                => $datesForAudit[0]->procesador,
+				'procesadorSI'              => $datesForAudit[0]->procesadorSI,
+				'procesadorNO'              => $datesForAudit[0]->procesadorNO,
 				'obProcesador'              => $datesForAudit[0]->obProcesador,
 				'fecha_tec'                 => $datesForAudit[0]->fecha_tec,
 	            'hora_tec'                  => $datesForAudit[0]->hora_tec,
@@ -1210,13 +1273,17 @@ class ServiceController
 					'marca'                     => $datesForAudit[0]->marca,
 					'modelo'                    => $datesForAudit[0]->modelo,
 					'estado'                    => $data['estado'],
-					'ram'                       => $datesForAudit[0]->ram,
+					'ramSI'                     => $datesForAudit[0]->ramSI,
+					'ramNO'                     => $datesForAudit[0]->ramNO,
 					'obRam'                     => $datesForAudit[0]->obRam,
-					'disco'                     => $datesForAudit[0]->disco,
+					'discoSI'                   => $datesForAudit[0]->discoSI,
+					'discoNO'                   => $datesForAudit[0]->discoNO,
 					'obDisco'                   => $datesForAudit[0]->obDisco,
-					'danoFisico'                => $datesForAudit[0]->danoFisico,
+					'danoFisicoSI'              => $datesForAudit[0]->danoFisicoSI,
+					'danoFisicoNO'              => $datesForAudit[0]->danoFisicoNO,
 					'obDanoFisico'              => $datesForAudit[0]->obDanoFisico,
-					'procesador'                => $datesForAudit[0]->procesador,
+					'procesadorSI'              => $datesForAudit[0]->procesadorSI,
+					'procesadorNO'              => $datesForAudit[0]->procesadorNO,
 					'obProcesador'              => $datesForAudit[0]->obProcesador,
 					'fecha_tec'                 => $datesForAudit[0]->fecha_tec,
 		            'hora_tec'                  => $datesForAudit[0]->hora_tec,
@@ -1260,12 +1327,14 @@ class ServiceController
 				foreach ($data as $finish) {
 					$status[] = $finish->estado;		
 				}
-				
-				$indexR = array_search('Reparación terminada', $status);
-				$indexT = array_search('Tramite', $status);
-				$indexThird = array_search('Se pasa a un tercero', $status);
-				//var_dump($status);
-				if (empty($indexR) && empty($indexT) && empty($indexThird)) {
+				// var_dump($status);
+				$indexR = in_array('Reparación terminada', $status);
+				$indexT = in_array('Tramite', $status);
+				$indexThird = in_array('Se pasa a un tercero', $status);
+				// var_dump($indexR);
+				// var_dump($indexT);
+				// var_dump($indexThird);
+				if ($indexR == false && $indexT == false && $indexThird == false) {
 					//echo $indexR;
 					//echo $indexT;
 					require 'Views/Service/detailsFinish.php';
@@ -1319,14 +1388,18 @@ class ServiceController
 						'marca'                        => $datesForAudit[0]->marca,
 						'modelo'                       => $datesForAudit[0]->modelo,
 						'estado'                       => $data['estado'],
-						'ram'                          => $datesForAudit[0]->ram,
-						'obRam'                        => $datesForAudit[0]->obRam,
-						'disco'                        => $datesForAudit[0]->disco,
-						'obDisco'                      => $datesForAudit[0]->obDisco,
-						'danoFisico'                   => $datesForAudit[0]->danoFisico,
-						'obDanoFisico'                 => $datesForAudit[0]->obDanoFisico,
-						'procesador'                   => $datesForAudit[0]->procesador,
-						'obProcesador'                 => $datesForAudit[0]->obProcesador,
+						'ramSI'                        => $datesForAudit[0]->ramSI,
+					    'ramNO'                        => $datesForAudit[0]->ramNO,
+					    'obRam'                        => $datesForAudit[0]->obRam,
+					    'discoSI'                      => $datesForAudit[0]->discoSI,
+					    'discoNO'                      => $datesForAudit[0]->discoNO,
+					    'obDisco'                      => $datesForAudit[0]->obDisco,
+					    'danoFisicoSI'                 => $datesForAudit[0]->danoFisicoSI,
+					    'danoFisicoNO'                 => $datesForAudit[0]->danoFisicoNO,
+					    'obDanoFisico'                 => $datesForAudit[0]->obDanoFisico,
+					    'procesadorSI'                 => $datesForAudit[0]->procesadorSI,
+					    'procesadorNO'                 => $datesForAudit[0]->procesadorNO,
+					    'obProcesador'                 => $datesForAudit[0]->obProcesador,
 						'fecha_tec'                    => $datesForAudit[0]->fecha_tec,
 			            'hora_tec'                     => $datesForAudit[0]->hora_tec,
 			            'informe_tecnico'              => $datesForAudit[0]->informe_tecnico,

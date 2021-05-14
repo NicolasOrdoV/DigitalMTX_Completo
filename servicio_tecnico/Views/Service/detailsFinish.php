@@ -88,9 +88,14 @@ $hora_actual = date("h:i a"); ?>
                                            $suma += $s->monto_final;
                                         }
                                         //echo $num;
-                                        echo '<h2>Monto: $'.$data[0]->monto.'</h2>
-                                              <h2 style="color: red;">Monto final: $'.$suma.'</h2>';     
-                                    ?>                                    
+                                        if ($data[0]->monto_final != $data[0]->monto) {
+                                            echo '<h2>Monto: $'.$data[0]->monto.'</h2>
+                                              <h2 style="color: red;">Monto final: $'.$suma.'</h2>'; 
+                                        }else{
+                                            echo '<h2>Monto: $'.$data[0]->monto.'</h2>
+                                              <h2 style="color: red;">Monto final: $'.$data[0]->monto_final.'</h2>';
+                                        }                                           
+                                    ?>                                       
                                 </div>
                             </div>
                             <div class="row clearfix">

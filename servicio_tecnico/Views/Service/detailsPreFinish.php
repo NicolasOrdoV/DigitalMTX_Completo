@@ -64,39 +64,44 @@ $hora_actual = date("h:i a"); ?>
                             </div>
                             <?php if($data[0]->tipo_equipo == 'PANTALLAS' || $data[0]->tipo_equipo == 'CELULARES' || $data[0]->tipo_equipo == 'TABLET' || $data[0]->tipo_equipo == 'PORTATIL' || $data[0]->tipo_equipo == 'TORRE'){ ?>
                                 <div class="row clearfix">
-                                    <div class="col-sm-3">
-                                        <h5>¿Se aplica memoria RAM?</h5>
-                                        <p><?php echo $data[0]->ram?></p>
-                                    </div>
-                                    <div  class="col-sm-3">
-                                        <h5>Observacion de la ram:</h5>
-                                        <p><?php echo $data[0]->obRam ?></p>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>¿Se aplica disco?</h5>
-                                        <p><?php echo $data[0]->disco?></p>
-                                    </div>
-                                    <div  class="col-sm-3">
-                                        <h5>Observacion del disco:</h5>
-                                        <p><?php echo $data[0]->obDisco ?></p>
-                                    </div>
-                                </div>
-                                <div class="row clearfix">   
-                                    <div class="col-sm-3">
-                                        <h5>¿Tiene daños fisicos?</h5>
-                                        <p><?php echo $data[0]->danoFisico?></p>
-                                    </div>
-                                    <div  class="col-sm-3">
-                                        <h5>Observacion del daño fisico:</h5>
-                                        <p><?php echo $data[0]->obDanoFisico ?></p>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>¿Se aplica procesador?</h5>
-                                        <p><?php echo $data[0]->procesador?></p>
-                                    </div>
-                                    <div  class="col-sm-3">
-                                        <h5>Observacion del procesador:</h5>
-                                        <p><?php echo $data[0]->obProcesador ?></p>
+                                    <div class="col-sm-12">
+                                        <table class="table">
+                                            <h2>Especificaciones</h2>
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th><label>SI</label></th>
+                                                    <th><label>NO</label></th>
+                                                    <th>Observaciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Memoria RAM</td>
+                                                    <td><?php echo $data[0]->ramSI?></td>
+                                                    <td><?php echo $data[0]->ramNO?></td>
+                                                    <td><?php echo $data[0]->obRam?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Disco duro</td>
+                                                    <td><?php echo $data[0]->discoSI?></td>
+                                                    <td><?php echo $data[0]->discoNO?></td>
+                                                    <td><?php echo $data[0]->obDisco?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Daño fisico</td>
+                                                    <td><?php echo $data[0]->danoFisicoSI?></td>
+                                                    <td><?php echo $data[0]->danoFisicoNO?></td>
+                                                    <td><?php echo $data[0]->obDanoFisico?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Procesador</td>
+                                                    <td><?php echo $data[0]->procesadorSI?></td>
+                                                    <td><?php echo $data[0]->procesadorNO?></td>
+                                                    <td><?php echo $data[0]->obProcesador?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             <?php } ?>

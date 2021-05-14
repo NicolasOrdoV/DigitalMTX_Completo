@@ -52,7 +52,7 @@ class Service
 	public function getByid($id)
 	{
 		try {
-			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id as idDetail, dsv.id_sv, dsv.codigo_producto,dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado,dsv.ram, dsv.obRam, dsv.disco, dsv.obDisco, dsv.danoFisico, dsv.obDanoFisico, dsv.procesador, dsv.obProcesador, dsv.nombre_tercero, dsv.orden_tercero, dsv.monto_tercero, dsv.observacion_razon_tercero ,dsv.monto_final FROM dtm_sv sv
+			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id as idDetail, dsv.id_sv, dsv.codigo_producto,dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado,dsv.ramSI, dsv.ramNO, dsv.obRam, dsv.discoSI, dsv.discoNO, dsv.obDisco, dsv.danoFisicoSI, dsv.danoFisicoNO, dsv.obDanoFisico, dsv.procesadorSI, dsv.procesadorNO, dsv.obProcesador, dsv.nombre_tercero, dsv.orden_tercero, dsv.monto_tercero, dsv.observacion_razon_tercero ,dsv.monto_final FROM dtm_sv sv
 			INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
 			WHERE sv.id = :id";
 			$array = ['id' => $id];
@@ -96,7 +96,7 @@ class Service
 	public function getByIdSV($id)
 	{
 		try {
-			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente ,sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id_sv, dsv.codigo_producto, dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado,dsv.ram, dsv.obRam, dsv.disco, dsv.obDisco, dsv.danoFisico, dsv.obDanoFisico, dsv.procesador, dsv.obProcesador FROM dtm_sv sv
+			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente ,sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id_sv, dsv.codigo_producto, dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado, dsv.ramSI, dsv.ramNO, dsv.obRam, dsv.discoSI, dsv.discoNO, dsv.obDisco, dsv.danoFisicoSI, dsv.danoFisicoNO, dsv.obDanoFisico, dsv.procesadorSI, dsv.procesadorNO, dsv.obProcesador FROM dtm_sv sv
 			    INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv WHERE dsv.id_sv = :id";
 			$array = ['id' => $id];
 			$query = $this->pdo->select($strSql,$array);
@@ -109,7 +109,7 @@ class Service
 	public function getByIdSVA($id)
 	{
 		try {
-			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente ,sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id_sv, dsv.codigo_producto, dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado,dsv.ram, dsv.obRam, dsv.disco, dsv.obDisco, dsv.danoFisico, dsv.obDanoFisico, dsv.procesador, dsv.obProcesador FROM dtm_sv sv
+			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente ,sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id_sv, dsv.codigo_producto, dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado,dsv.ramSI, dsv.ramNO, dsv.obRam, dsv.discoSI, dsv.discoNO, dsv.obDisco, dsv.danoFisicoSI, dsv.danoFisicoNO, dsv.obDanoFisico, dsv.procesadorSI, dsv.procesadorNO, dsv.obProcesador FROM dtm_sv sv
 			    INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv WHERE dsv.id = :id";
 			$array = ['id' => $id];
 			$query = $this->pdo->select($strSql,$array);
@@ -122,7 +122,7 @@ class Service
 	public function getAllServicesWithEmployee($name)
 	{
 		try {
-			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id as idDetalle,dsv.id_sv, dsv.codigo_producto, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado, dsv.ram, dsv.obRam, dsv.disco, dsv.obDisco, dsv.danoFisico, dsv.obDanoFisico, dsv.procesador, dsv.obProcesador FROM dtm_sv sv
+			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id as idDetalle,dsv.id_sv, dsv.codigo_producto, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado,dsv.ramSI, dsv.ramNO, dsv.obRam, dsv.discoSI, dsv.discoNO, dsv.obDisco, dsv.danoFisicoSI, dsv.danoFisicoNO, dsv.obDanoFisico, dsv.procesadorSI, dsv.procesadorNO, dsv.obProcesador FROM dtm_sv sv
 			    INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv 
 			    WHERE sv.tecnico_asignado = '$name'";
 			$query = $this->pdo->select($strSql);
@@ -135,7 +135,7 @@ class Service
 	public function getByIdTec($name,$id)
 	{
 		try {
-			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id as idDetalle, dsv.id_sv, dsv.codigo_producto, dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado, dsv.ram, dsv.obRam, dsv.disco, dsv.obDisco, dsv.danoFisico, dsv.obDanoFisico, dsv.procesador, dsv.obProcesador, dsv.monto_final FROM dtm_sv sv
+			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto, dsv.id as idDetalle, dsv.id_sv, dsv.codigo_producto, dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado, dsv.ramSI, dsv.ramNO, dsv.obRam, dsv.discoSI, dsv.discoNO, dsv.obDisco, dsv.danoFisicoSI, dsv.danoFisicoNO, dsv.obDanoFisico, dsv.procesadorSI, dsv.procesadorNO, dsv.obProcesador, dsv.monto_final FROM dtm_sv sv
 			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv 
 			           WHERE dsv.modelo = '$name' AND dsv.id = $id";
 			$query = $this->pdo->select($strSql);
@@ -161,7 +161,7 @@ class Service
 	public function getByIdTecRevision($name,$id) 
 	{
 		try {
-			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto,dsv.id as idsv, dsv.id_sv, dsv.codigo_producto,dsv.tipo_servicio ,dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado, dsv.ram, dsv.obRam, dsv.disco, dsv.obDisco, dsv.danoFisico, dsv.obDanoFisico, dsv.procesador, dsv.obProcesador, dsv.nombre_tercero, dsv.orden_tercero, dsv.monto_tercero, dsv.observacion_razon_tercero, t.id_sv, t.fecha_tec, t.hora_tec, t.informe_tecnico as informe_tecnico, t.Id_Empleado FROM dtm_sv sv INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv INNER JOIN dtm_tecnico_sv t ON dsv.id_sv = t.id_sv WHERE dsv.modelo = '$name' AND dsv.id = $id";
+			$strSql = "SELECT sv.id, sv.fecha, sv.hora, sv.nombre_cliente, sv.identificacion_cliente, sv.telefono_cliente, sv.consecutivo, sv.direccion_cliente, sv.correo_cliente, sv.observacion_cliente, sv.observacion_equipo, sv.fecha_pactada, sv.tecnico_asignado, sv.monto,dsv.id as idsv, dsv.id_sv, dsv.codigo_producto,dsv.tipo_servicio ,dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.estado, dsv.ramSI, dsv.ramNO, dsv.obRam, dsv.discoSI, dsv.discoNO, dsv.obDisco, dsv.danoFisicoSI, dsv.danoFisicoNO, dsv.obDanoFisico, dsv.procesadorSI, dsv.procesadorNO, dsv.obProcesador, dsv.nombre_tercero, dsv.orden_tercero, dsv.monto_tercero, dsv.observacion_razon_tercero, t.id_sv, t.fecha_tec, t.hora_tec, t.informe_tecnico as informe_tecnico, t.Id_Empleado FROM dtm_sv sv INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv INNER JOIN dtm_tecnico_sv t ON dsv.id_sv = t.id_sv WHERE dsv.modelo = '$name' AND dsv.id = $id";
 			$query = $this->pdo->select($strSql);
 			return $query;
 		} catch (PDOException $e) {
@@ -235,7 +235,7 @@ class Service
 	public function getAllDetailsThird($id)
 	{
 		try {
-			$strSql = "SELECT sv.*,dsv.id as idS, dsv.id_sv as idSV, dsv.codigo_producto, dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.ram, dsv.obRam, dsv.disco, dsv.obDisco, dsv.danoFisico, dsv.obDanoFisico, dsv.procesador, dsv.obProcesador ,dsv.estado, dsv.nombre_tercero, dsv.orden_tercero, dsv.monto_tercero, dsv.observacion_razon_tercero, dsv.monto_final, dsv.observacion_final,t.* FROM dtm_sv sv 
+			$strSql = "SELECT sv.*,dsv.id as idS, dsv.id_sv as idSV, dsv.codigo_producto, dsv.tipo_servicio, dsv.serie, dsv.tipo_equipo, dsv.marca, dsv.modelo, dsv.ramSI, dsv.ramNO, dsv.obRam, dsv.discoSI, dsv.discoNO, dsv.obDisco, dsv.danoFisicoSI, dsv.danoFisicoNO, dsv.obDanoFisico, dsv.procesadorSI, dsv.procesadorNO, dsv.obProcesador, dsv.estado, dsv.nombre_tercero, dsv.orden_tercero, dsv.monto_tercero, dsv.observacion_razon_tercero, dsv.monto_final, dsv.observacion_final,t.* FROM dtm_sv sv 
 			           INNER JOIN dtm_detalle_sv dsv ON sv.id = dsv.id_sv
 			           INNER JOIN dtm_tecnico_sv t ON dsv.id_sv = t.id_sv
 			           WHERE dsv.id = $id";

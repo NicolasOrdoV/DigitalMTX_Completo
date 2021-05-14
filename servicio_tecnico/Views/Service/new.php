@@ -13,7 +13,7 @@ $td = $total_data + 0001;
             </h2>
         </div>
         <!-- Input -->
-        <div class="row clearfix">
+        <div class="row clearfix"> 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
                 <div class="card">
                     <div class="header">
@@ -192,26 +192,26 @@ $td = $total_data + 0001;
                                                 <tbody>
                                                     <tr>
                                                         <td>Memoria RAM</td>
-                                                        <td><input type="checkbox" name="ram[]" class="ramSI" id="ram0" value=""></td>
-                                                        <td><input type="checkbox" name="ram[]" class="ramNO" id="ram0" value=""></td>
+                                                        <td><input type="text" name="ramSI[]" class="ramSI" id="ram0" value=""></td>
+                                                        <td><input type="text" name="ramNO[]" class="ramNO" id="ram0" value=""></td>
                                                         <td><textarea rows="2" name="obRam[]" class="form-control no-resize obRam"></textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Disco duro</td>
-                                                        <td><input type="checkbox" name="disco[]" class="discoSI" id="disco0" value=""></td>
-                                                        <td><input type="checkbox" name="disco[]" class="discoNO" id="disco0" value=""></td>
+                                                        <td><input type="text" name="discoSI[]" class="discoSI" id="disco0" value=""></td>
+                                                        <td><input type="text" name="discoNO[]" class="discoNO" id="disco0" value=""></td>
                                                         <td><textarea rows="2" name="obDisco[]" class="form-control no-resize obDisco"></textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Daño fisico</td>
-                                                        <td><input type="checkbox" name="danoFisico[]" class="danoSI" id="dano0" value=""></td>
-                                                        <td><input type="checkbox" name="danoFisico[]" class="danoNO" id="dano0" value=""></td>
+                                                        <td><input type="text" name="danoFisicoSI[]" class="danoSI" id="dano0" value=""></td>
+                                                        <td><input type="text" name="danoFisicoNO[]" class="danoNO" id="dano0" value=""></td>
                                                         <td><textarea rows="2" name="obDanoFisico[]" class="form-control no-resize obDano"></textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Procesador</td>
-                                                        <td><input type="checkbox" name="procesador[]" class="procesadorSI" id="procesador0" value=""></td>
-                                                        <td><input type="checkbox" name="procesador[]" class="procesadorNO" id="procesador0" value=""></td>
+                                                        <td><input type="text" name="procesadorSI[]" class="procesadorSI" id="procesador0" value=""></td>
+                                                        <td><input type="text" name="procesadorNO[]" class="procesadorNO" id="procesador0" value=""></td>
                                                         <td><textarea rows="2" name="obProcesador[]" class="form-control no-resize obProc"></textarea></td>
                                                     </tr>
                                                 </tbody>
@@ -306,29 +306,29 @@ $td = $total_data + 0001;
             var obProcesador = $("#especificaciones0").find('.obProc').val('');
             if (select == 'PANTALLAS' || select == 'CELULARES' || select == 'TORRE' || select == 'COMPUTADOR' || select == 'TABLET') {
                 $('#especificaciones0').css("visibility" , "visible");
-                ramSI.closest('.tde').find('.ramSI').val('SI').prop('checked',false);
-                ramNO.closest('.tde').find('.ramNO').val('NO').prop('checked',false);
-                discoSI.closest('.tde').find('.discoSI').val('SI').prop('checked',false);
-                discoNO.closest('.tde').find('.discoNO').val('NO').prop('checked',false);
-                danoSI.closest('.tde').find('.danoSI').val('SI').prop('checked',false);
-                danoNO.closest('.tde').find('.danoNO').val('NO').prop('checked',false);
-                procesadorSI.closest('.tde').find('.procesadorSI').val('SI').prop('checked',false);
-                procesadorNO.closest('.tde').find('.procesadorNO').val('NO').prop('checked',false);
+                ramSI.closest('.tde').find('.ramSI').attr("type","checkbox").val('SI').prop('checked',false);
+                ramNO.closest('.tde').find('.ramNO').attr("type","checkbox").val('NO').prop('checked',false);
+                discoSI.closest('.tde').find('.discoSI').attr("type","checkbox").val('SI').prop('checked',false);
+                discoNO.closest('.tde').find('.discoNO').attr("type","checkbox").val('NO').prop('checked',false);
+                danoSI.closest('.tde').find('.danoSI').attr("type","checkbox").val('SI').prop('checked',false);
+                danoNO.closest('.tde').find('.danoNO').attr("type","checkbox").val('NO').prop('checked',false);
+                procesadorSI.closest('.tde').find('.procesadorSI').attr("type","checkbox").val('SI').prop('checked',false);
+                procesadorNO.closest('.tde').find('.procesadorNO').attr("type","checkbox").val('NO').prop('checked',false);
             }else{
                 $('#especificaciones0').css("visibility" , "collapse");
 
-                ramSI.closest('.tde').find('.ramSI').val('');
-                ramNO.closest('.tde').find('.ramNO').val('');
-                obRam.closest('.tde').find('.obRam').val('');
-                discoSI.closest('.tde').find('.discoSI').val('');
-                discoNO.closest('.tde').find('.discoNO').val('');
-                obDisco.closest('.tde').find('.obDisco').val('');
-                danoSI.closest('.tde').find('.danoSI').val('');
-                danoNO.closest('.tde').find('.danoNO').val('');
-                obDano.closest('.tde').find('.obDano').val('');
-                procesadorSI.closest('.tde').find('.procesadorSI').val('');
-                procesadorNO.closest('.tde').find('.procesadorNO').val('');
-                obProcesador.closest('.tde').find('.obProc').val('');
+                ramSI.closest('.tde').find('.ramSI').attr("type","text").val('');
+                ramNO.closest('.tde').find('.ramNO').attr("type","text").val('');
+                obRam.closest('.tde').find('.obRam').attr("type","text").val('');
+                discoSI.closest('.tde').find('.discoSI').attr("type","text").val('');
+                discoNO.closest('.tde').find('.discoNO').attr("type","text").val('');
+                obDisco.closest('.tde').find('.obDisco').attr("type","text").val('');
+                danoSI.closest('.tde').find('.danoSI').attr("type","text").val('');
+                danoNO.closest('.tde').find('.danoNO').attr("type","text").val('');
+                obDano.closest('.tde').find('.obDano').attr("type","text").val('');
+                procesadorSI.closest('.tde').find('.procesadorSI').attr("type","text").val('');
+                procesadorNO.closest('.tde').find('.procesadorNO').attr("type","text").val('');
+                obProcesador.closest('.tde').find('.obProc').attr("type","text").val('');
             }   
         });
 
@@ -367,28 +367,28 @@ $td = $total_data + 0001;
 
                 if (select == 'PANTALLAS' || select == 'CELULARES' || select == 'TORRE' || select == 'COMPUTADOR' || select == 'TABLET') {
                     $("#especificaciones"+i).css("visibility" , "visible");
-                    ramSI.closest('.tde').find('.ramSI').val('SI').prop('checked',false);
-                    ramNO.closest('.tde').find('.ramNO').val('NO').prop('checked',false);
-                    discoSI.closest('.tde').find('.discoSI').val('SI').prop('checked',false);
-                    discoNO.closest('.tde').find('.discoNO').val('NO').prop('checked',false);
-                    danoSI.closest('.tde').find('.danoSI').val('SI').prop('checked',false);
-                    danoNO.closest('.tde').find('.danoNO').val('NO').prop('checked',false);
-                    procesadorSI.closest('.tde').find('.procesadorSI').val('SI').prop('checked',false);
-                    procesadorNO.closest('.tde').find('.procesadorNO').val('NO').prop('checked',false);
+                    ramSI.closest('.tde').find('.ramSI').attr("type","checkbox").val('SI').prop('checked',false);
+                    ramNO.closest('.tde').find('.ramNO').attr("type","checkbox").val('NO').prop('checked',false);
+                    discoSI.closest('.tde').find('.discoSI').attr("type","checkbox").val('SI').prop('checked',false);
+                    discoNO.closest('.tde').find('.discoNO').attr("type","checkbox").val('NO').prop('checked',false);
+                    danoSI.closest('.tde').find('.danoSI').attr("type","checkbox").val('SI').prop('checked',false);
+                    danoNO.closest('.tde').find('.danoNO').attr("type","checkbox").val('NO').prop('checked',false);
+                    procesadorSI.closest('.tde').find('.procesadorSI').attr("type","checkbox").val('SI').prop('checked',false);
+                    procesadorNO.closest('.tde').find('.procesadorNO').attr("type","checkbox").val('NO').prop('checked',false);
                 }else{
                     $("#especificaciones"+i).css("visibility" , "collapse");
-                    ramSI.closest('.tde').find('.ramSI').val('');
-                    ramNO.closest('.tde').find('.ramNO').val('');
-                    obRam.closest('.tde').find('.obRam').val('');
-                    discoSI.closest('.tde').find('.discoSI').val('');
-                    discoNO.closest('.tde').find('.discoNO').val('');
-                    obDisco.closest('.tde').find('.obDisco').val('');
-                    danoSI.closest('.tde').find('.danoSI').val('');
-                    danoNO.closest('.tde').find('.danoNO').val('');
-                    obDano.closest('.tde').find('.obDano').val('');
-                    procesadorSI.closest('.tde').find('.procesadorSI').val('');
-                    procesadorNO.closest('.tde').find('.procesadorNO').val('');
-                    obProcesador.closest('.tde').find('.obProc').val('');
+                    ramSI.closest('.tde').find('.ramSI').attr("type","text").val('');
+                    ramNO.closest('.tde').find('.ramNO').attr("type","text").val('');
+                    obRam.closest('.tde').find('.obRam').attr("type","text").val('');
+                    discoSI.closest('.tde').find('.discoSI').attr("type","text").val('');
+                    discoNO.closest('.tde').find('.discoNO').attr("type","text").val('');
+                    obDisco.closest('.tde').find('.obDisco').attr("type","text").val('');
+                    danoSI.closest('.tde').find('.danoSI').attr("type","text").val('');
+                    danoNO.closest('.tde').find('.danoNO').attr("type","text").val('');
+                    obDano.closest('.tde').find('.obDano').attr("type","text").val('');
+                    procesadorSI.closest('.tde').find('.procesadorSI').attr("type","text").val('');
+                    procesadorNO.closest('.tde').find('.procesadorNO').attr("type","text").val('');
+                    obProcesador.closest('.tde').find('.obProc').attr("type","text").val('');
                 }   
             });
             $("#contador").val(i);
