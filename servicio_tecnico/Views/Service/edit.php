@@ -169,6 +169,47 @@ $count = count($data);
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <?php if($product->tipo_equipo == 'PANTALLAS' || $product->tipo_equipo == 'CELULARES' || $product->tipo_equipo == 'PORTATIL' || $product->tipo_equipo == 'TABLET' || $product->tipo_equipo == 'TORRE'){ ?>
+                                                <div class="especificaciones" style="visibility: visible;">
+                                                    <h3>Especificaciones del servicio</h3>
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th><label>SI</label></th>
+                                                                <th><label>NO</label></th>
+                                                                <th>Observaciones</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Memoria RAM</td>
+                                                                <td><input type="checkbox" name="ramSI[]" class="ram" id="ram0" value="SI" <?php echo !empty($product->ramSI) ? 'checked' : '' ?>></td>
+                                                                <td><input type="checkbox" name="ramNO[]" class="ram" id="ram0" value="NO" <?php echo !empty($product->ramNO) ? 'checked' : '' ?>></td>
+                                                                <td><textarea rows="2" name="obRam[]" class="form-control no-resize"></textarea></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Disco duro</td>
+                                                                <td><input type="checkbox" name="discoSI[]" class="disco" id="disco0" value="SI" <?php echo !empty($product->discoSI) ? 'checked' : '' ?>></td>
+                                                                <td><input type="checkbox" name="discoNO[]" class="disco" id="disco0" value="NO" <?php echo !empty($product->discoNO) ? 'checked' : '' ?>></td>
+                                                                <td><textarea rows="2" name="obDisco[]" class="form-control"></textarea></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Daño fisico</td>
+                                                                <td><input type="checkbox" name="danoFisicoSI[]" class="dano" id="dano0" value="SI" <?php echo !empty($product->danoFisicoSI) ? 'checked' : '' ?>></td>
+                                                                <td><input type="checkbox" name="danoFisicoNO[]" class="dano" id="dano0" value="NO" <?php echo !empty($product->danoFisicoNO) ? 'checked' : '' ?>></td>
+                                                                <td><textarea rows="2" name="obDanoFisico[]" class="form-control"></textarea></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Procesador</td>
+                                                                <td><input type="checkbox" name="procesadorSI[]" class="procesador" id="procesador0" value="SI" <?php echo !empty($product->procesadorSI) ? 'checked' : '' ?>></td>
+                                                                <td><input type="checkbox" name="procesadorNO[]" class="procesador" id="procesador0" value="NO" <?php echo !empty($product->procesadorNO) ? 'checked' : '' ?>></td>
+                                                                <td><textarea rows="2" name="obProcesador[]" class="form-control"></textarea></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                               <?php }else{ ?>
                                                 <div class="especificaciones" id="especificaciones0" style="visibility: collapse;">
                                                     <h3>Especificaciones del servicio</h3>
                                                     <table class="table">
@@ -204,46 +245,6 @@ $count = count($data);
                                                                 <td><input type="text" name="procesadorSI[]" class="procesadorSI" id="procesador0" value=""></td>
                                                                 <td><input type="text" name="procesadorNO[]" class="procesadorNO" id="procesador0" value=""></td>
                                                                 <td><textarea rows="2" name="obProcesador[]" class="form-control no-resize obProc"></textarea></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <?php if($product->tipo_equipo == 'PANTALLAS' || $product->tipo_equipo == 'CELULARES' || $product->tipo_equipo == 'PORTATIL' || $product->tipo_equipo == 'TABLET' || $product->tipo_equipo == 'TORRE'){ ?>
-                                                <div class="especificaciones" id="especificaciones0" style="visibility: visible;">
-                                                    <h3>Especificaciones del servicio</h3>
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th></th>
-                                                                <th><label>SI</label></th>
-                                                                <th><label>NO</label></th>
-                                                                <th>Observaciones</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Memoria RAM</td>
-                                                                <td><input type="checkbox" name="ram[]" class="ramSI" id="ram0" value="SI"></td>
-                                                                <td><input type="checkbox" name="ram[]" class="ramNO" id="ram0" value="NO"></td>
-                                                                <td><textarea rows="2" name="obRam[]" class="form-control no-resize"></textarea></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Disco duro</td>
-                                                                <td><input type="checkbox" name="disco[]" class="discoSI" id="disco0" value="SI"></td>
-                                                                <td><input type="checkbox" name="disco[]" class="discoNO" id="disco0" value="NO"></td>
-                                                                <td><textarea rows="2" name="obDisco[]" class="form-control"></textarea></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Daño fisico</td>
-                                                                <td><input type="checkbox" name="danoFisico[]" class="danoSI" id="dano0" value="SI"></td>
-                                                                <td><input type="checkbox" name="danoFisico[]" class="danoNO" id="dano0" value="NO"></td>
-                                                                <td><textarea rows="2" name="obDanoFisico[]" class="form-control"></textarea></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Procesador</td>
-                                                                <td><input type="checkbox" name="procesador[]" class="procesadorSI" id="procesador0" value="SI"></td>
-                                                                <td><input type="checkbox" name="procesador[]" class="procesadorNO" id="procesador0" value="NO"></td>
-                                                                <td><textarea rows="2" name="obProcesador[]" class="form-control"></textarea></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
